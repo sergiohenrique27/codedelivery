@@ -4,6 +4,8 @@ namespace CodeDelivery\Providers;
 
 use CodeDelivery\Repositories\CategoryRepository;
 use CodeDelivery\Repositories\CategoryRepositoryEloquent;
+use CodeDelivery\Repositories\ProductRepository;
+use CodeDelivery\Repositories\ProductRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -28,6 +30,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CategoryRepository::class,
             CategoryRepositoryEloquent::class
+        );
+
+        $this->app->bind(
+            ProductRepository::class,
+            ProductRepositoryEloquent::class
         );
     }
 }

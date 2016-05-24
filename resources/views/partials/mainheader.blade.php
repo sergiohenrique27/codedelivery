@@ -115,15 +115,20 @@
                         <!-- The user image in the navbar-->
                         <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        @if( \Illuminate\Support\Facades\Auth::Check ())
                         <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                        @endif
+
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
                             <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                             <p>
+                                @if( \Illuminate\Support\Facades\Auth::Check ())
                                 {{ Auth::user()->name }}
                                 <small>Member since Nov. 2012</small>
+                                @endif
                             </p>
                         </li>
                         <!-- Menu Body -->

@@ -10,7 +10,9 @@
                 <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
             </div>
             <div class="pull-left info">
+                @if( \Illuminate\Support\Facades\Auth::Check ())
                 <p>{{ Auth::user()->name }}</p>
+                @endif
                 <!-- Status -->
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -33,7 +35,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <li><a href="{{ route('admin.categories.index') }}"><i class='fa fa-link'></i> <span>Categorias</span></a></li>
-
+            <li><a href="{{ route('admin.products.index') }}"><i class='fa fa-link'></i> <span>Produtos</span></a></li>
             <!--
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>

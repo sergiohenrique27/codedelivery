@@ -14,6 +14,7 @@ use CodeDelivery\Validators\CategoryValidator;
  */
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
+    
     /**
      * Specify Model class name
      *
