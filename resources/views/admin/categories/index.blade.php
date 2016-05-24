@@ -9,7 +9,7 @@
 
 
 @section('main-content')
-    <a href="#" class="btn btn-success">Nova Categoria</a>
+    <a href="{{ route('admin.categories.create') }}" class="btn btn-success">Nova Categoria</a>
 
     <table class="table table-bordered table-striped table-hover">
         <thead>
@@ -20,22 +20,17 @@
         </tr>
         </thead>
 
-
         <tbody>
-
         @foreach($categories as $category)
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td><a href="#" class="btn btn-primary">Editar</a></td>
+                <td><a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-primary btn-sm">Editar</a></td>
             </tr>
         @endforeach
         </tbody>
     </table>
 
     {!! $categories->render() !!}
-
-
-
 
 @endsection
