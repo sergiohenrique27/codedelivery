@@ -36,7 +36,8 @@
             <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>Home</span></a></li>
             <li><a href="{{ route('admin.categories.index') }}"><i class='fa fa-link'></i> <span>Categorias</span></a></li>
             <li><a href="{{ route('admin.products.index') }}"><i class='fa fa-link'></i> <span>Produtos</span></a></li>
-            <li><a href="{{ route('admin.clients.index') }}"><i class='fa fa-link'></i> <span>Clients</span></a></li>
+            <li><a href="{{ route('admin.clients.index') }}"><i class='fa fa-link'></i> <span>Clientes</span></a></li>
+            <li><a href="{{ route('admin.orders.index') }}"><i class='fa fa-link'></i> <span>Pedidos</span></a></li>
             <!--
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
