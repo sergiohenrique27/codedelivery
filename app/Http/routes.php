@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('oauth/access_token', function() {
+    return Response::json(Authorizer::issueAccessToken());
+});
+
 Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => 'auth.checkrole:admin'], function(){
 
     Route::group(['prefix'=>'categories', 'as' => 'categories.'], function() {
@@ -69,5 +73,15 @@ Route::group(['prefix'=>'customer', 'as' => 'customer.', 'middleware' => 'auth.c
         Route::get('/', ['as' => 'index', 'uses' => 'CheckoutController@index']);
         Route::get('create', ['as' => 'create', 'uses' => 'CheckoutController@create']);
         Route::post('store', ['as' => 'store', 'uses' => 'CheckoutController@store']);
+    });
+});
+
+Route::group(['prefix'=>'api', 'as' => 'api.', 'middleware' => 'oauth'], function(){
+    Route::get('pedidos', function(){
+        return [
+            'id' => 1,
+            'client' => 'Sérgio Henrique',
+            'total' => 1000
+        ];
     });
 });
