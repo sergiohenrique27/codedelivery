@@ -77,11 +77,16 @@ Route::group(['prefix'=>'customer', 'as' => 'customer.', 'middleware' => 'auth.c
 });
 
 Route::group(['prefix'=>'api', 'as' => 'api.', 'middleware' => 'oauth'], function(){
-    Route::get('pedidos', function(){
-        return [
-            'id' => 1,
-            'client' => 'Sérgio Henrique',
-            'total' => 1000
-        ];
+
+    Route::group(['prefix'=>'client', 'as' => 'client.', 'middleware' => 'oauth.checkrole:client'], function() {
+        Route::resource('order',
+            'api\client\ClientCheckoutController',
+            ['except' => ['edit', 'create', 'destroy']]
+        );
     });
+
+    Route::group(['prefix'=>'deliveryman', 'as' => 'deliveryman.', 'middleware' => 'oauth.checkrole:deliveryman'], function() {
+
+    });
+
 });
