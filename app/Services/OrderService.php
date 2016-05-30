@@ -9,10 +9,12 @@
 namespace CodeDelivery\Services;
 
 
+use CodeDelivery\Models\Order;
 use CodeDelivery\Repositories\CupomRepository;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\ProductRepository;
 use \DB;
+use Illuminate\Database\Eloquent\Collection;
 
 class OrderService
 {
@@ -26,6 +28,22 @@ class OrderService
         $this->orderRepository = $orderRepository;
         $this->cupomRepository = $cupomRepository;
         $this->productRepository = $productRepository;
+    }
+
+    public function getOrderByIdAndDeliveryman($id, $deliveryman)
+    {
+        $result = $this->orderRepository->with(['client', 'items', 'cupom'])->findWhere([
+            'id' => $id,
+            'user_deliveryman_id' => $deliveryman
+        ]);
+
+        $result = $result->first();
+        if ($result) {
+            $result->items->each(function ($item) {
+                $item->product;
+            });
+        }
+        return $result;
     }
 
     public function create(array $data)
@@ -65,7 +83,18 @@ class OrderService
         } catch (\Exception $e) {
             \DB::roolback();
             throw $e;
-    }
+        }
     }
 
+    public function updateStatus($id, $idDeliveryMan, $status)
+    {
+        $order = $this->getOrderByIdAndDeliveryman($id, $idDeliveryMan);
+        if ($order instanceof Order) {
+            $order->status = $status;
+            $order->save();
+            return $order;
+        }
+
+        return false;
+    }
 }
