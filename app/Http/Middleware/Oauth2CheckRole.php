@@ -28,6 +28,7 @@ class Oauth2CheckRole
 
         $user = $this->userRepository->find($id);
 
+
         if ( $user->role != $role ){
             abort(403, 'Access Forbidden');
         }

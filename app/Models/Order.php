@@ -14,7 +14,8 @@ class Order extends Model implements Transformable
         'client_id',
         'user_deliveryman_id',
         'total',
-        'status'
+        'status',
+        'cupom_id'
     ];
 
     public function client(){
@@ -30,6 +31,14 @@ class Order extends Model implements Transformable
     }
     public function cupom(){
         return $this->belongsTo(Cupom::class);
+    }
+
+    public function transform()
+    {
+        return [
+          'order' => $this->id,
+            'items' => $this->items
+        ];
     }
 
 }

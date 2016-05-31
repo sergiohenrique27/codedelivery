@@ -29,22 +29,7 @@ class OrderService
         $this->cupomRepository = $cupomRepository;
         $this->productRepository = $productRepository;
     }
-
-    public function getOrderByIdAndDeliveryman($id, $deliveryman)
-    {
-        $result = $this->orderRepository->with(['client', 'items', 'cupom'])->findWhere([
-            'id' => $id,
-            'user_deliveryman_id' => $deliveryman
-        ]);
-
-        $result = $result->first();
-        if ($result) {
-            $result->items->each(function ($item) {
-                $item->product;
-            });
-        }
-        return $result;
-    }
+    
 
     public function create(array $data)
     {
@@ -52,6 +37,10 @@ class OrderService
         \DB::beginTransaction();
         try {
             $data['status'] = 0;
+
+            if (isset($data['cupom_id'])){
+                unset($data['cupom_id']);
+            }
 
             if (isset($data['cupom_code'])) {
                 $cupom = $this->cupomRepository->findByField('code', $data['cupom_code'])->first();

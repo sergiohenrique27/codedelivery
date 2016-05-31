@@ -1,4 +1,4 @@
-    {
+{
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
@@ -10,7 +10,8 @@
         "acacha/admin-lte-template-laravel": "1.*",
         "prettus/l5-repository": "^2.5",
         "illuminate/html": "^5.0",
-        "lucadegasperi/oauth2-server-laravel": "5.1.*"
+        "lucadegasperi/oauth2-server-laravel": "5.1.*",
+        "league/fractal": "^0.13.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
