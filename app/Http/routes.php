@@ -15,13 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('oauth/access_token', function() {
-    return Response::json(Authorizer::issueAccessToken());
-});
 
-Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => 'auth.checkrole:admin'], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth.checkrole:admin'], function () {
 
-    Route::group(['prefix'=>'categories', 'as' => 'categories.'], function() {
+    Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'CategoriesController@index']);
         Route::get('create', ['as' => 'create', 'uses' => 'CategoriesController@create']);
         Route::post('store', ['as' => 'store', 'uses' => 'CategoriesController@store']);
@@ -29,7 +26,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => 'auth.checkro
         Route::put('update/{id}', ['as' => 'update', 'uses' => 'CategoriesController@update']);
     });
 
-    Route::group(['prefix'=>'products', 'as' => 'products.'], function() {
+    Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'ProductsController@index']);
         Route::get('create', ['as' => 'create', 'uses' => 'ProductsController@create']);
         Route::post('store', ['as' => 'store', 'uses' => 'ProductsController@store']);
@@ -38,7 +35,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => 'auth.checkro
         Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'ProductsController@destroy']);
     });
 
-    Route::group(['prefix'=>'clients', 'as' => 'clients.'], function() {
+    Route::group(['prefix' => 'clients', 'as' => 'clients.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'ClientsController@index']);
         Route::get('create', ['as' => 'create', 'uses' => 'ClientsController@create']);
         Route::post('store', ['as' => 'store', 'uses' => 'ClientsController@store']);
@@ -47,7 +44,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => 'auth.checkro
         Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'ClientsController@destroy']);
     });
 
-    Route::group(['prefix'=>'orders', 'as' => 'orders.'], function() {
+    Route::group(['prefix' => 'orders', 'as' => 'orders.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'OrdersController@index']);
         Route::get('create', ['as' => 'create', 'uses' => 'OrdersController@create']);
         Route::post('store', ['as' => 'store', 'uses' => 'OrdersController@store']);
@@ -56,7 +53,7 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => 'auth.checkro
         Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'OrdersController@destroy']);
     });
 
-    Route::group(['prefix'=>'cupoms', 'as' => 'cupoms.'], function() {
+    Route::group(['prefix' => 'cupoms', 'as' => 'cupoms.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'CupomsController@index']);
         Route::get('create', ['as' => 'create', 'uses' => 'CupomsController@create']);
         Route::post('store', ['as' => 'store', 'uses' => 'CupomsController@store']);
@@ -67,33 +64,40 @@ Route::group(['prefix'=>'admin', 'as' => 'admin.', 'middleware' => 'auth.checkro
 });
 
 
-Route::group(['prefix'=>'customer', 'as' => 'customer.', 'middleware' => 'auth.checkrole:client'], function(){
+Route::group(['prefix' => 'customer', 'as' => 'customer.', 'middleware' => 'auth.checkrole:client'], function () {
 
-    Route::group(['prefix'=>'order', 'as' => 'order.'], function() {
+    Route::group(['prefix' => 'order', 'as' => 'order.'], function () {
         Route::get('/', ['as' => 'index', 'uses' => 'CheckoutController@index']);
         Route::get('create', ['as' => 'create', 'uses' => 'CheckoutController@create']);
         Route::post('store', ['as' => 'store', 'uses' => 'CheckoutController@store']);
     });
 });
 
-Route::group(['prefix'=>'api', 'as' => 'api.', 'middleware' => 'oauth'], function(){
-
-    Route::group(['prefix'=>'client', 'as' => 'client.', 'middleware' => 'oauth.checkrole:client'], function() {
-        Route::resource('order',
-            'api\client\ClientCheckoutController',
-            ['except' => ['edit', 'create', 'destroy']]
-        );
+Route::group(['middleware' => 'cors'], function () {
+    Route::post('oauth/access_token', function () {
+        return Response::json(Authorizer::issueAccessToken());
     });
 
-    Route::group(['prefix'=>'deliveryman', 'as' => 'deliveryman.', 'middleware' => 'oauth.checkrole:deliveryman'], function() {
-        Route::resource('order',
-            'api\deliveryman\DeliverymanCheckoutController',
-            ['except' => ['edit', 'create', 'destroy', 'store']]
-        );
-        Route::patch('order/update-status/{if}',[
-            'uses' => 'api\deliveryman\DeliverymanCheckoutController@updateStatus',
-            'as' => 'order.upadateStatus'
-        ]);
-    });
 
+    Route::group(['prefix' => 'api', 'as' => 'api.', 'middleware' => 'oauth'], function () {
+
+        Route::group(['prefix' => 'client', 'as' => 'client.', 'middleware' => 'oauth.checkrole:client'], function () {
+            Route::resource('order',
+                'api\client\ClientCheckoutController',
+                ['except' => ['edit', 'create', 'destroy']]
+            );
+        });
+
+        Route::group(['prefix' => 'deliveryman', 'as' => 'deliveryman.', 'middleware' => 'oauth.checkrole:deliveryman'], function () {
+            Route::resource('order',
+                'api\deliveryman\DeliverymanCheckoutController',
+                ['except' => ['edit', 'create', 'destroy', 'store']]
+            );
+            Route::patch('order/update-status/{if}', [
+                'uses' => 'api\deliveryman\DeliverymanCheckoutController@updateStatus',
+                'as' => 'order.upadateStatus'
+            ]);
+        });
+
+    });
 });
