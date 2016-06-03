@@ -1,6 +1,6 @@
-angular.module('starters.controllers', [])
+angular.module('starters.controllers')
     .controller('LoginController', ['$scope', 'OAuth', '$ionicPopup', '$state',
-        function ($scope, OAuth, $ionicPopup, $state) {
+        function ($scope, OAuth, $ionicPopup, $state, meuValue) {
 
             $scope.user = {
                 username: '',
@@ -16,7 +16,7 @@ angular.module('starters.controllers', [])
                     $ionicPopup.alert({
                         title: 'Advertência',
                         template: 'Login e/ou Senha inválidos.'
-                    })
+                    });
                 });
             }
 

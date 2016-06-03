@@ -3,12 +3,20 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
+angular.module('starters.controllers', []);
+angular.module('starters.services', []);
+
 angular.module('starter',
     [
         'ionic',
         'angular-oauth2',
-        'starters.controllers'
+        'starters.controllers',
+        'ngResource',
+        'starters.services'
     ])
+    .constant('appConfig',{
+        baseUrl: 'http://localhost:8004'
+    })
 
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -28,7 +36,7 @@ angular.module('starter',
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig) {
         $stateProvider
             .state('login', {
                 url: '/login',
@@ -38,15 +46,42 @@ angular.module('starter',
             .state('home', {
                 url: '/home',
                 templateUrl: 'templates/home.html',
-                controller: function ($scope) {
-                    
+                controller: function ($scope ) {
                 }
-            });
+            })
+            .state('client',{
+                abstract: true,
+                url: '/client',
+                template: '<ion-nav-view/>'
+            })
+            .state('client.checkout', {
+                cache: false,
+                url: '/checkout',
+                templateUrl: 'templates/client/checkout.html',
+                controller: 'ClientCheckoutController'
+            })
+            .state('client.checkout_item_detail', {
+                url: '/checkout/detail/:index',
+                templateUrl: 'templates/client/checkout_item_detail.html',
+                controller: 'ClientCheckoutDetailController'
+            })
+            .state('client.checkout_successful',{
+                cache: false,
+                url: '/checkout/successful',
+                templateUrl: 'templates/client/checkout_successful.html',
+                controller: 'ClientCheckoutSuccessfulController'
+            })
+
+            .state('client.view_products', {
+                url: '/view_products',
+                templateUrl: 'templates/client/view_products.html',
+                controller: 'ClientViewProductsController'
+            })
 
         //$urlRouterProvider.otherwise('/');
 
         OAuthProvider.configure({
-            baseUrl: 'http://localhost:8004',
+            baseUrl: appConfig.baseUrl,
             clientId: 'app01',
             clientSecret: 'secret', // optional
             grantPath: 'oauth/access_token'
