@@ -74,6 +74,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.', 'middleware' => 'auth
 });
 
 Route::group(['middleware' => 'cors'], function () {
+
     Route::post('oauth/access_token', function () {
         return Response::json(Authorizer::issueAccessToken());
     });
@@ -99,6 +100,8 @@ Route::group(['middleware' => 'cors'], function () {
                 'as' => 'order.upadateStatus'
             ]);
         });
+
+        Route::get('cupom/{code}', 'api\CupomController@show');
 
     });
 });

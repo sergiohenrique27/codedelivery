@@ -12,10 +12,11 @@ angular.module('starter',
         'angular-oauth2',
         'starters.controllers',
         'ngResource',
-        'starters.services'
+        'starters.services',
+        'ngCordova'
     ])
     .constant('appConfig',{
-        baseUrl: 'http://localhost:8004'
+        baseUrl: 'http://192.168.0.11:8000/'
     })
 
     .run(function ($ionicPlatform) {
@@ -36,7 +37,7 @@ angular.module('starter',
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig) {
+    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide) {
         $stateProvider
             .state('login', {
                 url: '/login',
@@ -78,7 +79,39 @@ angular.module('starter',
                 controller: 'ClientViewProductsController'
             })
 
-        //$urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/login');
+
+
+        $provide.decorator('OAuthToken', [ '$localStorage', '$delegate', function ($localStorage, $delegate) {
+
+            Object.defineProperties($delegate, {
+                setToken: {
+                    value: function (data) {
+                        return $localStorage.setObject('token', data);
+                    },
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+                },
+                getToken: {
+                    value: function () {
+                        return $localStorage.getObject('token');
+                    },
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+                },
+                removeToken: {
+                    value: function () {
+                        $localStorage.setObject('token', null);
+                    },
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+                }
+            });
+            return $delegate;
+        }] );
 
         OAuthProvider.configure({
             baseUrl: appConfig.baseUrl,

@@ -10,7 +10,7 @@ angular.module('starters.controllers')
             $scope.login = function () {
                 OAuth.getAccessToken($scope.user).then(function (data) {
                     //sucesso
-                    $state.go('home');
+                    $state.go('client.checkout');
                 }, function (responseErro) {
                     //fracasso
                     $ionicPopup.alert({
