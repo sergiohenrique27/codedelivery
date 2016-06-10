@@ -101,6 +101,7 @@ Route::group(['middleware' => 'cors'], function () {
             ]);
         });
 
+        Route:get('authenticated', 'api\UserController@authenticated');
         Route::get('cupom/{code}', 'api\CupomController@show');
 
     });

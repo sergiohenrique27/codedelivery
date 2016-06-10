@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starters.controllers', []);
 angular.module('starters.services', []);
+angular.module('starters.filters', []);
 
 angular.module('starter',
     [
@@ -13,7 +14,8 @@ angular.module('starter',
         'starters.controllers',
         'ngResource',
         'starters.services',
-        'ngCordova'
+        'ngCordova',
+        'starters.filters'
     ])
     .constant('appConfig',{
         baseUrl: 'http://192.168.0.11:8000/'
@@ -53,7 +55,20 @@ angular.module('starter',
             .state('client',{
                 abstract: true,
                 url: '/client',
-                template: '<ion-nav-view/>'
+                templateUrl: 'templates/client/menu.html',
+                controller: 'ClientMenuController'
+            })
+            .state('client.order', {
+                cache: false,
+                url: '/order',
+                templateUrl: 'templates/client/order.html',
+                controller: 'ClientOrderController'
+            })
+            .state('client.view_order', {
+                cache: false,
+                url: '/view_order/:id',
+                templateUrl: 'templates/client/view_order.html',
+                controller: 'ClientViewOrderController'
             })
             .state('client.checkout', {
                 cache: false,
