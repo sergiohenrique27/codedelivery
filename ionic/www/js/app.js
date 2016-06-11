@@ -52,8 +52,10 @@ angular.module('starter',
                 controller: function ($scope ) {
                 }
             })
+
             .state('client',{
                 abstract: true,
+                cache: false,
                 url: '/client',
                 templateUrl: 'templates/client/menu.html',
                 controller: 'ClientMenuController'
@@ -87,11 +89,30 @@ angular.module('starter',
                 templateUrl: 'templates/client/checkout_successful.html',
                 controller: 'ClientCheckoutSuccessfulController'
             })
-
             .state('client.view_products', {
                 url: '/view_products',
                 templateUrl: 'templates/client/view_products.html',
                 controller: 'ClientViewProductsController'
+            })
+
+            .state('deliveryman',{
+                abstract: true,
+                cache: false,
+                url: '/deliveryman',
+                templateUrl: 'templates/deliveryman/menu.html',
+                controller: 'DeliverymanMenuController'
+            })
+            .state('deliveryman.order', {
+                cache: false,
+                url: '/order',
+                templateUrl: 'templates/deliveryman/order.html',
+                controller: 'DeliverymanOrderController'
+            })
+            .state('deliveryman.view_order', {
+                cache: false,
+                url: '/view_order/:id',
+                templateUrl: 'templates/deliveryman/view_order.html',
+                controller: 'DeliverymanViewOrderController'
             })
 
         $urlRouterProvider.otherwise('/login');
