@@ -95,9 +95,13 @@ Route::group(['middleware' => 'cors'], function () {
                 'api\deliveryman\DeliverymanCheckoutController',
                 ['except' => ['edit', 'create', 'destroy', 'store']]
             );
-            Route::patch('order/update-status/{if}', [
+            Route::patch('order/{id}/update-status', [
                 'uses' => 'api\deliveryman\DeliverymanCheckoutController@updateStatus',
-                'as' => 'order.upadateStatus'
+                'as' => 'order.updateStatus'
+            ]);
+            Route::post('order/{id}/geo', [
+                'uses' => 'api\deliveryman\DeliverymanCheckoutController@geo',
+                'as' => 'orders.geo'
             ]);
         });
 

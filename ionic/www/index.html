@@ -12,6 +12,7 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
 
+    <script src="lib\jquery\dist\jquery.min.js"></script>
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -19,6 +20,12 @@
     <script src="lib/query-string/query-string.js"></script>
     <script src="lib/angular-oauth2/dist/angular-oauth2.min.js"></script>
     <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src='lib/lodash/lodash.min.js'></script>
+    <script src='lib/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+    <script src='lib/angular-google-maps/dist/angular-google-maps.min.js'></script>
+    <script src='lib/pusher-websocket-iso/dist/web/pusher.js'></script>
+    <script src='lib/pusher-angular/lib/pusher-angular.min.js'></script>
+    <script src='lib/jquery.easing/js/jquery.easing.min.js'></script>
 
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
@@ -37,11 +44,10 @@
     <script src="js/controllers/client/checkout_successful.js"></script>
     <script src="js/controllers/client/order.js"></script>
     <script src="js/controllers/client/view_order.js"></script>
+    <script src="js/controllers/client/view_delivery.js"></script>
 
     <script src="js/controllers/deliveryman/view_order.js"></script>
     <script src="js/controllers/deliveryman/order.js"></script>
-
-
 
     <script src="js/services/products.js"></script>
     <script src="js/services/localStorage.js"></script>
@@ -50,13 +56,19 @@
     <script src="js/services/cupom.js"></script>
     <script src="js/services/user.js"></script>
     <script src="js/services/userData.js"></script>
+    <script src="js/services/map.js"></script>
 
     <script src="js/filters/join.js"></script>
-
-
 
 </head>
 <body ng-app="starter">
 <ion-nav-view></ion-nav-view>
+<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+<script src='lib/marker-animate-unobtrusive/vendor/markerAnimate.js'></script>
+<script src='lib/marker-animate-unobtrusive/dist/SlidingMarker.min.js'></script>
+<script type="text/javascript">
+    SlidingMarker.initializeGlobally();
+</script>
+
 </body>
 </html>

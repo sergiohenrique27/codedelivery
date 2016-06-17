@@ -29,7 +29,7 @@ class OrderService
         $this->cupomRepository = $cupomRepository;
         $this->productRepository = $productRepository;
     }
-    
+
 
     public function create(array $data)
     {
@@ -38,7 +38,7 @@ class OrderService
         try {
             $data['status'] = 0;
 
-            if (isset($data['cupom_id'])){
+            if (isset($data['cupom_id'])) {
                 unset($data['cupom_id']);
             }
 
@@ -77,13 +77,12 @@ class OrderService
 
     public function updateStatus($id, $idDeliveryMan, $status)
     {
-        $order = $this->getOrderByIdAndDeliveryman($id, $idDeliveryMan);
-        if ($order instanceof Order) {
-            $order->status = $status;
-            $order->save();
-            return $order;
+        $order = $this->orderRepository->getOrderByIdAndDeliveryman($id, $idDeliveryMan);
+        $order->status = $status;
+        if ((int)($order->status) == 1 && !$order->hash ){
+            $order->hash = md5( (new \DateTime())->getTimeStamp() );
         }
-
-        return false;
+        $order->save();
+        return $order;
     }
 }

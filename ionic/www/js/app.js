@@ -15,13 +15,19 @@ angular.module('starter',
         'ngResource',
         'starters.services',
         'ngCordova',
-        'starters.filters'
+        'starters.filters',
+        'uiGmapgoogle-maps',
+        'pusher-angular'
     ])
     .constant('appConfig',{
-        baseUrl: 'http://192.168.0.11:8000/'
+        baseUrl: 'http://192.168.0.11:8000/',
+        pusherKey: "71402c1e63208f41327c"
     })
 
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, $window) {
+        //$window.client = new Pusher(appConfig.pusherKey);
+        $window.client = new Pusher("71402c1e63208f41327c");
+
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -93,6 +99,12 @@ angular.module('starter',
                 url: '/view_products',
                 templateUrl: 'templates/client/view_products.html',
                 controller: 'ClientViewProductsController'
+            })
+            .state('client.view_delivery',{
+                cache: false,
+                url: '/view_delivery/:id',
+                templateUrl: 'templates/client/view_delivery.html',
+                controller: 'ClientViewDeliveryController'
             })
 
             .state('deliveryman',{

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d2d51bb278dce17086b02771e2693139",
-    "content-hash": "a1043e468eb54feb44d664ea113dba3a",
+    "hash": "97b620d213c8eb442716a0ef61c0dff9",
+    "content-hash": "28e670a684d9abb7b853532370fec1a0",
     "packages": [
         {
             "name": "acacha/admin-lte-template-laravel",
@@ -1446,6 +1446,50 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "pusher/pusher-php-server",
+            "version": "v2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pusher/pusher-http-php.git",
+                "reference": "b3984a9f6fd65e39b7d6de9bb7d67656ff286f0f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/b3984a9f6fd65e39b7d6de9bb7d67656ff286f0f",
+                "reference": "b3984a9f6fd65e39b7d6de9bb7d67656ff286f0f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Library for interacting with the Pusher REST API",
+            "homepage": "https://github.com/pusher/pusher-php-server",
+            "keywords": [
+                "events",
+                "php-pusher-server",
+                "publish",
+                "pusher",
+                "realtime",
+                "rest",
+                "trigger"
+            ],
+            "time": "2016-05-27 08:42:18"
         },
         {
             "name": "swiftmailer/swiftmailer",
