@@ -9,7 +9,7 @@ angular.module('starters.filters', []);
 
 angular.module('starter',
     [
-        'ionic',
+        'ionic','ionic.service.core',
         'angular-oauth2',
         'starters.controllers',
         'ngResource',
@@ -20,7 +20,9 @@ angular.module('starter',
         'pusher-angular'
     ])
     .constant('appConfig',{
-        baseUrl: 'http://192.168.0.11:8000/',
+        //baseUrl: 'http://192.168.0.11:8000/',   //brasilia
+        //baseUrl: 'http://192.34.59.160/',       //digital ocean
+        baseUrl: 'http://172.20.7.121:8000/',     // sampa
         pusherKey: "71402c1e63208f41327c"
     })
 
