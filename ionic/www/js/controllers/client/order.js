@@ -1,21 +1,34 @@
 angular.module('starters.controllers')
-    .controller('ClientOrderController', ['$scope', '$state', '$ionicLoading', '$ionicActionSheet', 'Order',
-        function ($scope, $state, $ionicLoading, $ionicActionSheet, Order) {
+    .controller('ClientOrderController', ['$scope', '$state', '$ionicLoading', '$ionicActionSheet', 'Order', '$timeout',
+        function ($scope, $state, $ionicLoading, $ionicActionSheet, Order, $timeout) {
+            var page = 1;
             $scope.items = [];
+            $scope.canMoreItems = true;
+/*
 
             $ionicLoading.show({
                 template: 'Carregando ...'
             });
-
+*/
             $scope.doRefresh = function () {
-                getOrders().then(
+
+                page = 1;
+                $scope.items = [];
+                $scope.canMoreItems = true;
+                $scope.loadMore();
+
+                $timeout(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
+                },200);
+
+               /* getOrders().then(
                     function (data) {
                         $scope.items = data.data;
                         $scope.$broadcast('scroll.refreshComplete');
                     }, function (dataError) {
                         $scope.$broadcast('scroll.refreshComplete');
                     }
-                );
+                ); */
             };
 
             $scope.openOrderDetail = function (order) {
@@ -44,17 +57,30 @@ angular.module('starters.controllers')
                         }
                     }
                 });
-            }
+            };
+
+            $scope.loadMore = function(){
+                getOrders().then(function (data) {
+                    $scope.items = $scope.items.concat( data.data );
+                    page += 1;
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+
+                    if ($scope.items.length == data.meta.pagination.total){
+                        $scope.canMoreItems = false;
+                    }
+                });
+            };
             
             function getOrders() {
                 return Order.query({
                     id: null,
+                    page: page,
                     orderBy: 'created_at',
                     sortedBy: 'desc'
                 }).$promise;
             };
 
-
+/*
             getOrders().then(
                 function (data) {
                     //sucesso
@@ -66,5 +92,5 @@ angular.module('starters.controllers')
                 }
             );
 
-
+*/
         }]);

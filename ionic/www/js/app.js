@@ -6,6 +6,7 @@
 angular.module('starters.controllers', []);
 angular.module('starters.services', []);
 angular.module('starters.filters', []);
+angular.module('starters.run', []);
 
 angular.module('starter',
     [
@@ -17,19 +18,24 @@ angular.module('starter',
         'ngCordova',
         'starters.filters',
         'uiGmapgoogle-maps',
-        'pusher-angular'
+        'pusher-angular',
+        'ui.router',
+        'permission', 'permission.ui',
+        'starters.run',
+        'http-auth-interceptor'
     ])
     .constant('appConfig',{
-        //baseUrl: 'http://192.168.0.11:8000/',   //brasilia
+        baseUrl: 'http://192.168.0.11:8000/',   //brasilia
         //baseUrl: 'http://192.34.59.160/',       //digital ocean
-        baseUrl: 'http://172.20.7.121:8000/',     // sampa
-        pusherKey: "71402c1e63208f41327c"
+        pusherKey: "71402c1e63208f41327c",
+        redirectAfterLogin:{
+            'client': 'client.order',
+            'deliveryman': 'deliveryman.order'
+        }
     })
 
-    .run(function ($ionicPlatform, $window) {
-        //$window.client = new Pusher(appConfig.pusherKey);
-        $window.client = new Pusher("71402c1e63208f41327c");
-
+    .run(function ($ionicPlatform, $window, appConfig) {
+        $window.client = new Pusher(appConfig.pusherKey);
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -50,9 +56,15 @@ angular.module('starter',
     .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide) {
         $stateProvider
             .state('login', {
+                cache: false,
                 url: '/login',
                 templateUrl: 'templates/login.html',
                 controller: 'LoginController'
+            })
+            .state('logout', {
+                cache: false,
+                url: '/logout',
+                controller: 'LogoutController'
             })
             .state('home', {
                 url: '/home',
@@ -66,7 +78,12 @@ angular.module('starter',
                 cache: false,
                 url: '/client',
                 templateUrl: 'templates/client/menu.html',
-                controller: 'ClientMenuController'
+                controller: 'ClientMenuController',
+                data: {
+                    permissions:{
+                        only: ['client-role']
+                    }
+                }
             })
             .state('client.order', {
                 cache: false,
@@ -114,7 +131,12 @@ angular.module('starter',
                 cache: false,
                 url: '/deliveryman',
                 templateUrl: 'templates/deliveryman/menu.html',
-                controller: 'DeliverymanMenuController'
+                controller: 'DeliverymanMenuController',
+                data: {
+                    permissions:{
+                        only: ['deliveryman-role']
+                    }
+                }
             })
             .state('deliveryman.order', {
                 cache: false,
@@ -127,10 +149,12 @@ angular.module('starter',
                 url: '/view_order/:id',
                 templateUrl: 'templates/deliveryman/view_order.html',
                 controller: 'DeliverymanViewOrderController'
-            })
+            });
 
-        $urlRouterProvider.otherwise('/login');
-
+        $urlRouterProvider.otherwise( function($injector) {
+            var $state = $injector.get("$state");
+            $state.go('login');
+        });
 
         $provide.decorator('OAuthToken', [ '$localStorage', '$delegate', function ($localStorage, $delegate) {
 
@@ -160,6 +184,11 @@ angular.module('starter',
                     writable: true
                 }
             });
+            return $delegate;
+        }] );
+
+        $provide.decorator('oauthInterceptor', ['$delegate', function ($delegate) {
+            delete $delegate['responseError'];
             return $delegate;
         }] );
 

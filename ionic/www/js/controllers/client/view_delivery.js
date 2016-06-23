@@ -1,7 +1,9 @@
 angular.module('starters.controllers')
     .controller('ClientViewDeliveryController', [
         '$scope', '$stateParams', 'Order', '$ionicLoading', '$ionicPopup', 'UserData', '$pusher', '$window', '$map',
-        function ($scope, $stateParams, Order, $ionicLoading, $ionicPopup, UserData, $pusher, $window, $map) {
+        'uiGmapGoogleMapApi',
+        function ($scope, $stateParams, Order, $ionicLoading, $ionicPopup, UserData, $pusher, $window, $map,
+                  uiGmapGoogleMapApi) {
             var urlIcon = "http://maps.google.com/mapfiles/kml/pal2";
             $scope.map = $map;
 
@@ -11,6 +13,12 @@ angular.module('starters.controllers')
 
             $ionicLoading.show({
                 template: 'Carregando ...'
+            });
+
+            uiGmapGoogleMapApi.then(function (maps) {
+                $ionicLoading.hide();
+            }, function (error) {
+                $ionicLoading.hide();
             });
 
             $scope.products = [];
@@ -26,11 +34,6 @@ angular.module('starters.controllers')
                         template: 'Pedido não está em estado de entrega.'
                     });
                 }
-
-                $ionicLoading.hide();
-            }, function (dataError) {
-                //fracasso
-                $ionicLoading.hide();
             });
 
             function initMarkers(order) {
@@ -142,7 +145,7 @@ angular.module('starters.controllers')
             $scope.map.fit = !$scope.map.fit;
         }
     }])
-    .controller('CvdControlReload', [ '$scope', '$window', '$timeout', function ($scope, $windows, $timeout) {
+    .controller('CvdControlReload', [ '$scope', '$window', '$timeout', function ($scope, $window, $timeout) {
         $scope.reload = function () {
             $timeout(function () {
                 $window.location.reload(true);
