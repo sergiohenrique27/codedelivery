@@ -1,5 +1,5 @@
 angular.module('starters.controllers')
-    .controller('LoginController', ['$scope', 'OAuth', 'OAuthToken', '$ionicPopup', '$state', 'UserData', 'User', '$redirect',
+    .controller('LoginCtrl', ['$scope', 'OAuth', 'OAuthToken', '$ionicPopup', '$state', 'UserData', 'User', '$redirect',
         function ($scope, OAuth, OAuthToken, $ionicPopup, $state, UserData, User, $redirect) {
 
             $scope.user = {
@@ -7,7 +7,7 @@ angular.module('starters.controllers')
                 password: ''
             };
 
-            $scope.login = function () {
+            $scope.doLogIn = function () {
                 var promise = OAuth.getAccessToken($scope.user)
 
                 promise
@@ -28,4 +28,22 @@ angular.module('starters.controllers')
                     });
             }
 
-        }]);
+        }])
+
+    .controller('ForgotPasswordCtrl', function($scope, $state) {
+        $scope.recoverPassword = function(){
+
+        };
+
+        $scope.user = {};
+    })
+
+    .controller('SignupCtrl', function($scope, $state) {
+        $scope.user = {};
+
+        $scope.user.email = "";
+
+        $scope.doSignUp = function(){
+
+        };
+    })

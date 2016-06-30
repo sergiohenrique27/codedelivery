@@ -7,6 +7,7 @@ angular.module('starters.controllers', []);
 angular.module('starters.services', []);
 angular.module('starters.filters', []);
 angular.module('starters.run', []);
+angular.module('starters.directives', []);
 
 angular.module('starter',
     [
@@ -22,7 +23,8 @@ angular.module('starter',
         'ui.router',
         'permission', 'permission.ui',
         'starters.run',
-        'http-auth-interceptor'
+        'http-auth-interceptor',
+        'starters.directives'
     ])
     .constant('appConfig',{
         baseUrl: 'http://192.168.0.11:8000/',   //brasilia
@@ -55,12 +57,37 @@ angular.module('starter',
 
     .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide) {
         $stateProvider
-            .state('login', {
+
+            .state('auth', {
+                url: "/auth",
+                templateUrl: "templates/auth/auth.html",
+                abstract: true,
+                controller: 'AuthCtrl'
+            })
+            .state('auth.login', {
                 cache: false,
                 url: '/login',
-                templateUrl: 'templates/login.html',
-                controller: 'LoginController'
+                templateUrl: "templates/auth/login.html",
+                controller: 'LoginCtrl'
             })
+
+            .state('auth.walkthrough', {
+                url: '/walkthrough',
+                templateUrl: "templates/auth/walkthrough.html"
+            })
+
+            .state('auth.forgot-password', {
+                url: "/forgot-password",
+                templateUrl: "templates/auth/forgot-password.html",
+                controller: 'ForgotPasswordCtrl'
+            })
+
+            .state('auth.signup', {
+                url: '/signup',
+                templateUrl: "templates/auth/signup.html",
+                controller: 'SignupCtrl'
+            })
+
             .state('logout', {
                 cache: false,
                 url: '/logout',
@@ -153,7 +180,7 @@ angular.module('starter',
 
         $urlRouterProvider.otherwise( function($injector) {
             var $state = $injector.get("$state");
-            $state.go('login');
+            $state.go('auth.walkthrough');
         });
 
         $provide.decorator('OAuthToken', [ '$localStorage', '$delegate', function ($localStorage, $delegate) {
