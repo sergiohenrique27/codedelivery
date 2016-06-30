@@ -24,6 +24,16 @@ class User extends Model implements Transformable,
         return $this->hasOne(Client::class);
     }
 
+    public function employee()
+    {
+        return $this->hasOne(Employee::class);
+    }
+
+    public function guest()
+    {
+        return $this->hasOne(Guest::class);
+    }
+
     /**
      * The database table used by the model.
      *

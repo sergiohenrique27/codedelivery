@@ -64,3 +64,43 @@ $factory->define(CodeDelivery\Models\Cupom::class, function (Faker\Generator $fa
         'value' => rand(50, 100)
     ];
 });
+
+$factory->define(CodeDelivery\Models\Hotel::class, function (Faker\Generator $faker) {
+    return [
+        'city_id'=> 530010,
+        'name' => $faker->name,
+        'latitude' => rand(-30.33, 30.33),
+        'longitude' => rand(-30.33, 30.33)
+    ];
+});
+
+$factory->define(CodeDelivery\Models\Employee::class, function (Faker\Generator $faker) {
+    return [
+        'hotel_id' => rand(1, 10)
+    ];
+});
+
+$factory->define(CodeDelivery\Models\Guest::class, function (Faker\Generator $faker) {
+    return [
+        'email' => $faker->email,
+        'fullname' => $faker->firstName,
+        'ocupation'=> $faker->jobTitle,
+        'nacionality'=> $faker->country,
+        'birthdate'=> $faker->date(),
+        'sex'=> $faker->randomElement([ 'M', 'F']),
+        'travelDocIssuingCountry'=> 'SSP-DF',
+        'travelDocType'=>'RG' ,
+        'travelDocNumber'=> $faker->numberBetween(11111111111, 99999999999),
+        'CPF'=> $faker->numberBetween(11111111111, 99999999999),
+        'phone'=> $faker->phoneNumber,
+        'cellphone'=> $faker->phoneNumber,
+        'permanentAdress'=> $faker->address,
+        'permanentZipcode'=> $faker->postcode,
+        'permanentCity'=> $faker->city,
+        'state'=> $faker->city,
+        'country'=> $faker->country,
+        'companyName'=> $faker->company,
+        'companyAdress'=> $faker->address,
+        'companyZipcode'=> $faker->postcode
+    ];
+});

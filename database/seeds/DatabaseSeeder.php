@@ -20,6 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderTableSeeder::class);
         $this->call(CupomTableSeeder::class);
 
+        $this->call(CitiesTableSeeder::class);
+        $this->call(HotelsTableSeeder::class);
+        $this->call(EmployeeTableSeeder::class);
+        $this->call(GuestTableSeeder::class);
+
         Model::reguard();
     }
 }
