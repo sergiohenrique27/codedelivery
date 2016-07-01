@@ -33,7 +33,8 @@ angular.module('starter',
         pusherKey: "71402c1e63208f41327c",
         redirectAfterLogin:{
             'client': 'client.order',
-            'deliveryman': 'deliveryman.order'
+            'deliveryman': 'deliveryman.order',
+            'guest' : 'guest.home'
         }
     })
 
@@ -100,6 +101,26 @@ angular.module('starter',
                 controller: function ($scope ) {
                 }
             })
+
+            .state('guest',{
+                abstract: true,
+                cache: false,
+                url: '/guest',
+                templateUrl: 'templates/guest/menu.html',
+                controller: 'GuestMenuController',
+          /*      data: {
+                    permissions:{
+                        only: ['guest-role']
+                    }
+                } */
+            })
+            .state('guest.home', {
+                cache: false,
+                url: '/home',
+                templateUrl: 'templates/guest/home.html',
+                controller: 'GuestHomeController'
+            })
+            
 
             .state('client',{
                 abstract: true,
