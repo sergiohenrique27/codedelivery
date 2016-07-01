@@ -2,12 +2,15 @@
 
 namespace CodeDelivery\Providers;
 
+use CodeDelivery\Models\Guest;
 use CodeDelivery\Repositories\CategoryRepository;
 use CodeDelivery\Repositories\CategoryRepositoryEloquent;
 use CodeDelivery\Repositories\ClientRepository;
 use CodeDelivery\Repositories\ClientRepositoryEloquent;
 use CodeDelivery\Repositories\CupomRepository;
 use CodeDelivery\Repositories\CupomRepositoryEloquent;
+use CodeDelivery\Repositories\GuestRepository;
+use CodeDelivery\Repositories\GuestRepositoryEloquent;
 use CodeDelivery\Repositories\OrderItemRepositoryEloquent;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\OrderRepositoryEloquent;
@@ -64,6 +67,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CupomRepository::class,
             CupomRepositoryEloquent::class
+        );
+
+        $this->app->bind(
+            GuestRepository::class,
+            GuestRepositoryEloquent::class
         );
 
     }

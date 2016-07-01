@@ -2,11 +2,14 @@
 
 namespace CodeDelivery\Models;
 
-use CodeDelivery\Checkin;
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Guest extends Model
+class Guest extends Model implements Transformable
 {
+    use TransformableTrait;
+
     protected $fillable = [
         'user_id',
         'guest_id',
@@ -43,4 +46,5 @@ class Guest extends Model
     public function checkins(){
         return $this->hasMany(Checkin::class);
     }
+
 }

@@ -79,6 +79,10 @@ Route::group(['middleware' => 'cors'], function () {
         return Response::json(Authorizer::issueAccessToken());
     });
 
+    Route::post('api/signup', [
+        'uses' => 'api\SignupController@store',
+        'as' => 'signup'
+    ]);
 
     Route::group(['prefix' => 'api', 'as' => 'api.', 'middleware' => 'oauth'], function () {
 

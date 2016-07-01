@@ -38,12 +38,36 @@ angular.module('starters.controllers')
         $scope.user = {};
     })
 
-    .controller('SignupCtrl', function($scope, $state) {
-        $scope.user = {};
-
-        $scope.user.email = "";
+    .controller('SignupCtrl',
+        ['$scope', '$state', 'User', '$ionicPopup', function($scope, $state, User, $ionicPopup) {
+        $scope.user = {
+            name: '',
+            email: '',
+            password: ''
+        };
 
         $scope.doSignUp = function(){
+            //User.authenticated({include: 'client'}).$promise;
+            var promise = User.signup( $scope.user ).$promise;
+            
+            promise.then(function (data) {
+                $ionicPopup.alert({
+                    title: 'Seja bem-vindo',
+                    template: 'Cadastro efetuado com sucesso. Faça o seu login.'
+                });
+                $state.go('auth.login');
 
+            }, function (dataError) {
+                var msg = "";
+                angular.forEach(dataError.data, function(value, key){
+                   msg += value + '<br/>'
+                });
+                $ionicPopup.alert({
+                    title: 'Advertência',
+                    template: msg
+                });
+
+                console.log(dataError.data);
+            });
         };
-    })
+    }])

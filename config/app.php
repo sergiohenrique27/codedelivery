@@ -145,12 +145,12 @@ return [
         CodeDelivery\Providers\AuthServiceProvider::class,
         CodeDelivery\Providers\EventServiceProvider::class,
         CodeDelivery\Providers\RouteServiceProvider::class,
-        CodeDelivery\Providers\RepositoryServiceProvider::class,
-
-        Illuminate\Html\HtmlServiceProvider::class,
 
         // AdminLTE template provider
         Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider::class,
+        
+        CodeDelivery\Providers\RepositoryServiceProvider::class,
+        Illuminate\Html\HtmlServiceProvider::class,
 
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
         LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
