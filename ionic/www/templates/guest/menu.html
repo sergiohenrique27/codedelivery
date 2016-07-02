@@ -8,13 +8,15 @@
                 </button>
             </ion-nav-buttons>
         </ion-nav-bar>
-        <ion-nav-view name="menuContent"></ion-nav-view>
+
+        <ion-nav-view> </ion-nav-view>
+
     </ion-side-menu-content>
 
     <ion-side-menu side="left" class="main-menu" expose-aside-when="large">
         <ion-content>
             <ion-list>
-                <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile">
+                <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="guest.profile">
                     <div class="user-image-container">
                         <pre-img ratio="_1_1" helper-class="rounded-image">
                             <img class="user-image"
@@ -25,7 +27,7 @@
                     <p class="message">Seja Bem-Vindo</p>
                 </ion-item>
 
-                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.bookmarks">
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="guest.profile">
                     <i class="icon ion-person"></i>
                     <h2 class="menu-text">Perfil</h2>
                 </ion-item>
@@ -43,6 +45,12 @@
 
             </ion-list>
         </ion-content>
+        <ion-footer-bar class="bar-stable">
+            <h1 class="title">Checkin Express</h1>
+            <div class="buttons">
+                <button class="button button-icon ion-log-out" ng-click="logout()"></button>
+            </div>
+        </ion-footer-bar>
     </ion-side-menu>
 </ion-side-menus>
 

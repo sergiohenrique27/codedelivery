@@ -275,9 +275,7 @@ angular.module('your_app_name', [
         controller: 'BookMarksCtrl'
       }
     }
-  })
-
-;
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/auth/walkthrough');

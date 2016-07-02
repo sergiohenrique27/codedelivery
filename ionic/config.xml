@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="ensinafacil.codedelivery.com" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Code Delivery</name>
+    <name>Checkin Express</name>
     <description>
-        aplicação para realizar entrega de pedidos.
+        aplicação para hotelaria.
     </description>
     <author email="sergio27@gmail.com" href="http://ensinafacil.com/">
       Ensina Fácil
