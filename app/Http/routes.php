@@ -75,7 +75,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.', 'middleware' => 'auth
 
 Route::group(['middleware' => 'cors'], function () {
 
-    Route::post('oauth/access_token', function () {
+    Route::post('api/oauth/access_token', function () {
         return Response::json(Authorizer::issueAccessToken());
     });
 
@@ -107,6 +107,18 @@ Route::group(['middleware' => 'cors'], function () {
                 'uses' => 'api\deliveryman\DeliverymanCheckoutController@geo',
                 'as' => 'orders.geo'
             ]);
+        });
+
+        Route::group(['prefix' => 'guest', 'as' => 'guest.', 'middleware' => 'oauth.checkrole:guest'], function () {
+
+           /* Route::resource('guest',
+                'api\guest\GuestController',
+                //['except' => ['edit', 'create', 'destroy']]
+                ['except' => [ 'destroy']]
+            );
+            */
+
+            Route::put('guest/{id}', [ 'uses' => 'api\guest\GuestController@update', 'as' => 'guest' ]);
         });
 
         Route:get('authenticated', 'api\UserController@authenticated');

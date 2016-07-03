@@ -28,8 +28,9 @@ angular.module('starter',
     ])
     .constant('appConfig',{
        // baseUrl: 'http://192.168.0.19:8000/',     // ortoclinica
-       // baseUrl: 'http://192.168.0.11:8000/',   //casa
-        baseUrl: 'http://192.34.59.160/',       //digital ocean
+        baseUrl: 'http://localhost:8100/',
+        //baseUrl: 'http://192.168.0.11:8000/',   //casa
+        //baseUrl: 'http://192.34.59.160/',       //digital ocean
         pusherKey: "71402c1e63208f41327c",
         redirectAfterLogin:{
             'client': 'client.order',
@@ -37,6 +38,8 @@ angular.module('starter',
             'guest' : 'guest.home'
         }
     })
+
+
 
     .run(function ($ionicPlatform, $window, appConfig) {
         $window.client = new Pusher(appConfig.pusherKey);
@@ -57,9 +60,9 @@ angular.module('starter',
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide) {
-        $stateProvider
+    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide, $httpProvider) {
 
+        $stateProvider
             .state('auth', {
                 url: "/auth",
                 templateUrl: "templates/auth/auth.html",
@@ -251,7 +254,7 @@ angular.module('starter',
             baseUrl: appConfig.baseUrl,
             clientId: 'app01',
             clientSecret: 'secret', // optional
-            grantPath: 'oauth/access_token'
+            grantPath: 'api/oauth/access_token'
         });
 
         OAuthTokenProvider.configure({

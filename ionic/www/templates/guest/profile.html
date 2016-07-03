@@ -33,7 +33,7 @@
 
                         <label class="item item-input item-stacked-label">
                             <span class="input-label">Data de Nascimento</span>
-                            <input type="date" name="birthdate" ng-model="guest.birthdate"
+                            <input type="date" name="birthdate" ng-model="guest.birthdate" value="{{guest.birthdate}}"
                                    placeholder="sua data de nascimento">
                         </label>
 
@@ -144,7 +144,7 @@
             <ion-slide>
                 <div class="padding list card">
                     <p> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique abaixo para salvar.</p>
-                    <button type="submit" class="button button-positive button-block" ng-click="salvarPerfil()">
+                    <button type="submit" class="button button-positive button-block" ng-click="save()">
                         Salvar Perfil
                     </button>
                 </div>

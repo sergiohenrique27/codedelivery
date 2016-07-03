@@ -1,42 +1,39 @@
 <?php
 
-namespace CodeDelivery\Http\Controllers\api\deliveryman;
+namespace CodeDelivery\Http\Controllers\api\guest;
 
 use CodeDelivery\Events\GetLocationDeliveryman;
 use CodeDelivery\Models\Geo;
+use CodeDelivery\Models\Guest;
 use CodeDelivery\Models\Order;
 
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Http\Controllers\Controller;
+use CodeDelivery\Repositories\GuestRepository;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Services\GuestService;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 
-class DeliverymanCheckoutController extends Controller
+class GuestController extends Controller
 {
-
     private $repository;
-    private $userRepository;
-    private $orderService;
-
-    private $with = ['cupom', 'items', 'client'];
+    private $service;
 
     public function __construct(
-        OrderRepository  $repository,
-        UserRepository $userRepository,
-        OrderService $orderService
+        GuestRepository  $repository, GuestService $service
     )
     {
         $this->repository = $repository;
-        $this->userRepository = $userRepository;
-        $this->orderService = $orderService;
+        $this->service = $service;
     }
 
     public function index()
     {
+       /*
         $id = Authorizer::getResourceOwnerId();
         $orders = $this->repository->skipPresenter(false)
             ->with($this->with)
@@ -45,28 +42,30 @@ class DeliverymanCheckoutController extends Controller
             })->paginate();
 
         return $orders;
+       */
     }
 
     public function show($id)
     {
+        /*
         $deliveryman = Authorizer::getResourceOwnerId();
         $o = $this->repository->skipPresenter(false)->getOrderByIdAndDeliveryman($id, $deliveryman);
         return $o;
-
+*/
     }
 
     public function updateStatus(Request $request, $id)
     {
-        $deliveryman = Authorizer::getResourceOwnerId();
+  /*     $deliveryman = Authorizer::getResourceOwnerId();
         return $this->orderService->updateStatus($id, $deliveryman, $request->get('status'));
+  */
+  }
+    
+    public function update(Request $request, $id){
+        $guest = $request->get('guest');
+
+        dd ('aaaaa');
+        return $this->service->update($id, $guest);
     }
 
-    public function geo( Request $request, Geo $geo, $id){
-        $deliveryman = Authorizer::getResourceOwnerId();
-        $order = $this->repository->getOrderByIdAndDeliveryman($id, $deliveryman);
-        $geo->latitude = $request->get('latitude');
-        $geo->longitude = $request->get('longitude');
-        event(new GetLocationDeliveryman($geo, $order));
-        return $geo;
-    }
 }

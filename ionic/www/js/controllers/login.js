@@ -12,7 +12,7 @@ angular.module('starters.controllers')
 
                 promise
                     .then( function (data) {
-                        return User.authenticated({include: 'client'}).$promise;
+                        return User.authenticated({include: 'guest'}).$promise;
                     })
                     .then(function (data) {
                         UserData.set(data.data);

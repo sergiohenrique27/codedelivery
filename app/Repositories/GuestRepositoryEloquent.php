@@ -14,6 +14,7 @@ use CodeDelivery\Validators\GuestValidator;
  */
 class GuestRepositoryEloquent extends BaseRepository implements GuestRepository
 {
+    protected $skipPresenter = true;
     /**
      * Specify Model class name
      *
@@ -32,5 +33,18 @@ class GuestRepositoryEloquent extends BaseRepository implements GuestRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function getGuestById($id)
+    {
+        $result = $this->model
+            ->where('id', $id)
+            ->first();
+
+        if ($result){
+            return $this->parserResult($result);
+        }
+
+        throw (new ModelNotFoundException())->setModel(get_class($this->model));
     }
 }
