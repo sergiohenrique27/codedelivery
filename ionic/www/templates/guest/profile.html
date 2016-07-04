@@ -93,11 +93,6 @@
                     </label>
 
                     <label class="item item-input item-floating-label">
-                        <span class="input-label">Endereço</span>
-                        <input type="text" name="permanentAdress" ng-model="guest.permanentAdress"
-                               placeholder="seu Endereço de casa">
-                    </label>
-                    <label class="item item-input item-floating-label">
                         <span class="input-label">CEP</span>
                         <input type="text" name="permanentZipcode" ng-model="guest.permanentZipcode"
                                placeholder="seu CEP">
@@ -108,6 +103,11 @@
 
             <ion-slide>
                 <div class="list card">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Endereço</span>
+                        <input type="text" name="permanentAdress" ng-model="guest.permanentAdress"
+                               placeholder="seu Endereço de casa">
+                    </label>
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Cidade</span>
                         <input type="text" name="permanentCity" ng-model="guest.permanentCity"
@@ -123,6 +123,12 @@
                         <input type="text" name="country" ng-model="guest.country"
                                placeholder="seu País">
                     </label>
+
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="padding list card">
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Empresa</span>
                         <input type="text" name="companyName" ng-model="guest.companyName"
@@ -138,11 +144,6 @@
                         <input type="text" name="companyZipcode" ng-model="guest.companyZipcode"
                                placeholder="CEP de sua empresa">
                     </label>
-                </div>
-            </ion-slide>
-
-            <ion-slide>
-                <div class="padding list card">
                     <p> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique abaixo para salvar.</p>
                     <button type="submit" class="button button-positive button-block" ng-click="save()">
                         Salvar Perfil

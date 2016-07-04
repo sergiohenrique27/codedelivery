@@ -25,8 +25,6 @@ class GuestRepositoryEloquent extends BaseRepository implements GuestRepository
         return Guest::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -35,16 +33,4 @@ class GuestRepositoryEloquent extends BaseRepository implements GuestRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public function getGuestById($id)
-    {
-        $result = $this->model
-            ->where('id', $id)
-            ->first();
-
-        if ($result){
-            return $this->parserResult($result);
-        }
-
-        throw (new ModelNotFoundException())->setModel(get_class($this->model));
-    }
 }

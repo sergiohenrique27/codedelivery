@@ -61,11 +61,15 @@ class GuestController extends Controller
   */
   }
     
-    public function update(Request $request, $id){
+    public function updateProfile(Request $request)
+    {
+
+
+        $user_id = Authorizer::getResourceOwnerId();
         $guest = $request->get('guest');
 
-        dd ('aaaaa');
-        return $this->service->update($id, $guest);
+
+        return $this->service->updateProfile($user_id, $guest);
     }
 
 }

@@ -9,13 +9,8 @@
 namespace CodeDelivery\Services;
 
 
-use CodeDelivery\Models\Order;
-use CodeDelivery\Repositories\CupomRepository;
 use CodeDelivery\Repositories\GuestRepository;
-use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\ProductRepository;
 use \DB;
-use Illuminate\Database\Eloquent\Collection;
 
 class GuestService
 {
@@ -27,13 +22,18 @@ class GuestService
     }
 
 
-    public function update($id, $guest)
+    public function updateProfile($id_user, $guest)
     {
-        $guest = $this->guestRepository->getGuestById($id);
-        //setar campos
+        $guestAux = $this->guestRepository->findByField('user_id', $id_user)->first();
 
-        dd($guest);
-        $guest->save();
-        return $guest;
+        $guest['guest_id'] = null;
+        if ($guestAux) {
+            $result = $this->guestRepository->update($guest, $guestAux->id);
+        } else {
+            $result = $this->guestRepository->create($guest);
+        }
+
+        return $result;
+
     }
 }
