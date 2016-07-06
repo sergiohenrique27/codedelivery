@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Http\Controllers\api\guest;
 
+use CodeDelivery\Criteria\GuestCompanionIdSelectCriteria;
 use CodeDelivery\Events\GetLocationDeliveryman;
 use CodeDelivery\Models\Geo;
 use CodeDelivery\Models\Guest;
@@ -14,6 +15,7 @@ use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\GuestService;
 use CodeDelivery\Services\OrderService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
@@ -24,7 +26,7 @@ class GuestController extends Controller
     private $service;
 
     public function __construct(
-        GuestRepository  $repository, GuestService $service
+        GuestRepository $repository, GuestService $service
     )
     {
         $this->repository = $repository;
@@ -33,16 +35,16 @@ class GuestController extends Controller
 
     public function index()
     {
-       /*
-        $id = Authorizer::getResourceOwnerId();
-        $orders = $this->repository->skipPresenter(false)
-            ->with($this->with)
-            ->scopeQuery( function ($query) use($id){
-                return $query->where('user_deliveryman_id', '=', $id);
-            })->paginate();
+        /*
+         $id = Authorizer::getResourceOwnerId();
+         $orders = $this->repository->skipPresenter(false)
+             ->with($this->with)
+             ->scopeQuery( function ($query) use($id){
+                 return $query->where('user_deliveryman_id', '=', $id);
+             })->paginate();
 
-        return $orders;
-       */
+         return $orders;
+        */
     }
 
     public function show($id)
@@ -56,11 +58,11 @@ class GuestController extends Controller
 
     public function updateStatus(Request $request, $id)
     {
-  /*     $deliveryman = Authorizer::getResourceOwnerId();
-        return $this->orderService->updateStatus($id, $deliveryman, $request->get('status'));
-  */
-  }
-    
+        /*     $deliveryman = Authorizer::getResourceOwnerId();
+              return $this->orderService->updateStatus($id, $deliveryman, $request->get('status'));
+        */
+    }
+
     public function updateProfile(Request $request)
     {
 
@@ -70,6 +72,33 @@ class GuestController extends Controller
 
 
         return $this->service->updateProfile($user_id, $guest);
+    }
+
+    public function listCompanions()
+    {
+        $user_id = Authorizer::getResourceOwnerId();
+        $guest = $this->repository->skipPresenter(false)->findByField('user_id', $user_id);
+
+        if (!$guest['data'][0]['companions']) {
+            return null;
+        }
+        return $guest['data'][0]['companions'];
+
+    }
+
+    public function destroyCompanion($id)
+    {
+        $user_id = Authorizer::getResourceOwnerId();
+        $guest = $this->repository->findByField('user_id', $user_id)->first();
+
+        $this->repository->pushCriteria(new GuestCompanionIdSelectCriteria($id, $guest['id']));
+        $companion = $this->repository->all()->first();
+        if ($companion) {
+            $companion->delete();
+            return 0;
+        } else {
+            abort(404);
+        }
     }
 
 }

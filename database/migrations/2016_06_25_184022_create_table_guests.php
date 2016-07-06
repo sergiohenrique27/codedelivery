@@ -14,7 +14,7 @@ class CreateTableGuests extends Migration
     {
         Schema::create('guests', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('guest_id')->unsigned()->nullable();
             $table->foreign('guest_id')->references('id')->on('guests')->onDelete('cascade');

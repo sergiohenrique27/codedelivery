@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Transformers;
 
+use CodeDelivery\Models\User;
 use League\Fractal\TransformerAbstract;
 use CodeDelivery\Models\Guest;
 
@@ -12,6 +13,7 @@ use CodeDelivery\Models\Guest;
 class GuestTransformer extends TransformerAbstract
 {
 
+    protected $availableIncludes = ['companions', 'user'];
     /**
      * Transform the \Guest entity
      * @param \Guest $model
@@ -22,8 +24,8 @@ class GuestTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
-            'user_id'=> (int) $model->user_id,
-            'guest_id'=> (int) $model->guest_id,
+            'user_id'=>  $model->user_id,
+            'guest_id'=>  $model->guest_id,
             'email'=> $model->email,
             'fullname'=> $model->fullname,
             'ocupation'=> $model->ocupation,
@@ -51,4 +53,21 @@ class GuestTransformer extends TransformerAbstract
             'updated_at' => $model->updated_at
         ];
     }
+
+    public function includeCompanions(Guest $model)
+    {
+        if (!$model->companions){
+            return null;
+        }
+        return $this->collection( $model->companions, new GuestTransformer() );
+    }
+
+    public function includeUser(Guest $model)
+    {
+        if (!$model->user){
+            return null;
+        }
+        return $this->item( $model->user, new UserTransformer() );
+    }
+
 }

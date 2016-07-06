@@ -39,8 +39,8 @@ class Guest extends Model implements Transformable
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function guest(){
-        return $this->hasOne(Guest::class, 'id', 'guest_id');
+    public function companions(){
+        return $this->hasMany( Guest::class );
     }
 
     public function checkins(){

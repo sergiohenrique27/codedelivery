@@ -28,8 +28,8 @@ angular.module('starter',
     ])
     .constant('appConfig',{
        // baseUrl: 'http://192.168.0.19:8000/',     // ortoclinica
-        //baseUrl: 'http://localhost:8100/',       //casa
-        baseUrl: 'http://192.34.59.160/',       //digital ocean
+        baseUrl: 'http://localhost:8100/',       //casa
+        //baseUrl: 'http://192.34.59.160/',       //digital ocean
         pusherKey: "71402c1e63208f41327c",
         redirectAfterLogin:{
             'client': 'client.order',
@@ -128,6 +128,14 @@ angular.module('starter',
                 templateUrl: 'templates/guest/profile.html',
                 controller: 'GuestProfileController'
             })
+
+            .state('guest.companions', {
+                cache: false,
+                url: '/profile',
+                templateUrl: 'templates/guest/companion.html',
+                controller: 'GuestCompanionController'
+            })
+
             
 
             .state('client',{

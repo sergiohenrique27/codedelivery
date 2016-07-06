@@ -9,6 +9,14 @@ angular.module('starters.services')
             },
             updateProfile: {
                 method: 'PUT'
+            },
+            getCompanions:{
+                url: appConfig.baseUrl + 'api/guest/companions',
+                method: 'GET'
+            },
+            destroyCompanion:{
+                url: appConfig.baseUrl + 'api/guest/companions/:id',
+                method: 'DELETE'
             }
         });
 

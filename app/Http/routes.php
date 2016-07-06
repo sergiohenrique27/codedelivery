@@ -119,6 +119,8 @@ Route::group(['middleware' => 'cors'], function () {
             */
 
             Route::put('guest', [ 'uses' => 'api\guest\GuestController@updateProfile', 'as' => 'guest' ]);
+            Route::get('companions', [ 'uses' => 'api\guest\GuestController@listCompanions', 'as' => 'companions' ]);
+            Route::delete('companions/{id}', [ 'uses' => 'api\guest\GuestController@destroyCompanion', 'as' => 'destroyCompanion' ]);
         });
 
         Route:get('authenticated', 'api\UserController@authenticated');

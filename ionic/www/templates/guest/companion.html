@@ -1,0 +1,19 @@
+<ion-view>
+    <ion-nav-title> Acompanhantes </ion-nav-title>
+    <div class="bar bar-subheader">
+        <button class="button button-icon ion-plus" ng-click="openListProducts()"></button>
+        <h2 class="title"> </h2>
+        <button class="button button-icon ion-minus-circled"
+                ng-click="showDelete = !showDelete" ng-class="{'button-clear button-assertive': showDelete, '': !showDelete}">
+        </button>
+    </div>
+    <ion-content class="padding has-subheader">
+        <ion-list show-delete="showDelete">
+            <ion-item ng-repeat="i in companions" ng-click="showDetail( $index )">
+                <h2>{{i.fullname}}</h2>
+                <ion-delete-button class="ion ion-minus-circled"
+                                   ng-click="removeItem( $index )"></ion-delete-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
