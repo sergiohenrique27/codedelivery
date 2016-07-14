@@ -24,7 +24,8 @@ angular.module('starter',
         'permission', 'permission.ui',
         'starters.run',
         'http-auth-interceptor',
-        'starters.directives'
+        'starters.directives',
+        'angucomplete-alt'
     ])
     .constant('appConfig',{
        // baseUrl: 'http://192.168.0.19:8000/',     // ortoclinica
@@ -131,12 +132,40 @@ angular.module('starter',
 
             .state('guest.companions', {
                 cache: false,
-                url: '/profile',
+                url: '/companions',
                 templateUrl: 'templates/guest/companion.html',
                 controller: 'GuestCompanionController'
             })
-
-            
+            .state('guest.showCompanion', {
+                cache: false,
+                url: '/showCompanion/:id',
+                templateUrl: 'templates/guest/showCompanion.html',
+                controller: 'GuestShowCompanionController'
+            })
+            .state('guest.checkins', {
+                cache: false,
+                url: '/checkins',
+                templateUrl: 'templates/guest/checkins.html',
+                controller: 'GuestCheckinsController'
+            })
+            .state('guest.checkin', {
+                cache: false,
+                url: '/checkin/:id',
+                templateUrl: 'templates/guest/checkin.html',
+                controller: 'GuestCheckinController'
+            })
+            .state('guest.qrcode', {
+                cache: false,
+                url: '/qrcode/:id',
+                templateUrl: 'templates/guest/qrcode.html',
+                controller: 'GuestQrcodeController'
+            })
+            .state('guest.listCheckin', {
+                cache: false,
+                url: '/listCheckin/:status',
+                templateUrl: 'templates/guest/listCheckin.html',
+                controller: 'GuestListCheckinController'
+            })
 
             .state('client',{
                 abstract: true,

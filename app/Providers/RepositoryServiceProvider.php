@@ -5,12 +5,16 @@ namespace CodeDelivery\Providers;
 use CodeDelivery\Models\Guest;
 use CodeDelivery\Repositories\CategoryRepository;
 use CodeDelivery\Repositories\CategoryRepositoryEloquent;
+use CodeDelivery\Repositories\CheckinRepository;
+use CodeDelivery\Repositories\CheckinRepositoryEloquent;
 use CodeDelivery\Repositories\ClientRepository;
 use CodeDelivery\Repositories\ClientRepositoryEloquent;
 use CodeDelivery\Repositories\CupomRepository;
 use CodeDelivery\Repositories\CupomRepositoryEloquent;
 use CodeDelivery\Repositories\GuestRepository;
 use CodeDelivery\Repositories\GuestRepositoryEloquent;
+use CodeDelivery\Repositories\HotelRepository;
+use CodeDelivery\Repositories\HotelRepositoryEloquent;
 use CodeDelivery\Repositories\OrderItemRepositoryEloquent;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\OrderRepositoryEloquent;
@@ -72,6 +76,14 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             GuestRepository::class,
             GuestRepositoryEloquent::class
+        );
+        $this->app->bind(
+            HotelRepository::class,
+            HotelRepositoryEloquent::class
+        );
+        $this->app->bind(
+            CheckinRepository::class,
+            CheckinRepositoryEloquent::class
         );
 
     }

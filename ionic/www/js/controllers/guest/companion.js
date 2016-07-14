@@ -1,6 +1,6 @@
 angular.module('starters.controllers')
-    .controller('GuestCompanionController', ['$scope', '$state', '$ionicLoading', 'Guest',
-        function ($scope, $state, $ionicLoading, Guest) {
+    .controller('GuestCompanionController', ['$scope', '$state', '$ionicLoading', 'Guest', '$ionicPopup',
+        function ($scope, $state, $ionicLoading, Guest, $ionicPopup) {
             $scope.companions = null;
             $scope.showDelete = false;
 
@@ -10,7 +10,7 @@ angular.module('starters.controllers')
                 .then(function (data) {
                     $scope.companions = data.data;
                 }, function (dataError) {
-
+                    alert('Erro');
                 });
 
 
@@ -33,7 +33,11 @@ angular.module('starters.controllers')
             }
 
             $scope.showDetail = function (i) {
-                //    $state.go('client.checkout_item_detail',{index: i})
+                    $state.go('guest.showCompanion',{id: $scope.companions[i].id} );
+            }
+
+            $scope.addCompanion = function () {
+                $state.go('guest.showCompanion');
             }
         }])
 ;

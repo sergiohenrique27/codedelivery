@@ -1,0 +1,19 @@
+<ion-view>
+    <ion-nav-title> Lista de Checkins </ion-nav-title>
+    <div class="bar bar-subheader">
+        <button class="button button-icon ion-plus" ng-click="addCompanion()"></button>
+        <h2 class="title"> {{title}}</h2>
+        <button class="button button-icon ion-minus-circled"
+                ng-click="showDelete = !showDelete" ng-class="{'button-clear button-assertive': showDelete, '': !showDelete}">
+        </button>
+    </div>
+    <ion-content class="padding has-subheader">
+        <ion-list show-delete="showDelete">
+            <ion-item ng-repeat="i in checkins" on-hold="showActionSheet(i)">
+                <h2>#{{i.id}} - {{i.hotel.data.name}} </h2>
+                <ion-delete-button class="ion ion-minus-circled"
+                                   ng-click="removeItem( $index )"></ion-delete-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

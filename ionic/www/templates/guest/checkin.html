@@ -1,0 +1,92 @@
+<ion-view>
+    <ion-nav-title> Checkin</ion-nav-title>
+
+    <ion-content class="padding has-header">
+
+        <span class="input-label">Hotel</span>
+        <div angucomplete-alt id="txtAutocomplete" placeholder="Entre com o nome do hotel" pause="100"
+             selected-object="afterSelectedHotel" local-data="Hotels" search-fields="name"
+             title-field="name" minlength="1" input-class="form-control" match-class="highlight">
+
+        </div>
+        <div ng-show="SelectedHotel">
+            Hotel Selecionado : {{SelectedHotel.name}}
+            <button type="button" class="button button-assertive button-block" ng-click="limparHotel()">
+                Limpar Hotel
+            </button>
+        </div>
+
+        <div>
+            <span class="input-label">Hospedes</span>
+            <ion-checkbox ng-if="guest" ng-model="checkin.guests[0]" ng-true-value="{{guest.id}}"
+                          ng-false-value="null">{{guest.fullname}}</ion-checkbox>
+
+            <ion-checkbox  ng-repeat="i in companions" ng-model="checkin.guests[$index + 1]"
+                           ng-true-value="{{i.id}}" ng-false-value="null">{{i.fullname}}</ion-checkbox>
+
+        </div>
+
+
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Última Procedência</span>
+            <input type="text" name="arrivingFrom" ng-model="checkin.arrivingFrom"
+                   placeholder="sua ultima procedência ( cidade/UF )">
+        </label>
+
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Próximo destino</span>
+            <input type="text" name="nextDestination" ng-model="checkin.nextDestination"
+                   placeholder="seu próximo destino ( cidade/UF )">
+        </label>
+
+        <label class="item item-input">
+            <span class="input-label">Motivo da Viagem</span>
+            <select ng-model="checkin.purposeOfTrip" required>
+                <option value="T">Turismo</option>
+                <option value="N">Negócios</option>
+                <option value="C">Convenção</option>
+                <option value="O">Outros</option>
+            </select>
+        </label>
+
+        <label class="item item-input">
+            <span class="input-label">Meio de Transporte</span>
+            <select ng-model="checkin.ArrivingBy" required>
+                <option value="A">Avião</option>
+                <option value="N">Navio</option>
+                <option value="A">Automóvel</option>
+                <option value="O">Ônibus/Trem</option>
+            </select>
+        </label>
+
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Placa do veículo</span>
+            <input type="text" name="carPlate" ng-model="checkin.carPlate"
+                   placeholder="informe a placa do veículo">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Data de Checkin</span>
+            <input type="date" name="checkin" ng-model="checkin.checkin" value="{{checkin.checkin}}"
+                   placeholder="informe a data de checkin">
+        </label>
+
+        <label class="item item-input item-stacked-label">
+            <span class="input-label">Data de Checkout</span>
+            <input type="date" name="checkout" ng-model="checkin.checkout" value="{{checkin.checkout}}"
+                   placeholder="informe a data de Checkout">
+        </label>
+<!--
+        <label class="item item-input item-floating-label">
+            <span class="input-label">Acompanhantes</span>
+            <input type="text" name="companions" ng-model="checkin.companions"
+                   placeholder="informe a qtd de acompanhantes">
+        </label>
+-->
+        <button type="submit" class="button button-positive button-block" ng-click="save()">
+            Salvar Checkin
+        </button>
+
+
+    </ion-content>
+</ion-view>

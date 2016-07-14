@@ -84,6 +84,7 @@ Route::group(['middleware' => 'cors'], function () {
         'as' => 'signup'
     ]);
 
+
     Route::group(['prefix' => 'api', 'as' => 'api.', 'middleware' => 'oauth'], function () {
 
         Route::group(['prefix' => 'client', 'as' => 'client.', 'middleware' => 'oauth.checkrole:client'], function () {
@@ -111,19 +112,33 @@ Route::group(['middleware' => 'cors'], function () {
 
         Route::group(['prefix' => 'guest', 'as' => 'guest.', 'middleware' => 'oauth.checkrole:guest'], function () {
 
-           /* Route::resource('guest',
-                'api\guest\GuestController',
-                //['except' => ['edit', 'create', 'destroy']]
-                ['except' => [ 'destroy']]
-            );
-            */
+            /* Route::resource('guest',
+                 'api\guest\GuestController',
+                 //['except' => ['edit', 'create', 'destroy']]
+                 ['except' => [ 'destroy']]
+             );
+             */
 
-            Route::put('guest', [ 'uses' => 'api\guest\GuestController@updateProfile', 'as' => 'guest' ]);
-            Route::get('companions', [ 'uses' => 'api\guest\GuestController@listCompanions', 'as' => 'companions' ]);
-            Route::delete('companions/{id}', [ 'uses' => 'api\guest\GuestController@destroyCompanion', 'as' => 'destroyCompanion' ]);
+            Route::put('guest', ['uses' => 'api\guest\GuestController@updateProfile', 'as' => 'guest']);
+            Route::get('companions', ['uses' => 'api\guest\GuestController@listCompanions', 'as' => 'companions']);
+            Route::delete('companions/{id}', ['uses' => 'api\guest\GuestController@destroyCompanion', 'as' => 'destroyCompanion']);
+            Route::get('companions/{id}', ['uses' => 'api\guest\GuestController@showCompanion', 'as' => 'showCompanion']);
+            Route::put('companion', ['uses' => 'api\guest\GuestController@storeCompanion', 'as' => 'storeCompanion']);
+
+
+            Route::group(['prefix' => 'checkin', 'as' => 'checkin.'], function () {
+                Route::put('store', ['uses' => 'api\guest\CheckinController@store', 'as' => 'store']);
+                Route::get('listCheckin/{status}', ['uses' => 'api\guest\CheckinController@listCheckin', 'as' => 'listCheckin']);
+            });
+
         });
 
-        Route:get('authenticated', 'api\UserController@authenticated');
+        Route::get('hotel', [
+            'uses' => 'api\HotelController@getHotels',
+            'as' => 'hotel'
+        ]);
+
+        get('authenticated', 'api\UserController@authenticated');
         Route::get('cupom/{code}', 'api\CupomController@show');
 
     });

@@ -2,11 +2,14 @@
 
 namespace CodeDelivery\Models;
 
-use CodeDelivery\Checkin;
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Hotel extends Model
+class Hotel extends Model implements Transformable
 {
+    use TransformableTrait;
+
     protected $fillable = [
         'city_id',
         'name',

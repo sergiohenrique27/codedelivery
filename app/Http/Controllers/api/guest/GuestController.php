@@ -55,17 +55,9 @@ class GuestController extends Controller
         return $o;
 */
     }
-
-    public function updateStatus(Request $request, $id)
-    {
-        /*     $deliveryman = Authorizer::getResourceOwnerId();
-              return $this->orderService->updateStatus($id, $deliveryman, $request->get('status'));
-        */
-    }
-
+    
     public function updateProfile(Request $request)
     {
-
 
         $user_id = Authorizer::getResourceOwnerId();
         $guest = $request->get('guest');
@@ -101,4 +93,24 @@ class GuestController extends Controller
         }
     }
 
+
+    public function showCompanion($id)
+    {
+            $user_id = Authorizer::getResourceOwnerId();
+            $guest = $this->repository->findByField('user_id', $user_id)->first();
+
+        return $this->repository->getByIdAndGuestId($id, $guest['id']);
+
+    } 
+    
+    public function storeCompanion(Request $request)
+    {
+        $user_id = Authorizer::getResourceOwnerId();
+        $guest = $this->repository->findByField('user_id', $user_id)->first();
+
+        $companion = $request->get('guest');
+
+        return $this->service->updateCompanion($guest['id'], $companion);
+            
+    }
 }

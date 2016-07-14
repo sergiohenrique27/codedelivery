@@ -1,0 +1,156 @@
+<ion-view>
+    <ion-nav-title>
+        <span>Acompanhante</span>
+    </ion-nav-title>
+    <ion-content scroll="false">
+        <ion-slide-box show-pager="true">
+            <ion-slide>
+                <div class="list card">
+                    <div class="item item-body">
+
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">E-mail</span>
+                            <input type="email" name="email" ng-model="guest.email" placeholder="seu e-mail">
+                        </label>
+
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Nome Completo</span>
+                            <input type="text" name="fullname" ng-model="guest.fullname"
+                                   placeholder="seu nome completo">
+                        </label>
+
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Profissão</span>
+                            <input type="text" name="ocupation" ng-model="guest.ocupation" placeholder="sua profissão">
+                        </label>
+
+                        <label class="item item-input item-floating-label">
+                            <span class="input-label">Nacionalidade</span>
+                            <input type="text" name="nacionality" ng-model="guest.nacionality"
+                                   placeholder="sua nacionalidade">
+                        </label>
+
+                        <label class="item item-input item-stacked-label">
+                            <span class="input-label">Data de Nascimento</span>
+                            <input type="date" name="birthdate" ng-model="guest.birthdate" value="{{guest.birthdate}}"
+                                   placeholder="sua data de nascimento">
+                        </label>
+
+
+                    </div>
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="list card">
+                    <div class="item item-divider">Sexo</div>
+                    <ion-radio ng-model="guest.sex" ng-value="'M'">Masculino</ion-radio>
+                    <ion-radio ng-model="guest.sex" ng-value="'F'">Feminino</ion-radio>
+
+                    <div class="item item-divider">Documento de Identidade</div>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Órgão Expedidor</span>
+                        <input type="text" name="travelDocIssuingCountry" ng-model="guest.travelDocIssuingCountry"
+                               placeholder="Órgão Expedidor">
+                    </label>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Tipo</span>
+                        <input type="text" name="travelDocType" ng-model="guest.travelDocType"
+                               placeholder="tipo">
+                    </label>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Número</span>
+                        <input type="text" name="travelDocNumber" ng-model="guest.travelDocNumber"
+                               placeholder="número">
+                    </label>
+
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="list card">
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">CPF</span>
+                        <input type="text" name="CPF" ng-model="guest.CPF"
+                               placeholder="seu CPF">
+                    </label>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Telefone</span>
+                        <input type="tel" name="phone" ng-model="guest.phone"
+                               placeholder="seu Telefone">
+                    </label>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Celular</span>
+                        <input type="tel" name="cellphone" ng-model="guest.cellphone"
+                               placeholder="seu Celular">
+                    </label>
+
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">CEP</span>
+                        <input type="text" name="permanentZipcode" ng-model="guest.permanentZipcode"
+                               placeholder="seu CEP">
+                    </label>
+
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="list card">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Endereço</span>
+                        <input type="text" name="permanentAdress" ng-model="guest.permanentAdress"
+                               placeholder="seu Endereço de casa">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Cidade</span>
+                        <input type="text" name="permanentCity" ng-model="guest.permanentCity"
+                               placeholder="sua Cidade">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Estado</span>
+                        <input type="text" name="state" ng-model="guest.state"
+                               placeholder="seu Estado">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">País</span>
+                        <input type="text" name="country" ng-model="guest.country"
+                               placeholder="seu País">
+                    </label>
+
+                </div>
+            </ion-slide>
+
+            <ion-slide>
+                <div class="padding list card">
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Empresa</span>
+                        <input type="text" name="companyName" ng-model="guest.companyName"
+                               placeholder="sua Empresa">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">Endereço - Empresa</span>
+                        <input type="text" name="companyAdress" ng-model="guest.companyAdress"
+                               placeholder="Endereço de sua empresa">
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label">CEP - Empresa</span>
+                        <input type="text" name="companyZipcode" ng-model="guest.companyZipcode"
+                               placeholder="CEP de sua empresa">
+                    </label>
+                    <p> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique abaixo para salvar.</p>
+                    <button type="submit" class="button button-positive button-block" ng-click="save()">
+                        Salvar Perfil
+                    </button>
+                </div>
+            </ion-slide>
+
+
+        </ion-slide-box>
+    </ion-content>
+</ion-view>

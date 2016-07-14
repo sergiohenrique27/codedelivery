@@ -1,0 +1,20 @@
+<ion-view>
+    <ion-nav-title> Checkins </ion-nav-title>
+
+    <ion-content class="padding has-header">
+        <ion-list>
+            <ion-item ng-click="addCheckin(  )">
+                <h2> Novo </h2>
+            </ion-item>
+            <ion-item ng-click="listCheckins( 'A' )">
+                <h2> Agendados </h2>
+            </ion-item>
+            <ion-item ng-click="listCheckins( 'V' )">
+                <h2> Vigentes </h2>
+            </ion-item>
+            <ion-item ng-click="listCheckins( 'R' )">
+                <h2> Realizados </h2>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

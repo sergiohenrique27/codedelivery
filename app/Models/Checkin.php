@@ -1,34 +1,18 @@
 <?php
 
-namespace CodeDelivery;
+namespace CodeDelivery\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Checkin extends Model
+class Checkin extends Model implements Transformable
 {
+    use TransformableTrait;
+
     protected $fillable = [
+        'user_id',
         'hotel_id',
-        'guest_id',
-        'email',
-        'fullname',
-        'ocupation',
-        'nacionality',
-        'birthdate',
-        'sex',
-        'travelDocIssuingCountry',
-        'travelDocType',
-        'travelDocNumber',
-        'CPF',
-        'phone',
-        'cellphone',
-        'permanentAdress',
-        'permanentZipcode',
-        'permanentCity',
-        'state',
-        'country',
-        'companyName',
-        'companyAdress',
-        'companyZipcode',
         'arrivingFrom',
         'nextDestination',
         'purposeOfTrip',
@@ -40,8 +24,13 @@ class Checkin extends Model
         'record'
     ];
 
-    public function guest(){
-        return $this->belongsTo(Guest::class, 'id', 'guest_id');
+    public function hotel(){
+        return $this->belongsTo(Hotel::class);
     }
+
+    public  function guests(){
+        return $this->belongsToMany(Guest::class, 'checkins_guests');
+    }
+
 
 }

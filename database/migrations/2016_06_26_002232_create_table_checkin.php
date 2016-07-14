@@ -12,6 +12,11 @@ class CreateTableCheckin extends Migration
      */
     public function up()
     {
+
+        if (Schema::hasTable('checkins')) {
+            Schema::drop('checkins');
+        }
+        
         Schema::create('checkins', function (Blueprint $table) {
             $table->increments('id');
 

@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Models;
 
+use CodeDelivery\Models\Checkin;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -35,16 +36,19 @@ class Guest extends Model implements Transformable
         'companyZipcode'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function companions(){
-        return $this->hasMany( Guest::class );
+    public function companions()
+    {
+        return $this->hasMany(Guest::class);
     }
 
-    public function checkins(){
-        return $this->hasMany(Checkin::class);
+    public function checkins()
+    {
+        return $this->belongsToMany(Checkin::class, 'checkins_guests');
     }
 
 }

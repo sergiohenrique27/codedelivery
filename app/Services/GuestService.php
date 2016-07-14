@@ -36,4 +36,22 @@ class GuestService
         return $result;
 
     }
+
+    public function updateCompanion($guest_id, $companion)
+    {
+        $result = $this->guestRepository->getByIdAndGuestId($companion['id'], $guest_id);
+
+        $companion['guest_id'] = $guest_id;
+        $companion['user_id'] = null;
+
+        if ($result) {
+            $result2 = $this->guestRepository->update($companion, $companion['id']);
+        } else {
+            $result2 = $this->guestRepository->create($companion);
+        }
+
+        return $result2;
+
+    }
+
 }

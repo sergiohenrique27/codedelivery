@@ -17,6 +17,15 @@ angular.module('starters.services')
             destroyCompanion:{
                 url: appConfig.baseUrl + 'api/guest/companions/:id',
                 method: 'DELETE'
+            },
+            getCompanion:{
+                isArray: false,
+                url: appConfig.baseUrl + 'api/guest/companions/:id',
+                method: 'GET'
+            },
+            storeCompanion:{
+                url: appConfig.baseUrl + 'api/guest/companion',
+                method: 'PUT'
             }
         });
 
