@@ -53,5 +53,12 @@ class CheckinService
 
     }
 
+    public function getCheckin($id, $user_id){
+
+        $result = $this->checkinRepository->skipPresenter(false)->getCheckinByIdAndUserid($id, $user_id);
+        return $result;
+
+    }
+
 
 }

@@ -24,7 +24,8 @@ angular.module('starters.controllers')
                 $ionicActionSheet.show({
                     buttons: [
                         {text: 'Alterar Checkin'},
-                        {text: 'ver localização do Hotel'}
+                        {text: 'ver localização do Hotel'},
+                        {text: 'ver QRCODE'}
                     ],
                     titleText: 'O que fazer?',
                     cancelText: 'cancelar',
@@ -38,6 +39,9 @@ angular.module('starters.controllers')
                                 break;
                             case 1:
                                 $state.go('guest.viewGeoHotel', {id: checkin.id});
+                                break;
+                            case 2:
+                                $state.go('guest.qrcode', {id: checkin.id});
                                 break;
                         }
                     }

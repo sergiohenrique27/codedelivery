@@ -67,4 +67,20 @@ class CheckinRepositoryEloquent extends BaseRepository implements CheckinReposit
         return false;
         //throw (new ModelNotFoundException())->setModel(get_class($this->model));
     }
+
+
+    public function getCheckinByIdAndUserid( $id, $user_id)
+    {
+        $result = $this->model
+            ->where('id', $id)
+            ->where('user_id', $user_id)
+            ->first();
+
+        if ($result) {
+            return $this->parserResult($result);
+        }
+
+        return false;
+        //throw (new ModelNotFoundException())->setModel(get_class($this->model));
+    }
 }

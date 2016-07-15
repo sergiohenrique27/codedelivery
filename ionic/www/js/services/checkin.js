@@ -14,6 +14,11 @@ angular.module('starters.services')
                 isArray: false,
                 url: appConfig.baseUrl + 'api/guest/checkin/listCheckin/:status',
                 method: 'GET'
+            },
+            getCheckin:{
+                isArray: false,
+                url: appConfig.baseUrl + 'api/guest/checkin/:id',
+                method: 'GET'
             }
 
         });

@@ -6,7 +6,8 @@
         <span class="input-label">Hotel</span>
         <div angucomplete-alt id="txtAutocomplete" placeholder="Entre com o nome do hotel" pause="100"
              selected-object="afterSelectedHotel" local-data="Hotels" search-fields="name"
-             title-field="name" minlength="1" input-class="form-control" match-class="highlight">
+             title-field="name" minlength="1" input-class="form-control" match-class="highlight"
+            ng-show="!SelectedHotel">
 
         </div>
         <div ng-show="SelectedHotel">

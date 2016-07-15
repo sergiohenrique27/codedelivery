@@ -53,4 +53,13 @@ class CheckinController extends Controller
         return $result;
 
     }
+
+    public function getCheckin($id)
+    {
+        $user_id = Authorizer::getResourceOwnerId();
+
+        $result = $this->service->getCheckin($id, $user_id);
+        return $result;
+
+    }
 }

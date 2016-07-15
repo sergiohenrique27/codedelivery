@@ -13,7 +13,7 @@ use CodeDelivery\Models\Checkin;
 class CheckinTransformer extends TransformerAbstract
 {
 
-    protected $availableIncludes = ['hotel'];
+    protected $availableIncludes = ['hotel', 'guests'];
     /**
      * Transform the \Checkin entity
      * @param \Checkin $model
@@ -49,5 +49,13 @@ class CheckinTransformer extends TransformerAbstract
             return null;
         }
         return $this->item( $model->hotel, new HotelTransformer() );
+    }
+
+    public function includeGuests(Checkin $model)
+    {
+        if (!$model->guests){
+            return null;
+        }
+        return $this->collection( $model->guests, new GuestTransformer() );
     }
 }

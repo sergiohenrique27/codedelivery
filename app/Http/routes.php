@@ -129,6 +129,7 @@ Route::group(['middleware' => 'cors'], function () {
             Route::group(['prefix' => 'checkin', 'as' => 'checkin.'], function () {
                 Route::put('store', ['uses' => 'api\guest\CheckinController@store', 'as' => 'store']);
                 Route::get('listCheckin/{status}', ['uses' => 'api\guest\CheckinController@listCheckin', 'as' => 'listCheckin']);
+                Route::get('{id}', ['uses' => 'api\guest\CheckinController@getCheckin', 'as' => 'checkin']);
             });
 
         });
