@@ -3,7 +3,6 @@
         <span>Perfil</span>
     </ion-nav-title>
     <ion-content scroll="false">
-        <p class="padding has-header">Preencha as informações abaixo para agilizar os seus Checkins.</p>
         <ion-slide-box show-pager="true">
             <ion-slide>
                 <div class="list card">
@@ -145,13 +144,14 @@
                                placeholder="CEP de sua empresa">
                     </label>
                     <p> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique abaixo para salvar.</p>
-                    <button type="submit" class="button button-positive button-block" ng-click="save()">
-                        Salvar Perfil
-                    </button>
+
                 </div>
             </ion-slide>
 
 
         </ion-slide-box>
+        <button type="submit" class="button button-positive button-block" ng-click="save()">
+            Salvar Perfil
+        </button>
     </ion-content>
 </ion-view>

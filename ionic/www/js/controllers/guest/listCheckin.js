@@ -1,6 +1,7 @@
 angular.module('starters.controllers')
-    .controller('GuestListCheckinController', ['$scope', '$state', '$ionicLoading', '$stateParams', '$ionicPopup', 'Checkin', '$ionicActionSheet',
-        function ($scope, $state, $ionicLoading, $stateParams, $ionicPopup, Checkin, $ionicActionSheet) {
+    .controller('GuestListCheckinController', ['$scope', '$state', '$ionicLoading', '$stateParams', '$ionicPopup',
+        'Checkin', '$ionicActionSheet', '$cordovaGeolocation',
+        function ($scope, $state, $ionicLoading, $stateParams, $ionicPopup, Checkin, $ionicActionSheet, $cordovaGeolocation) {
 
             if ($stateParams.status == 'A'){
                 $scope.title = 'Agendado';
@@ -19,6 +20,21 @@ angular.module('starters.controllers')
                     alert('Erro');
                 });
 
+            $scope.openGmaps = function (posHotel){
+
+
+                position =  $cordovaGeolocation.getCurrentPosition()
+                .then(
+                    function(data){
+                        url = 'http://maps.google.com/maps?saddr='+data.coords.latitude+','+data.coords.longitude+'&daddr='+posHotel.latitude+','+posHotel.longitude+'&dirflg=d';
+                        window.open(url,'_system','location=yes');
+                    },
+                    function (responseError) {
+                        console.log(responseError);
+                    }
+                );
+                return false;
+            };
 
             $scope.showActionSheet = function(checkin){
                 $ionicActionSheet.show({
@@ -38,7 +54,10 @@ angular.module('starters.controllers')
                                 $state.go('guest.checkin', {id: checkin.id});
                                 break;
                             case 1:
-                                $state.go('guest.viewGeoHotel', {id: checkin.id});
+                                $scope.openGmaps({
+                                    latitude: checkin.hotel.data.latitude,
+                                    longitude: checkin.hotel.data.longitude
+                                });
                                 break;
                             case 2:
                                 $state.go('guest.qrcode', {id: checkin.id});

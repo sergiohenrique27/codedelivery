@@ -27,7 +27,11 @@
       "id": "phonegap-plugin-barcodescanner"
     },
     "cordova-plugin-geolocation",
-    "phonegap-plugin-push@1.5.3"
+    "phonegap-plugin-push@1.5.3",
+    {
+      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git",
+      "id": "cordova-plugin-inappbrowser"
+    }
   ],
   "cordovaPlatforms": [
     "android",

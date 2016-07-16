@@ -1,6 +1,7 @@
 angular.module('starters.controllers')
-    .controller('GuestProfileController', ['$scope', '$state', '$ionicLoading', 'UserData', '$filter', 'Guest',
-        function ($scope, $state, $ionicLoading, UserData, $filter, Guest) {
+    .controller('GuestProfileController',
+        ['$scope', '$state', '$ionicLoading', 'UserData', '$filter', 'Guest', '$ionicPopup',
+        function ($scope, $state, $ionicLoading, UserData, $filter, Guest, $ionicPopup) {
 
             var user = UserData.get(),
                 guest = null;
@@ -13,6 +14,11 @@ angular.module('starters.controllers')
                 }
             }
 
+            $ionicPopup.alert({
+                title: 'Aviso',
+                template: 'Preencha as informações do seu perfil para agilizar os seus Checkins.'
+            });
+
             $scope.guest = guest;
 
 
@@ -23,8 +29,13 @@ angular.module('starters.controllers')
 
                 Guest.updateProfile({id: $scope.guest.id},{guest: $scope.guest}, function (data) {
                     //$scope.guest = data.data;
-
                     $ionicLoading.hide();
+
+                    $ionicPopup.alert({
+                        title: 'Aviso',
+                        template: 'Perfil salvo.'
+                    });
+
                 }, function (dataError) {
                     $ionicLoading.hide();
                 });

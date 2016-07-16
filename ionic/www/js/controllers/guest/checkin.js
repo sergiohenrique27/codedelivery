@@ -10,7 +10,7 @@ angular.module('starters.controllers')
                 $ionicLoading.show({
                     template: 'Carregando ...'
                 });
-
+                
                 $scope.checkin = {
                     id: null
                 };
