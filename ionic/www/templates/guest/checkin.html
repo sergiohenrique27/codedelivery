@@ -68,14 +68,19 @@
 
         <label class="item item-input item-stacked-label">
             <span class="input-label">Data de Checkin</span>
-            <input type="date" name="checkin" ng-model="checkin.checkin" value="{{checkin.checkin}}"
-                   placeholder="informe a data de checkin">
+            <span>{{checkin.checkin|limitTo: 10|date: 'dd/MM/yyyy'}}</span>
+            <button type="button" class="button button-small button-assertive" ng-click="openDatePickerCheckin()">
+                ...
+            </button>
+
         </label>
 
         <label class="item item-input item-stacked-label">
             <span class="input-label">Data de Checkout</span>
-            <input type="date" name="checkout" ng-model="checkin.checkout" value="{{checkin.checkout}}"
-                   placeholder="informe a data de Checkout">
+            <span>{{checkin.checkout|limitTo: 10|date: 'dd/MM/yyyy'}}</span>
+            <button type="button" class="button button-small button-assertive" ng-click="openDatePickerCheckout()">
+                ...
+            </button>
         </label>
 <!--
         <label class="item item-input item-floating-label">

@@ -1,6 +1,6 @@
 angular.module('starters.controllers')
-    .controller('GuestShowCompanionController', ['$scope', '$state', '$stateParams', 'Guest', '$ionicLoading',
-        function ($scope, $state, $stateParams, Guest, $ionicLoading) {
+    .controller('GuestShowCompanionController', ['$scope', '$state', '$stateParams', 'Guest', '$ionicLoading','ionicDatePicker', '$filter',
+        function ($scope, $state, $stateParams, Guest, $ionicLoading, ionicDatePicker, $filter) {
             $scope.guest = {
                 id: null
             };
@@ -32,8 +32,17 @@ angular.module('starters.controllers')
                     $ionicLoading.hide();
                 });
 
-            }
+            };
 
+            $scope.openDatePickerBirthdate = function(){
+                var ipObj1 = {
+                    callback: function (val) {  //Mandatory
+                        $scope.guest.birthdate = $filter('DateToDatabaseFormat')(val);
+                    },
+                    inputDate: new Date($scope.guest.birthdate)     //Optional
+                };
+                ionicDatePicker.openDatePicker(ipObj1);
+            };
 
         }])
 ;

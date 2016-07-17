@@ -31,9 +31,11 @@
                         </label>
 
                         <label class="item item-input item-stacked-label">
-                            <span class="input-label">Data de Nascimento</span>
-                            <input type="date" name="birthdate" ng-model="guest.birthdate" value="{{guest.birthdate}}"
-                                   placeholder="sua data de nascimento">
+                            <span class="input-label">Data de Nascimento</span><br/>
+                            <span>{{guest.birthdate|limitTo: 10|date: 'dd/MM/yyyy'}}</span>
+                            <button type="button" class="button button-small button-assertive" ng-click="openDatePickerBirthdate()">
+                                ...
+                            </button>
                         </label>
 
 

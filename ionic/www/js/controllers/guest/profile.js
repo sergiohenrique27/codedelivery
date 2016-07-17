@@ -1,7 +1,7 @@
 angular.module('starters.controllers')
     .controller('GuestProfileController',
-        ['$scope', '$state', '$ionicLoading', 'UserData', '$filter', 'Guest', '$ionicPopup',
-        function ($scope, $state, $ionicLoading, UserData, $filter, Guest, $ionicPopup) {
+        ['$scope', '$state', '$ionicLoading', 'UserData', '$filter', 'Guest', '$ionicPopup', 'ionicDatePicker', '$filter',
+        function ($scope, $state, $ionicLoading, UserData, $filter, Guest, $ionicPopup, ionicDatePicker, $filter) {
 
             var user = UserData.get(),
                 guest = null;
@@ -40,5 +40,15 @@ angular.module('starters.controllers')
                     $ionicLoading.hide();
                 });
 
-            }
+            };
+
+            $scope.openDatePickerBirthdate = function(){
+                var ipObj1 = {
+                    callback: function (val) {  //Mandatory
+                        $scope.guest.birthdate = $filter('DateToDatabaseFormat')(val);
+                    },
+                    inputDate: new Date($scope.guest.birthdate)     //Optional
+                };
+                ionicDatePicker.openDatePicker(ipObj1);
+            };
         }]);

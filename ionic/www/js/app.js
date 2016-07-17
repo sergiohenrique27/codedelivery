@@ -11,7 +11,7 @@ angular.module('starters.directives', []);
 
 angular.module('starter',
     [
-        'ionic','ionic.service.core',
+        'ionic', 'ionic.service.core',
         'angular-oauth2',
         'starters.controllers',
         'ngResource',
@@ -25,20 +25,20 @@ angular.module('starter',
         'starters.run',
         'http-auth-interceptor',
         'starters.directives',
-        'angucomplete-alt'
+        'angucomplete-alt',
+        'ionic-datepicker'
     ])
-    .constant('appConfig',{
-       // baseUrl: 'http://192.168.0.19:8000/',     // ortoclinica
+    .constant('appConfig', {
+        // baseUrl: 'http://192.168.0.19:8000/',     // ortoclinica
         baseUrl: 'http://localhost:8100/',       //casa
         //baseUrl: 'http://192.34.59.160/',       //digital ocean
         pusherKey: "71402c1e63208f41327c",
-        redirectAfterLogin:{
+        redirectAfterLogin: {
             'client': 'client.order',
             'deliveryman': 'deliveryman.order',
-            'guest' : 'guest.home'
+            'guest': 'guest.home'
         }
     })
-
 
 
     .run(function ($ionicPlatform, $window, appConfig) {
@@ -60,8 +60,8 @@ angular.module('starter',
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide, $httpProvider) {
-
+    .config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide,
+                      $httpProvider, ionicDatePickerProvider) {
         $stateProvider
             .state('auth', {
                 url: "/auth",
@@ -101,21 +101,21 @@ angular.module('starter',
             .state('home', {
                 url: '/home',
                 templateUrl: 'templates/home.html',
-                controller: function ($scope ) {
+                controller: function ($scope) {
                 }
             })
 
-            .state('guest',{
+            .state('guest', {
                 abstract: true,
                 cache: false,
                 url: '/guest',
                 templateUrl: 'templates/guest/menu.html',
                 controller: 'GuestMenuController',
-          /*      data: {
-                    permissions:{
-                        only: ['guest-role']
-                    }
-                } */
+                /*      data: {
+                 permissions:{
+                 only: ['guest-role']
+                 }
+                 } */
             })
             .state('guest.home', {
                 cache: false,
@@ -167,14 +167,14 @@ angular.module('starter',
                 controller: 'GuestListCheckinController'
             })
 
-            .state('client',{
+            .state('client', {
                 abstract: true,
                 cache: false,
                 url: '/client',
                 templateUrl: 'templates/client/menu.html',
                 controller: 'ClientMenuController',
                 data: {
-                    permissions:{
+                    permissions: {
                         only: ['client-role']
                     }
                 }
@@ -202,7 +202,7 @@ angular.module('starter',
                 templateUrl: 'templates/client/checkout_item_detail.html',
                 controller: 'ClientCheckoutDetailController'
             })
-            .state('client.checkout_successful',{
+            .state('client.checkout_successful', {
                 cache: false,
                 url: '/checkout/successful',
                 templateUrl: 'templates/client/checkout_successful.html',
@@ -213,21 +213,21 @@ angular.module('starter',
                 templateUrl: 'templates/client/view_products.html',
                 controller: 'ClientViewProductsController'
             })
-            .state('client.view_delivery',{
+            .state('client.view_delivery', {
                 cache: false,
                 url: '/view_delivery/:id',
                 templateUrl: 'templates/client/view_delivery.html',
                 controller: 'ClientViewDeliveryController'
             })
 
-            .state('deliveryman',{
+            .state('deliveryman', {
                 abstract: true,
                 cache: false,
                 url: '/deliveryman',
                 templateUrl: 'templates/deliveryman/menu.html',
                 controller: 'DeliverymanMenuController',
                 data: {
-                    permissions:{
+                    permissions: {
                         only: ['deliveryman-role']
                     }
                 }
@@ -245,12 +245,27 @@ angular.module('starter',
                 controller: 'DeliverymanViewOrderController'
             });
 
-        $urlRouterProvider.otherwise( function($injector) {
+        var datePickerObj = {
+            inputDate: new Date(),
+            setLabel: 'Sel.',
+            todayLabel: 'Hoje',
+            closeLabel: 'Fechar',
+            mondayFirst: true,
+            weeksList: ["D", "S", "T", "Q", "Q", "S", "S"],
+            monthsList: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+            templateType: 'popup',
+            showTodayButton: true,
+            dateFormat: 'dd/MM/yyyy',
+            closeOnSelect: false
+        };
+        ionicDatePickerProvider.configDatePicker(datePickerObj);
+
+        $urlRouterProvider.otherwise(function ($injector) {
             var $state = $injector.get("$state");
             $state.go('auth.walkthrough');
         });
 
-        $provide.decorator('OAuthToken', [ '$localStorage', '$delegate', function ($localStorage, $delegate) {
+        $provide.decorator('OAuthToken', ['$localStorage', '$delegate', function ($localStorage, $delegate) {
 
             Object.defineProperties($delegate, {
                 setToken: {
@@ -279,12 +294,12 @@ angular.module('starter',
                 }
             });
             return $delegate;
-        }] );
+        }]);
 
         $provide.decorator('oauthInterceptor', ['$delegate', function ($delegate) {
             delete $delegate['responseError'];
             return $delegate;
-        }] );
+        }]);
 
         OAuthProvider.configure({
             baseUrl: appConfig.baseUrl,
