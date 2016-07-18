@@ -77,21 +77,30 @@ angular.module('starters.controllers')
     $ionicLoading.hide();
 
     $scope.openDatePickerCheckin = function(){
+        var inputDate = $scope.checkin.checkin;
+        if (!inputDate){
+            inputDate = new Date();
+        }
+
         var ipObj1 = {
             callback: function (val) {  //Mandatory
                 $scope.checkin.checkin = $filter('DateToDatabaseFormat')(val);
             },
-            inputDate: new Date($scope.checkin.checkin)     //Optional
+            inputDate: new Date(inputDate)     //Optional
         };
         ionicDatePicker.openDatePicker(ipObj1);
     };
 
     $scope.openDatePickerCheckout = function(){
+        var inputDate = $scope.checkin.checkout;
+        if (!inputDate){
+            inputDate = new Date();
+        }
         var ipObj1 = {
             callback: function (val) {  //Mandatory
                 $scope.checkin.checkout = $filter('DateToDatabaseFormat')(val);
             },
-            inputDate: new Date($scope.checkin.checkout)     //Optional
+            inputDate: new Date(inputDate)     //Optional
         };
         ionicDatePicker.openDatePicker(ipObj1);
     };

@@ -35,11 +35,16 @@ angular.module('starters.controllers')
             };
 
             $scope.openDatePickerBirthdate = function(){
+                var inputDate = $scope.guest.birthdate;
+                if (!inputDate){
+                    inputDate = new Date();
+                }
+
                 var ipObj1 = {
                     callback: function (val) {  //Mandatory
                         $scope.guest.birthdate = $filter('DateToDatabaseFormat')(val);
                     },
-                    inputDate: new Date($scope.guest.birthdate)     //Optional
+                    inputDate: new Date(inputDate)     //Optional
                 };
                 ionicDatePicker.openDatePicker(ipObj1);
             };
