@@ -10,5 +10,5 @@ angular.module('starters.controllers')
                 historyRoot: true
             });
 
-            $state.go('login');
+            $state.go('auth.login');
         }]);

@@ -62,10 +62,13 @@ angular.module('starters.controllers')
                     }
                 }
 
+                delete $scope.checkin.guests[ 'data' ];
+                console.log($scope.checkin.guests);
                 //$scope.checkin.guests[key] = value;
             };
 
-            // $scope.checkin.guests['{{guest.id}}'] = $scope.guest.id;
+            console.log($scope.checkin);
+
 
             $ionicLoading.hide();
         }, function (dataError) {
@@ -104,7 +107,7 @@ angular.module('starters.controllers')
         };
         ionicDatePicker.openDatePicker(ipObj1);
     };
-    
+
     $scope.afterSelectedHotel = function (selected) {
         if (selected) {
             $scope.SelectedHotel = selected.originalObject;
@@ -125,15 +128,13 @@ angular.module('starters.controllers')
 
         Checkin.store({id: $scope.checkin.id}, {checkin: $scope.checkin}, function (data) {
             $scope.checkin.id = data.id;
+
             $ionicLoading.hide();
             $state.go('guest.qrcode', {id: data.id});
         }, function (dataError) {
             $ionicLoading.hide();
         });
-
     }
-
-
 }
-])
-;
+]);
+

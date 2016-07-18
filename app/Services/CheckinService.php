@@ -26,15 +26,17 @@ class CheckinService
     {
         $checkin['user_id'] = $user_id;
 
-        if(isset($checkin['guests'])){
+        if (isset($checkin['guests'])) {
             $checkin['guests'] = array_filter($checkin['guests']);
         }
+
 
         if (isset($checkin['id'])) {
             $checkinAux = $this->checkinRepository->getByIdAndUserId($checkin['id'], $checkin['user_id']);
             if ($checkinAux) {
                 $result = $this->checkinRepository->update($checkin, $checkinAux->id);
                 $result->guests()->sync($checkin['guests']);
+
                 return $result;
             }
             return false;
@@ -46,14 +48,16 @@ class CheckinService
 
     }
 
-    public function getCheckins($status, $user_id){
+    public function getCheckins($status, $user_id)
+    {
 
         $result = $this->checkinRepository->skipPresenter(false)->getCheckinsByStatusAndUserid($status, $user_id);
         return $result;
 
     }
 
-    public function getCheckin($id, $user_id){
+    public function getCheckin($id, $user_id)
+    {
 
         $result = $this->checkinRepository->skipPresenter(false)->getCheckinByIdAndUserid($id, $user_id);
         return $result;

@@ -44,10 +44,6 @@ angular.module('starters.controllers')
                         template: 'Perfil salvo.'
                     });
 
-
-
-
-
                 }, function (dataError) {
                     $ionicLoading.hide();
                 });

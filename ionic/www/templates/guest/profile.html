@@ -2,6 +2,14 @@
     <ion-nav-title>
         <span>Perfil</span>
     </ion-nav-title>
+    <ion-nav-bar class="bar app-top-bar">
+        <ion-nav-buttons side="left">
+            <button class="button button-clear button-icon ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon ion-checkmark-round" ng-click="save()"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
     <ion-content scroll="false">
         <ion-slide-box show-pager="true">
             <ion-slide>
@@ -33,12 +41,11 @@
                         <label class="item item-input item-stacked-label">
                             <span class="input-label">Data de Nascimento</span><br/>
                             <span>{{guest.birthdate|limitTo: 10|date: 'dd/MM/yyyy'}}</span>
-                            <button type="button" class="button button-small button-assertive" ng-click="openDatePickerBirthdate()">
-                                ...
+                            <button type="button" class="button button-small button-assertive ion-calendar"
+                                    ng-click="openDatePickerBirthdate()">
+
                             </button>
                         </label>
-
-
                     </div>
                 </div>
             </ion-slide>
@@ -145,15 +152,13 @@
                         <input type="text" name="companyZipcode" ng-model="guest.companyZipcode"
                                placeholder="CEP de sua empresa">
                     </label>
-                    <p> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique abaixo para salvar.</p>
+                    <p> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique no botão de salvar,
+                        no topo, para concluir o cadastro do seu perfil.</p>
 
                 </div>
             </ion-slide>
 
-
         </ion-slide-box>
-        <button type="submit" class="button button-positive button-block" ng-click="save()">
-            Salvar Perfil
-        </button>
+
     </ion-content>
 </ion-view>

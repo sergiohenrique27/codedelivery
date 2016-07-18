@@ -3,17 +3,17 @@
 
     <ion-content class="padding has-header">
         <ion-list>
-            <ion-item ng-click="addCheckin(  )">
-                <h2> Novo </h2>
+            <ion-item class="item-icon-left" ng-click="addCheckin()">
+                <i class="icon ion-ios-plus-outline"></i> <h2 class="menu-text"> Novo </h2>
             </ion-item>
-            <ion-item ng-click="listCheckins( 'A' )">
-                <h2> Agendados </h2>
+            <ion-item class="item-icon-left" ng-click="listCheckins( 'A' )">
+                <i class="icon ion-calendar"></i> <h2> Agendados </h2>
             </ion-item>
-            <ion-item ng-click="listCheckins( 'V' )">
-                <h2> Vigentes </h2>
+            <ion-item class="item-icon-left" ng-click="listCheckins( 'V' )">
+                <i class="icon ion-thumbsup"></i> <h2> Vigentes </h2>
             </ion-item>
-            <ion-item ng-click="listCheckins( 'R' )">
-                <h2> Realizados </h2>
+            <ion-item class="item-icon-left" ng-click="listCheckins( 'R' )">
+                <i class="icon ion-folder"></i> <h2> Realizados </h2>
             </ion-item>
         </ion-list>
     </ion-content>

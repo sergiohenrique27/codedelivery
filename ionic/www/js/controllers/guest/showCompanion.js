@@ -1,6 +1,7 @@
 angular.module('starters.controllers')
-    .controller('GuestShowCompanionController', ['$scope', '$state', '$stateParams', 'Guest', '$ionicLoading','ionicDatePicker', '$filter',
-        function ($scope, $state, $stateParams, Guest, $ionicLoading, ionicDatePicker, $filter) {
+    .controller('GuestShowCompanionController', ['$scope', '$state', '$stateParams', 'Guest', '$ionicLoading',
+        'ionicDatePicker', '$filter', '$ionicPopup',
+        function ($scope, $state, $stateParams, Guest, $ionicLoading, ionicDatePicker, $filte, $ionicPopup) {
             $scope.guest = {
                 id: null
             };
@@ -25,9 +26,11 @@ angular.module('starters.controllers')
                 });
 
                 Guest.storeCompanion({id: $scope.guest.id}, {guest: $scope.guest}, function (data) {
-                    //$scope.guest = data.data;
-
                     $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        title: 'Aviso',
+                        template: 'Acompanhante salvo.'
+                    });
                 }, function (dataError) {
                     $ionicLoading.hide();
                 });

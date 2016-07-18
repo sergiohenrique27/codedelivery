@@ -37,6 +37,7 @@ class CheckinController extends Controller
 
     public function store(Request $request)
     {
+
         $checkin = $request->get('checkin');
 
         $user_id = Authorizer::getResourceOwnerId();

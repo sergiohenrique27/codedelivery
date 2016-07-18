@@ -1,5 +1,15 @@
 <ion-view>
     <ion-nav-title> Checkin</ion-nav-title>
+    <ion-nav-bar class="bar app-top-bar">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        <ion-nav-buttons side="left">
+            <button class="button button-clear button-icon ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon ion-checkmark-round" ng-click="save()"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
     <ion-content class="padding has-header">
 
@@ -69,8 +79,7 @@
         <label class="item item-input item-stacked-label">
             <span class="input-label">Data de Checkin</span>
             <span>{{checkin.checkin|limitTo: 10|date: 'dd/MM/yyyy'}}</span>
-            <button type="button" class="button button-small button-assertive" ng-click="openDatePickerCheckin()">
-                ...
+            <button type="button" class="button button-small button-assertive ion-calendar" ng-click="openDatePickerCheckin()">
             </button>
 
         </label>
@@ -78,8 +87,7 @@
         <label class="item item-input item-stacked-label">
             <span class="input-label">Data de Checkout</span>
             <span>{{checkin.checkout|limitTo: 10|date: 'dd/MM/yyyy'}}</span>
-            <button type="button" class="button button-small button-assertive" ng-click="openDatePickerCheckout()">
-                ...
+            <button type="button" class="button button-small button-assertive ion-calendar" ng-click="openDatePickerCheckout()">
             </button>
         </label>
 <!--
@@ -89,10 +97,5 @@
                    placeholder="informe a qtd de acompanhantes">
         </label>
 -->
-        <button type="submit" class="button button-positive button-block" ng-click="save()">
-            Salvar Checkin
-        </button>
-
-
     </ion-content>
 </ion-view>
