@@ -7,7 +7,7 @@
             <button class="button button-clear button-icon ion-navicon" menu-toggle="left"></button>
         </ion-nav-buttons>
         <ion-nav-buttons side="right">
-            <button class="button button-icon ion-checkmark-round" ng-click="save()"></button>
+            <button ng-if="canUpdate" class="button button-icon ion-checkmark-round" ng-click="save()"></button>
         </ion-nav-buttons>
     </ion-nav-bar>
 
@@ -53,20 +53,20 @@
         <label class="item item-input">
             <span class="input-label">Motivo da Viagem</span>
             <select ng-model="checkin.purposeOfTrip" required>
-                <option value="T">Turismo</option>
-                <option value="N">Negócios</option>
-                <option value="C">Convenção</option>
-                <option value="O">Outros</option>
+                <option value="Turismo">Turismo</option>
+                <option value="Negócios">Negócios</option>
+                <option value="Convenção">Convenção</option>
+                <option value="Outros">Outros</option>
             </select>
         </label>
 
         <label class="item item-input">
             <span class="input-label">Meio de Transporte</span>
             <select ng-model="checkin.ArrivingBy" required>
-                <option value="A">Avião</option>
-                <option value="N">Navio</option>
-                <option value="A">Automóvel</option>
-                <option value="O">Ônibus/Trem</option>
+                <option value="Avião">Avião</option>
+                <option value="Navio">Navio</option>
+                <option value="Automóvel">Automóvel</option>
+                <option value="Ônibus/Trem">Ônibus/Trem</option>
             </select>
         </label>
 

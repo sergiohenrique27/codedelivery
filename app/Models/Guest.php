@@ -2,6 +2,7 @@
 
 namespace CodeDelivery\Models;
 
+use Carbon\Carbon;
 use CodeDelivery\Models\Checkin;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
@@ -35,6 +36,26 @@ class Guest extends Model implements Transformable
         'companyAdress',
         'companyZipcode'
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
+    protected $dateFormat = 'Y-m-d H:i:s';
+
+    public function getBirthdateAttribute($value)
+    {
+        if ($value) {
+            return (string) Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+        }
+    }
+
+    public function setBirthdateAttribute($value)
+    {
+
+        if ($value) {
+            $this->attributes['birthdate'] = (string) Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d');
+        } else {
+            $this->attributes['birthdate'] = null;
+        }
+    }
 
     public function user()
     {

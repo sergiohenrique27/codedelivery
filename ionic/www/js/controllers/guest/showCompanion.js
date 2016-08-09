@@ -1,7 +1,7 @@
 angular.module('starters.controllers')
     .controller('GuestShowCompanionController', ['$scope', '$state', '$stateParams', 'Guest', '$ionicLoading',
         'ionicDatePicker', '$filter', '$ionicPopup',
-        function ($scope, $state, $stateParams, Guest, $ionicLoading, ionicDatePicker, $filte, $ionicPopup) {
+        function ($scope, $state, $stateParams, Guest, $ionicLoading, ionicDatePicker, $filter, $ionicPopup) {
             $scope.guest = {
                 id: null
             };
@@ -38,8 +38,14 @@ angular.module('starters.controllers')
             };
 
             $scope.openDatePickerBirthdate = function(){
-                var inputDate = $scope.guest.birthdate;
-                if (!inputDate){
+                var dtAux = $scope.guest.birthdate,
+                    dia = dtAux.slice(0, 3),
+                    mes = dtAux.slice(3, 5),
+                    ano = dtAux.slice(6, 10);
+
+                inputDate = new Date(ano + '-' + mes + '-' + dia);
+
+                if (!dtAux) {
                     inputDate = new Date();
                 }
 

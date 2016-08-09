@@ -2,9 +2,11 @@ angular.module('starters.controllers')
     .controller('GuestListCheckinController', ['$scope', '$state', '$ionicLoading', '$stateParams', '$ionicPopup',
         'Checkin', '$ionicActionSheet', '$cordovaGeolocation',
         function ($scope, $state, $ionicLoading, $stateParams, $ionicPopup, Checkin, $ionicActionSheet, $cordovaGeolocation) {
+            $scope.canAddOrDelete = false;
 
             if ($stateParams.status == 'A'){
                 $scope.title = 'Agendado';
+                $scope.canAddOrDelete = true;
             } else if ($stateParams.status == 'V'){
                 $scope.title = 'Vigentes';
             }
@@ -27,7 +29,7 @@ angular.module('starters.controllers')
                 .then(
                     function(data){
                         url = 'http://maps.google.com/maps?saddr='+data.coords.latitude+','+data.coords.longitude+'&daddr='+posHotel.latitude+','+posHotel.longitude+'&dirflg=d';
-                        window.open(url,'_system','location=yes');
+                        window.open(url,'_blank','location=no');
                     },
                     function (responseError) {
                         console.log(responseError);
@@ -36,10 +38,14 @@ angular.module('starters.controllers')
                 return false;
             };
 
+            $scope.addCheckin = function () {
+                $state.go('guest.checkin');
+            };
+
             $scope.showActionSheet = function(checkin){
                 $ionicActionSheet.show({
                     buttons: [
-                        {text: 'Alterar Checkin'},
+                        {text: 'ver Checkin'},
                         {text: 'ver localização do Hotel'},
                         {text: 'ver QRCODE'}
                     ],

@@ -38,11 +38,27 @@ class CheckinRepositoryEloquent extends BaseRepository implements CheckinReposit
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+
     public function getByIdAndUserId( $id, $user_id)
     {
         $result = $this->model
             ->where('id', $id)
             ->where('user_id', $user_id)
+            ->first();
+
+        if ($result) {
+            return $this->parserResult($result);
+        }
+
+        return false;
+        //throw (new ModelNotFoundException())->setModel(get_class($this->model));
+    }
+
+    public function getByIdAndHotelid( $id, $hotel_id)
+    {
+        $result = $this->model
+            ->where('id', $id)
+            ->where('hotel_id', $hotel_id)
             ->first();
 
         if ($result) {

@@ -9,6 +9,7 @@ angular.module('starters.controllers')
     $scope.SelectedHotel = null;
     $scope.guest = null;
     $scope.companions = null;
+    $scope.canUpdate = true;
 
     $ionicLoading.show({
         template: 'Carregando ...'
@@ -46,6 +47,9 @@ angular.module('starters.controllers')
             $scope.checkin = data.data;
             $scope.SelectedHotel = data.data.hotel.data;
 
+            if ($scope.checkin.status != 'A')
+                $scope.canUpdate = false;
+
             var guestsSelecionados = data.data.guests.data;
 
             for (var i = 0; i < guestsSelecionados.length; i++) {
@@ -63,11 +67,7 @@ angular.module('starters.controllers')
                 }
 
                 delete $scope.checkin.guests[ 'data' ];
-                console.log($scope.checkin.guests);
-                //$scope.checkin.guests[key] = value;
             };
-
-            console.log($scope.checkin);
 
 
             $ionicLoading.hide();
@@ -80,8 +80,14 @@ angular.module('starters.controllers')
     $ionicLoading.hide();
 
     $scope.openDatePickerCheckin = function(){
-        var inputDate = $scope.checkin.checkin;
-        if (!inputDate){
+        var dtAux = $scope.checkin.checkin,
+            dia = dtAux.slice(0, 3),
+            mes = dtAux.slice(3, 5),
+            ano = dtAux.slice(6, 10);
+
+        inputDate = new Date(ano + '-' + mes + '-' + dia);
+
+        if (!dtAux) {
             inputDate = new Date();
         }
 
@@ -95,10 +101,17 @@ angular.module('starters.controllers')
     };
 
     $scope.openDatePickerCheckout = function(){
-        var inputDate = $scope.checkin.checkout;
-        if (!inputDate){
+        var dtAux = $scope.checkin.checkout,
+            dia = dtAux.slice(0, 3),
+            mes = dtAux.slice(3, 5),
+            ano = dtAux.slice(6, 10);
+
+        inputDate = new Date(ano + '-' + mes + '-' + dia);
+
+        if (!dtAux) {
             inputDate = new Date();
         }
+
         var ipObj1 = {
             callback: function (val) {  //Mandatory
                 $scope.checkin.checkout = $filter('DateToDatabaseFormat')(val);

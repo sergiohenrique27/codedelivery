@@ -36,6 +36,7 @@ class CheckinTransformer extends TransformerAbstract
             'companions' => $model->companions,
             'checkout' => $model->checkout,
             'record' => $model->record,
+            'status' => $model->status,
             /* place your other model properties here */
 
             'created_at' => $model->created_at,

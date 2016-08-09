@@ -1,9 +1,9 @@
 <ion-view>
     <ion-nav-title> Lista de Checkins </ion-nav-title>
     <div class="bar bar-subheader">
-        <button class="button button-icon ion-plus" ng-click="addCompanion()"></button>
+        <button ng-if="canAddOrDelete" class="button button-icon ion-plus" ng-click="addCheckin()"></button>
         <h2 class="title"> {{title}}</h2>
-        <button class="button button-icon ion-minus-circled"
+        <button ng-if="canAddOrDelete"  class="button button-icon ion-minus-circled"
                 ng-click="showDelete = !showDelete" ng-class="{'button-clear button-assertive': showDelete, '': !showDelete}">
         </button>
     </div>

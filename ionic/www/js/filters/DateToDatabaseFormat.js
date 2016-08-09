@@ -3,15 +3,15 @@ angular.module('starters.filters')
    return function ( inDate) {
        var data = new Date(inDate),
            dia = data.getDate(),
-           mes = data.getMonth(),
+           mes = data.getMonth()+1,
            ano = data.getFullYear();
 
        if (mes<10)
-           mes = '0'+mes;
+           mes = '0' + mes;
 
        if (dia <10)
            dia = '0'+dia;
 
-       return ano + '-' + mes + '-' + dia;
-   } 
+       return dia + '/' + mes + '/' + ano;
+   }
 });

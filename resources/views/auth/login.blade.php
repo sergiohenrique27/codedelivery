@@ -8,12 +8,12 @@
 <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/home') }}"><b>Next</b>Inn</a>
         </div><!-- /.login-logo -->
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <strong>Opa!</strong> Foram encontrados alguns erros.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -23,7 +23,7 @@
     @endif
 
     <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Preencha as informações abaixo para entrar na NextInn</p>
     <form action="{{ url('/auth/login') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group has-feedback">
@@ -38,24 +38,23 @@
             <div class="col-xs-8">
                 <div class="checkbox icheck">
                     <label>
-                        <input type="checkbox" name="remember"> Remember Me
+                        <input type="checkbox" name="remember"> Me lembre
                     </label>
                 </div>
             </div><!-- /.col -->
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Logar</button>
             </div><!-- /.col -->
         </div>
     </form>
 
     <div class="social-auth-links text-center">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
-        <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
+        <p>- OU -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Logar usando o Facebook</a>
     </div><!-- /.social-auth-links -->
 
-    <a href="{{ url('/password/email') }}">I forgot my password</a><br>
-    <a href="{{ url('/auth/register') }}" class="text-center">Register a new membership</a>
+    <a href="{{ url('/password/email') }}">Eu esqueci minha Senha</a><br>
+    <a href="{{ url('/auth/register') }}" class="text-center">Desejo me cadastrar</a>
 
 </div><!-- /.login-box-body -->
 

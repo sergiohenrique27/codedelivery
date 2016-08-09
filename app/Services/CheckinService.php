@@ -21,6 +21,16 @@ class CheckinService
         $this->checkinRepository = $checkinRepository;
     }
 
+    public function storeCheckinByHotelId($checkin, $hotelid)
+    {
+        $checkinAux = $this->checkinRepository->getByIdAndHotelId($checkin['id'], $hotelid);
+        if ($checkinAux) {
+            $result = $this->checkinRepository->update($checkin, $checkin['id']);
+
+            return $result;
+        }
+        return false;
+    }
 
     public function store($user_id, $checkin)
     {
