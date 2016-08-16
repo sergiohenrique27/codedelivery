@@ -30,7 +30,7 @@ angular.module('starter',
     ])
     .constant('appConfig', {
         baseUrl: 'http://localhost:8100/',       //casa
-        //baseUrl: 'http://192.34.59.160/',       //digital ocean
+        //baseUrl: 'https://nextinn.com.br/',       //digital ocean
         pusherKey: "71402c1e63208f41327c",
         redirectAfterLogin: {
             'client': 'client.order',

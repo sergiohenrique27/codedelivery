@@ -35,8 +35,11 @@ class CheckinController extends Controller
         return view('employee.checkin.index');
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
+        $id = $request->all();
+        $id = $id['qrcode'];
+
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
         $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
 
