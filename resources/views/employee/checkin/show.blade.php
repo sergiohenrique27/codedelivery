@@ -20,8 +20,8 @@
         </div>
         <div class="panel-body">
             <h4>Hotel <span class="label label-default">{{$checkin->hotel->name}}</span></h4>
-            <h4>Origem <span class="label label-default">{{$checkin->arrivingFrom}}</span></h4>
-            <h4>Destino <span class="label label-default">{{$checkin->nextDestination}}</span></h4>
+            <h4>Última Procedência <span class="label label-default">{{$checkin->arrivingFrom}}</span></h4>
+            <h4>Próximo Destino <span class="label label-default">{{$checkin->nextDestination}}</span></h4>
             <h4>Propósito da Viagem <span class="label label-default">{{$checkin->purposeOfTrip}}</span></h4>
             <h4>Meio de Transporte <span class="label label-default">{{$checkin->ArrivingBy}}</span></h4>
             <h4>Placa do Veículo <span class="label label-default">{{$checkin->carPlate}}</span></h4>
@@ -53,8 +53,8 @@
                         <h4>Sexo <span class="label label-default">{{$guest->sex}}</span></h4>
                         <h4>travelDocIssuingCountry <span
                                     class="label label-default">{{$guest->travelDocIssuingCountry}}</span></h4>
-                        <h4>travelDocType <span class="label label-default">{{$guest->travelDocType}}</span></h4>
-                        <h4>travelDocNumber <span class="label label-default">{{$guest->travelDocNumber}}</span></h4>
+                        <h4>Tipo de Documento <span class="label label-default">{{$guest->travelDocType}}</span></h4>
+                        <h4>Número do Documento <span class="label label-default">{{$guest->travelDocNumber}}</span></h4>
                         <h4>CPF <span class="label label-default">{{$guest->CPF}}</span></h4>
                         <h4>Telefone <span class="label label-default">{{$guest->phone}}</span></h4>
                         <h4>Celular <span class="label label-default">{{$guest->cellphone}}</span></h4>
@@ -75,7 +75,7 @@
 
             @endforeach
 
-            <a href="{{ route('customer.order.create') }}" class="btn btn-success">Imprimir Fichas</a>
+            <a href="{{ route('employee.checkin.ficha', [$checkin->id]) }}" class="btn btn-success">Imprimir Fichas</a>
 
             @if ($checkin->status == 'A')
             <a href="{{ route('employee.checkin.updateStatus', [$checkin->id, 'V']) }}" class="btn btn-success">Finalizar

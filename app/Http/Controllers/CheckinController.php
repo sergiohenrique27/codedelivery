@@ -46,6 +46,14 @@ class CheckinController extends Controller
         return view('employee.checkin.show', compact('checkin'));
     }
 
+    public function ficha($id)
+    {
+        $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+        $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
+
+        return view('employee.checkin.ficha', compact('checkin'));
+    }
+
     public function update($id)
     {
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
@@ -70,9 +78,9 @@ class CheckinController extends Controller
         $checkinAux = $this->repository->getByIdAndHotelid($id, $hotel_id);
         //todo: validar se guest esta no checkin do hotel
 
-        $guestAux= $this->guestRepository->findByField('id', $id)->first();
+        $guestAux = $this->guestRepository->findByField('id', $id)->first();
 
-       //dd($guestAux);
+        //dd($guestAux);
 
         return view('employee.checkin.guest', compact('guestAux', 'idCheckin'));
     }
@@ -88,7 +96,7 @@ class CheckinController extends Controller
 
     }
 
-    public function storeGuest($idCheckin,  $id, Request $request)
+    public function storeGuest($idCheckin, $id, Request $request)
     {
         $guest = $request->all();
 
@@ -102,20 +110,20 @@ class CheckinController extends Controller
 
     }
 
-    public function updateStatus($id,  $status)
+    public function updateStatus($id, $status)
     {
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
         $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
 
-        if($checkin) {
+        if ($checkin) {
             $datetime = Carbon::now('America/Sao_Paulo')->format('d/m/Y  H:i:s');
 
             //todo: validar status anteriores
-            if ($status == 'V'){
+            if ($status == 'V') {
                 $checkin->checkin = $datetime;
                 //dd($checkin->checkin);
             }
-            if ($status == 'R'){
+            if ($status == 'R') {
                 $checkin->checkout = $datetime;
             }
             $checkin->status = $status;
