@@ -76,6 +76,9 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.', 'middleware' => 'auth
 Route::group(['prefix' => 'employee', 'as' => 'employee.', 'middleware' => 'auth.checkrole:employee'], function () {
     Route::group(['prefix' => 'checkin', 'as' => 'checkin.'], function () {
         Route::get('index', ['uses' => 'CheckinController@index', 'as' => 'index']);
+        Route::get('find', ['uses' => 'CheckinController@find', 'as' => 'find']);
+        Route::post('doList', ['uses' => 'CheckinController@doList', 'as' => 'doList']);
+        Route::get('showList/{id}', ['uses' => 'CheckinController@showList', 'as' => 'showList']);
         Route::post('show', ['uses' => 'CheckinController@show', 'as' => 'show']);
         Route::get('ficha/{id}', ['uses' => 'CheckinController@ficha', 'as' => 'ficha']);
         Route::get('update/{id}', ['uses' => 'CheckinController@update', 'as' => 'update']);

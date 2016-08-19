@@ -35,10 +35,19 @@ class CheckinController extends Controller
         return view('employee.checkin.index');
     }
 
-    public function show(Request $request)
+    public function show( Request $request)
     {
         $id = $request->all();
         $id = $id['qrcode'];
+
+        $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+        $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
+
+        return view('employee.checkin.show', compact('checkin'));
+    }
+
+    public function showList($id, Request $request)
+    {
 
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
         $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
@@ -52,6 +61,24 @@ class CheckinController extends Controller
         $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
 
         return view('employee.checkin.ficha', compact('checkin'));
+    }
+
+    public function find()
+    {
+       // $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+       // $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
+        $checkin = null;
+        return view('employee.checkin.find', compact('checkin'));
+    }
+
+    public function doList(Request $request)
+    {
+        $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+        $checkin = $request->all();
+
+        $checkins = $this->repository->doList($checkin, $hotel_id);
+
+        return view('employee.checkin.doList', compact('checkins'));
     }
 
     public function update($id)

@@ -2,7 +2,7 @@
 <head>
     <title>Laravel</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Asul" rel="stylesheet">
 
     <style>
 
@@ -27,7 +27,7 @@
             margin: 0.25cm;
             padding: 0.25cm;
             line-height: 1.4em;
-            font-family: 'Raleway', sans-serif;
+            font-family: 'Asul', sans-serif;
             font-size: 10pt;
         }
 
@@ -108,7 +108,7 @@
             <p> </p>
             <p> </p>
             <p>_______________________________________________________<br/>
-                <span class="tituloCampo">RAssinatura do Hóspede</span></p>
+                <span class="tituloCampo">Assinatura do Hóspede</span></p>
         </div>
 
     </div>

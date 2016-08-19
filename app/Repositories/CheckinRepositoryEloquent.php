@@ -3,6 +3,7 @@
 namespace CodeDelivery\Repositories;
 
 use CodeDelivery\Presenters\CheckinPresenter;
+use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use CodeDelivery\Models\Checkin;
@@ -53,6 +54,34 @@ class CheckinRepositoryEloquent extends BaseRepository implements CheckinReposit
         return false;
         //throw (new ModelNotFoundException())->setModel(get_class($this->model));
     }
+
+    public function doList($checkin, $hotel_id)
+    {
+        $checkins = $this->model->distinct()
+            ->join('checkins_guests', 'checkins.id', '=', 'checkins_guests.checkin_id')
+            ->join('guests', 'guests.id', '=', 'checkins_guests.guest_id')
+            ->select('checkins.*');
+
+        $checkins->where('checkins.hotel_id', '=', $hotel_id);
+
+       if (!empty( $checkin['status'])){
+            $checkins->where('checkins.status', '=', $checkin['status']);
+        }
+
+        if (!empty($checkin['email'])){
+            $checkins->where('guests.email', '=', $checkin['email']);
+        }
+
+        if (!empty($checkin['CPF'])){
+            $checkins->where('guests.CPF', '=', $checkin['CPF']);
+        }
+
+       $result = $checkins->paginate();
+        if ($result) {
+            return $this->parserResult($result);
+        }
+    }
+
 
     public function getByIdAndHotelid( $id, $hotel_id)
     {
