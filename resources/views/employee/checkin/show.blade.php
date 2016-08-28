@@ -14,6 +14,8 @@
 
 @section('main-content')
 
+    @include('errors.msgs')
+
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Informações do Checkin</h3>
@@ -30,7 +32,7 @@
 
             <a href="{{ route('employee.checkin.update', [$checkin->id]) }}" class="btn btn-success">Alterar Checkin</a>
 
-            <a href="{{ route('employee.checkin.ficha', [$checkin->id]) }}" class="btn btn-success">Imprimir Fichas</a>
+            <a href="{{ route('employee.checkin.ficha', [$checkin->id]) }}" target="_blank" class="btn btn-success">Imprimir Fichas</a>
 
             @if ($checkin->status == 'A')
                 <a href="{{ route('employee.checkin.updateStatus', [$checkin->id, 'V']) }}" class="btn btn-success">Finalizar

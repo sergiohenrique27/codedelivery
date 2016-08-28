@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Laravel</title>
+    <title>NextInn</title>
 
     <link href="https://fonts.googleapis.com/css?family=Asul" rel="stylesheet">
 
@@ -48,6 +48,8 @@
         }
 
     </style>
+
+
 </head>
 <body>
 
@@ -113,5 +115,9 @@
 
     </div>
 @endforeach
+
+<SCRIPT LANGUAGE="JavaScript">
+    window.print()
+</SCRIPT>
 </body>
 </html>

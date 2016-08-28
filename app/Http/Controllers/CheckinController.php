@@ -51,14 +51,14 @@ class CheckinController extends Controller
         }
     }
 
-    public function show2($qrcode)
+    public function show2($qrcode, $msg="")
     {
         $id = $qrcode;
 
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
         $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
 
-        return view('employee.checkin.show', compact('checkin'));
+        return view('employee.checkin.show', compact('checkin', 'msg'));
     }
 
     public function showList($id, Request $request)
@@ -134,7 +134,7 @@ class CheckinController extends Controller
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
 
         $result = $this->service->storeCheckinByHotelId($checkin, $hotel_id);
-        return redirect()->route('employee.checkin.show2', [$id]);
+        return redirect()->route('employee.checkin.show2', [$id, "Checkin Salvo com sucesso."]);
 
     }
 
@@ -148,7 +148,7 @@ class CheckinController extends Controller
 
         $result = $this->guestRepository->update($guest, $id);
 
-        return redirect()->route('employee.checkin.show2', $idCheckin);
+        return redirect()->route('employee.checkin.show2', [$idCheckin, "Hospede salvo com sucesso"]);
 
     }
 

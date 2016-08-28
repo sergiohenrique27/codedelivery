@@ -80,7 +80,7 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.', 'middleware' => 'auth
         Route::post('doList', ['uses' => 'CheckinController@doList', 'as' => 'doList']);
         Route::get('showList/{id}', ['uses' => 'CheckinController@showList', 'as' => 'showList']);
         Route::post('show', ['uses' => 'CheckinController@show', 'as' => 'show']);
-        Route::get('show/{qrcode}', ['uses' => 'CheckinController@show2', 'as' => 'show2']);
+        Route::get('show/{qrcode}/{msg?}', ['uses' => 'CheckinController@show2', 'as' => 'show2']);
         Route::get('ficha/{id}', ['uses' => 'CheckinController@ficha', 'as' => 'ficha']);
         Route::get('update/{id}', ['uses' => 'CheckinController@update', 'as' => 'update']);
         Route::put('store/{id}', ['uses' => 'CheckinController@store', 'as' => 'store']);
