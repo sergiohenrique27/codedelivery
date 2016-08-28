@@ -29,7 +29,7 @@
 
     <div class="form-group">
         {!! Form::label('status', 'Status:' ) !!} <br/>
-        {!! Form::radio('status', 'A' ) !!}  Agendado
+        {!! Form::radio('status', 'A', true ) !!}  Agendado
         {!! Form::radio('status', 'V' ) !!}  Vigente
         {!! Form::radio('status', 'R' ) !!}  Realizado
     </div>

@@ -54,7 +54,7 @@
                         <span>Meus Pedidos</span></a></li>
             @elseif(Auth::user()->role == "employee")
                 <li><a href="{{ route('employee.checkin.index') }}"><i class='fa fa-link'></i>
-                        <span>Realizar Checkin</span></a>
+                        <span>Realizar Checkin / Checkout</span></a>
                 </li><li><a href="{{ route('employee.checkin.find') }}"><i class='fa fa-link'></i>
                         <span>Localizar Checkin</span></a></li>
         @endif

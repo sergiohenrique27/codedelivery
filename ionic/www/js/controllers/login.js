@@ -8,7 +8,7 @@ angular.module('starters.controllers')
             };
 
             $scope.doLogIn = function () {
-                var promise = OAuth.getAccessToken($scope.user)
+                var promise = OAuth.getAccessToken($scope.user);
 
                 promise
                     .then( function (data) {
@@ -17,7 +17,7 @@ angular.module('starters.controllers')
                     .then(function (data) {
                         UserData.set(data.data);
                         $redirect.redirectAfterLogin();
-                        
+
                     }, function (dataError) {
                         UserData.set(null);
                         OAuthToken.removeToken();
@@ -26,6 +26,7 @@ angular.module('starters.controllers')
                             template: 'Login e/ou Senha inválidos.'
                         });
                     });
+
             }
 
         }])
@@ -49,7 +50,7 @@ angular.module('starters.controllers')
         $scope.doSignUp = function(){
             //User.authenticated({include: 'client'}).$promise;
             var promise = User.signup( $scope.user ).$promise;
-            
+
             promise.then(function (data) {
                 $ionicPopup.alert({
                     title: 'Seja bem-vindo',

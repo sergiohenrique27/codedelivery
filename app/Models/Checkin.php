@@ -110,8 +110,13 @@ class Checkin extends Model implements Transformable
     public function setCheckinAttribute($value)
     {
         //dd($value);
-        Carbon::setToStringFormat('Y-m-d H:i:s');
-        $this->attributes['checkin'] = Carbon::createFromFormat('d/m/Y  H:i:s', $value);
+        if(strlen($value)>10) {
+            Carbon::setToStringFormat('Y-m-d H:i:s');
+            $this->attributes['checkin'] = Carbon::createFromFormat('d/m/Y  H:i:s', $value);
+        } else {
+            Carbon::setToStringFormat('Y-m-d');
+            $this->attributes['checkin'] = Carbon::createFromFormat('d/m/Y', $value);
+        }
     }
 
     public function getCheckoutAttribute($value)
@@ -125,8 +130,14 @@ class Checkin extends Model implements Transformable
     function setCheckoutAttribute($value)
     {
         //dd($value);
-        Carbon::setToStringFormat('Y-m-d H:i:s');
-        $this->attributes['checkout'] = Carbon::createFromFormat('d/m/Y  H:i:s', $value);
+        if(strlen($value)>10){
+            Carbon::setToStringFormat('Y-m-d H:i:s');
+            $this->attributes['checkout'] = Carbon::createFromFormat('d/m/Y  H:i:s', $value);
+        } else {
+            Carbon::setToStringFormat('Y-m-d');
+            $this->attributes['checkout'] = Carbon::createFromFormat('d/m/Y', $value);
+        }
+
     }
 
 

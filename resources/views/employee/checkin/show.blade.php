@@ -28,8 +28,20 @@
             <h4>Data do Checkin <span class="label label-default">{{$checkin->checkin}}</span></h4>
             <h4>Registro <span class="label label-default">{{$checkin->record}}</span></h4>
 
-
             <a href="{{ route('employee.checkin.update', [$checkin->id]) }}" class="btn btn-success">Alterar Checkin</a>
+
+            <a href="{{ route('employee.checkin.ficha', [$checkin->id]) }}" class="btn btn-success">Imprimir Fichas</a>
+
+            @if ($checkin->status == 'A')
+                <a href="{{ route('employee.checkin.updateStatus', [$checkin->id, 'V']) }}" class="btn btn-success">Finalizar
+                    Checkin</a>
+            @endif
+
+            @if ($checkin->status == 'V')
+                <a href="{{ route('employee.checkin.updateStatus', [$checkin->id, 'R']) }}" class="btn btn-success">Realizar
+                    Checkout</a>
+            @endif
+
         </div>
     </div>
 
@@ -39,54 +51,59 @@
         </div>
         <div class="panel-body">
 
-            @foreach($checkin->guests as $guest)
+            <ul class="nav nav-tabs">
+                @foreach($checkin->guests as $guest)
+                    <li><a data-toggle="tab" href="#{{$guest->id}}">{{$guest->fullname}}</a></li>
+                @endforeach
+            </ul>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{$guest->fullname}}</h3>
+            <div class="tab-content">
+                @foreach($checkin->guests as $guest)
+                    <div id="{{$guest->id}}" class="tab-pane fade">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body">
+
+                                <h4>Email <span class="label label-default">{{$guest->email}}</span></h4>
+                                <h4>Profissão <span class="label label-default">{{$guest->ocupation}}</span></h4>
+                                <h4>Nacionalidade <span class="label label-default">{{$guest->nacionality}}</span></h4>
+                                <h4>Data de Aniverssário <span class="label label-default">{{$guest->birthdate}}</span>
+                                </h4>
+                                <h4>Sexo <span class="label label-default">{{$guest->sex}}</span></h4>
+
+                                <h4>Tipo de Documento <span class="label label-default">{{$guest->travelDocType}}</span>
+                                </h4>
+                                <h4>Número do Documento <span
+                                            class="label label-default">{{$guest->travelDocNumber}}</span></h4>
+                                <h4>Emissor do Documento<span
+                                            class="label label-default">{{$guest->travelDocIssuingCountry}}</span></h4>
+                                <h4>CPF <span class="label label-default">{{$guest->CPF}}</span></h4>
+                                <h4>Telefone <span class="label label-default">{{$guest->phone}}</span></h4>
+                                <h4>Celular <span class="label label-default">{{$guest->cellphone}}</span></h4>
+                                <h4>Endereço(Casa) <span class="label label-default">{{$guest->permanentAdress}}</span>
+                                </h4>
+                                <h4>CEP(Casa) <span class="label label-default">{{$guest->permanentZipcode}}</span></h4>
+                                <h4>Cidade(Casa) <span class="label label-default">{{$guest->permanentCity}}</span></h4>
+                                <h4>Estado <span class="label label-default">{{$guest->state}}</span></h4>
+                                <h4>País <span class="label label-default">{{$guest->country}}</span></h4>
+                                <h4>Empresa <span class="label label-default">{{$guest->companyName}}</span></h4>
+                                <h4>Endereço (Empresa) <span class="label label-default">{{$guest->companyName}}</span>
+                                </h4>
+                                <h4>Endereço (Empresa) <span
+                                            class="label label-default">{{$guest->companyAdress}}</span></h4>
+                                <h4>CEP (Empresa) <span class="label label-default">{{$guest->companyZipcode}}</span>
+                                </h4>
+
+                                <a href="{{ route('employee.checkin.guest', [$checkin->id, $guest->id]) }}"
+                                   class="btn btn-success">Alterar Hospede</a>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="panel-body">
+                @endforeach
+            </div>
 
-                        <h4>Email <span class="label label-default">{{$guest->email}}</span></h4>
-                        <h4>Profissão <span class="label label-default">{{$guest->ocupation}}</span></h4>
-                        <h4>Nacionalidade <span class="label label-default">{{$guest->nacionality}}</span></h4>
-                        <h4>Data de Aniverssário <span class="label label-default">{{$guest->birthdate}}</span></h4>
-                        <h4>Sexo <span class="label label-default">{{$guest->sex}}</span></h4>
-                        <h4>travelDocIssuingCountry <span
-                                    class="label label-default">{{$guest->travelDocIssuingCountry}}</span></h4>
-                        <h4>Tipo de Documento <span class="label label-default">{{$guest->travelDocType}}</span></h4>
-                        <h4>Número do Documento <span class="label label-default">{{$guest->travelDocNumber}}</span></h4>
-                        <h4>CPF <span class="label label-default">{{$guest->CPF}}</span></h4>
-                        <h4>Telefone <span class="label label-default">{{$guest->phone}}</span></h4>
-                        <h4>Celular <span class="label label-default">{{$guest->cellphone}}</span></h4>
-                        <h4>Endereço(Casa) <span class="label label-default">{{$guest->permanentAdress}}</span></h4>
-                        <h4>CEP(Casa) <span class="label label-default">{{$guest->permanentZipcode}}</span></h4>
-                        <h4>Cidade(Casa) <span class="label label-default">{{$guest->permanentCity}}</span></h4>
-                        <h4>Estado <span class="label label-default">{{$guest->state}}</span></h4>
-                        <h4>País <span class="label label-default">{{$guest->country}}</span></h4>
-                        <h4>Empresa <span class="label label-default">{{$guest->companyName}}</span></h4>
-                        <h4>Endereço (Empresa) <span class="label label-default">{{$guest->companyName}}</span></h4>
-                        <h4>Endereço (Empresa) <span class="label label-default">{{$guest->companyAdress}}</span></h4>
-                        <h4>CEP (Empresa) <span class="label label-default">{{$guest->companyZipcode}}</span></h4>
 
-                        <a href="{{ route('employee.checkin.guest', [$checkin->id, $guest->id]) }}"
-                           class="btn btn-success">Alterar Hospede</a>
-                    </div>
-                </div>
-
-            @endforeach
-
-            <a href="{{ route('employee.checkin.ficha', [$checkin->id]) }}" class="btn btn-success">Imprimir Fichas</a>
-
-            @if ($checkin->status == 'A')
-            <a href="{{ route('employee.checkin.updateStatus', [$checkin->id, 'V']) }}" class="btn btn-success">Finalizar
-                Checkin</a>
-            @endif
-
-            @if ($checkin->status == 'V')
-            <a href="{{ route('employee.checkin.updateStatus', [$checkin->id, 'R']) }}" class="btn btn-success">Realizar
-                Checkout</a>
-            @endif
 
         </div>
     </div>

@@ -38,16 +38,21 @@ angular.module('starters.controllers')
             };
 
             $scope.openDatePickerBirthdate = function(){
-                var dtAux = $scope.guest.birthdate,
-                    dia = dtAux.slice(0, 3),
-                    mes = dtAux.slice(3, 5),
-                    ano = dtAux.slice(6, 10);
+                var dtAux = $scope.guest.birthdate;
 
-                inputDate = new Date(ano + '-' + mes + '-' + dia);
+                if (dtAux != null && dtAux !== undefined) {
+                    var
+                        dia = dtAux.slice(0, 3),
+                        mes = dtAux.slice(3, 5),
+                        ano = dtAux.slice(6, 10);
 
-                if (!dtAux) {
+                    inputDate = new Date(ano + '-' + mes + '-' + dia);
+
+                }
+                else {
                     inputDate = new Date();
                 }
+
 
                 var ipObj1 = {
                     callback: function (val) {  //Mandatory

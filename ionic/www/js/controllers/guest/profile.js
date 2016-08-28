@@ -29,7 +29,7 @@ angular.module('starters.controllers')
 
                     Guest.updateProfile({id: $scope.guest.id}, {guest: $scope.guest}, function (data) {
 
-                        if (!$scope.guest.id) {
+                        if ($scope.guest.id != null && $scope.guest.id !== undefined) {
                             var promise = User.authenticated({include: 'guest'}).$promise;
                             promise
                                 .then(function (data) {
@@ -41,7 +41,8 @@ angular.module('starters.controllers')
 
                         $ionicPopup.alert({
                             title: 'Aviso',
-                            template: 'Perfil salvo.'
+                            template: 'Perfil salvo. <br/> Você pode adicionar acompanhantes acessando o <b>menu / Acompanhantes</b> ou ' +
+                                'agendar Checkins acessando o  <b>menu / Checkins</b>'
                         });
 
                     }, function (dataError) {
@@ -51,14 +52,20 @@ angular.module('starters.controllers')
                 };
 
                 $scope.openDatePickerBirthdate = function () {
-                    var dtAux = $scope.guest.birthdate,
-                        dia = dtAux.slice(0, 3),
-                        mes = dtAux.slice(3, 5),
-                        ano = dtAux.slice(6, 10);
+                    var
+                        dtAux = $scope.guest.birthdate;
+
+
+                    if (dtAux != null && dtAux !== undefined) {
+                        var
+                            dia = dtAux.slice(0, 3),
+                            mes = dtAux.slice(3, 5),
+                            ano = dtAux.slice(6, 10);
 
                         inputDate = new Date(ano + '-' + mes + '-' + dia);
 
-                    if (!dtAux) {
+                    }
+                    else {
                         inputDate = new Date();
                     }
 

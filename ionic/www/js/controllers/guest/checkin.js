@@ -47,6 +47,8 @@ angular.module('starters.controllers')
             $scope.checkin = data.data;
             $scope.SelectedHotel = data.data.hotel.data;
 
+            console.log($scope.checkin.checkin);
+
             if ($scope.checkin.status != 'A')
                 $scope.canUpdate = false;
 
@@ -80,14 +82,18 @@ angular.module('starters.controllers')
     $ionicLoading.hide();
 
     $scope.openDatePickerCheckin = function(){
-        var dtAux = $scope.checkin.checkin,
-            dia = dtAux.slice(0, 3),
-            mes = dtAux.slice(3, 5),
-            ano = dtAux.slice(6, 10);
+        var dtAux = $scope.checkin.checkin;
 
-        inputDate = new Date(ano + '-' + mes + '-' + dia);
+        if (dtAux != null && dtAux !== undefined) {
+            var
+                dia = dtAux.slice(0, 3),
+                mes = dtAux.slice(3, 5),
+                ano = dtAux.slice(6, 10);
 
-        if (!dtAux) {
+            inputDate = new Date(ano + '-' + mes + '-' + dia);
+
+        }
+        else {
             inputDate = new Date();
         }
 
@@ -101,14 +107,18 @@ angular.module('starters.controllers')
     };
 
     $scope.openDatePickerCheckout = function(){
-        var dtAux = $scope.checkin.checkout,
-            dia = dtAux.slice(0, 3),
-            mes = dtAux.slice(3, 5),
-            ano = dtAux.slice(6, 10);
+        var dtAux = $scope.checkin.checkout;
 
-        inputDate = new Date(ano + '-' + mes + '-' + dia);
+        if (dtAux != null && dtAux !== undefined) {
+            var
+                dia = dtAux.slice(0, 3),
+                mes = dtAux.slice(3, 5),
+                ano = dtAux.slice(6, 10);
 
-        if (!dtAux) {
+            inputDate = new Date(ano + '-' + mes + '-' + dia);
+
+        }
+        else {
             inputDate = new Date();
         }
 

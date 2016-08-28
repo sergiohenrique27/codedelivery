@@ -1,10 +1,10 @@
 @extends('app')
 
 @section('htmlheader_title')
-    Next Inn - Checkin
+    Next Inn - Checkin / Checkout
 @endsection
 @section('contentheader_title')
-    Realizar Checkin
+    Realizar Checkin / Checkout
 @endsection
 
 @section('meta_scripts')
@@ -14,6 +14,8 @@
 
 
 @section('main-content')
+
+    @include('errors.msgs')
 
     <div class="panel panel-default">
         <div class="panel-heading">

@@ -43,6 +43,21 @@ class CheckinController extends Controller
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
         $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
 
+        if ($checkin) {
+            return view('employee.checkin.show', compact('checkin'));
+        } else {
+            $msg="QRCODE inválido.";
+            return view('employee.checkin.index', compact('msg'));
+        }
+    }
+
+    public function show2($qrcode)
+    {
+        $id = $qrcode;
+
+        $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+        $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
+
         return view('employee.checkin.show', compact('checkin'));
     }
 
@@ -65,8 +80,8 @@ class CheckinController extends Controller
 
     public function find()
     {
-       // $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
-       // $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
+        // $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+        // $checkin = $this->repository->getByIdAndHotelid($id, $hotel_id);
         $checkin = null;
         return view('employee.checkin.find', compact('checkin'));
     }
@@ -119,7 +134,7 @@ class CheckinController extends Controller
         $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
 
         $result = $this->service->storeCheckinByHotelId($checkin, $hotel_id);
-        return redirect()->route('employee.checkin.show', [$id]);
+        return redirect()->route('employee.checkin.show2', [$id]);
 
     }
 
@@ -133,7 +148,7 @@ class CheckinController extends Controller
 
         $result = $this->guestRepository->update($guest, $id);
 
-        return redirect()->route('employee.checkin.show', $idCheckin);
+        return redirect()->route('employee.checkin.show2', $idCheckin);
 
     }
 
@@ -156,28 +171,8 @@ class CheckinController extends Controller
             $checkin->status = $status;
             $checkin->save();
         }
-        return redirect()->route('employee.checkin.show', $id);
+        return redirect()->route('employee.checkin.show2', $id);
 
     }
 
-    public function listCheckin($status)
-    {
-        /*
-        $user_id = Authorizer::getResourceOwnerId();
-
-        $result = $this->service->getCheckins($status, $user_id);
-        return $result;
-       */
-    }
-
-    public function getCheckin($id)
-    {
-        /*
-        $user_id = Authorizer::getResourceOwnerId();
-
-        //pegar checkin por id e hotel_id
-        $result = $this->service->getCheckin($id, $user_id);
-        return $result;
-*/
-    }
 }
