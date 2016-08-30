@@ -1,3 +1,3 @@
 @if(!empty($msg))
-    <div class="alert alert-danger" role="alert">{{$msg}}</div>
+    <div class="alert alert-warning" role="alert">{{$msg}}</div>
 @endif
