@@ -171,7 +171,7 @@ class CheckinController extends Controller
             $checkin->status = $status;
             $checkin->save();
         }
-        return redirect()->route('employee.checkin.show2', $id);
+        return redirect()->route('employee.checkin.show2', [$id, "Status do Checkin alterado com sucesso."]);
 
     }
 

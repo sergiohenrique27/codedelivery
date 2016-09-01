@@ -26,6 +26,7 @@ angular.module('starters.controllers')
                 });
 
                 Guest.storeCompanion({id: $scope.guest.id}, {guest: $scope.guest}, function (data) {
+                    $scope.guest.id = data.id;
                     $ionicLoading.hide();
                     $ionicPopup.alert({
                         title: 'Aviso',

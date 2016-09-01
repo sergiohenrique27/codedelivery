@@ -1,7 +1,8 @@
 angular.module('starters.controllers')
     .controller('GuestListCheckinController', ['$scope', '$state', '$ionicLoading', '$stateParams', '$ionicPopup',
-        'Checkin', '$ionicActionSheet', '$cordovaGeolocation',
-        function ($scope, $state, $ionicLoading, $stateParams, $ionicPopup, Checkin, $ionicActionSheet, $cordovaGeolocation) {
+        'Checkin', '$ionicActionSheet', '$cordovaGeolocation', '$window',
+        function ($scope, $state, $ionicLoading, $stateParams, $ionicPopup, Checkin, $ionicActionSheet,
+                  $cordovaGeolocation, $window) {
             $scope.canAddOrDelete = false;
 
             if ($stateParams.status == 'A'){
@@ -29,7 +30,7 @@ angular.module('starters.controllers')
                 .then(
                     function(data){
                         url = 'http://maps.google.com/maps?saddr='+data.coords.latitude+','+data.coords.longitude+'&daddr='+posHotel.latitude+','+posHotel.longitude+'&dirflg=d';
-                        window.open(url,'_blank','location=no');
+                        $window.open(url,'_system');
                     },
                     function (responseError) {
                         console.log(responseError);

@@ -43,15 +43,15 @@
         {!! Form::radio('sex', 'F' ) !!} Feminino
     </div>
     <div class="form-group">
-        {!! Form::label('travelDocIssuingCountry', 'travelDocIssuingCountry:' ) !!}
+        {!! Form::label('travelDocIssuingCountry', 'Emissor do Documento:' ) !!}
         {!! Form::text('travelDocIssuingCountry', null, ['class'=>'form-control' ] ) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('travelDocType', 'travelDocType:' ) !!}
+        {!! Form::label('travelDocType', 'Tipo de Documento:' ) !!}
         {!! Form::text('travelDocType', null, ['class'=>'form-control' ] ) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('travelDocNumber', 'travelDocNumber:' ) !!}
+        {!! Form::label('travelDocNumber', 'Número do Documento:' ) !!}
         {!! Form::text('travelDocNumber', null, ['class'=>'form-control' ] ) !!}
     </div>
     <div class="form-group">

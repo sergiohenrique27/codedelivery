@@ -55,7 +55,6 @@ angular.module('starters.controllers')
                     var
                         dtAux = $scope.guest.birthdate;
 
-
                     if (dtAux != null && dtAux !== undefined) {
                         var
                             dia = dtAux.slice(0, 3),

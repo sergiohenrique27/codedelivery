@@ -1,5 +1,5 @@
-angular.module('starters.run').run(['PermissionStore', 'OAuth', 'UserData', 'RoleStore', '$rootScope', 'authService', '$state',
-    function (PermissionStore, OAuth, UserData, RoleStore, $rootScope, authService, $state) {
+angular.module('starters.run').run(['PermissionStore', 'OAuth', 'UserData', 'RoleStore', '$rootScope', 'authService', '$state', '$ionicPopup',
+    function (PermissionStore, OAuth, UserData, RoleStore, $rootScope, authService, $state, $ionicPopup) {
 
         PermissionStore.definePermission('user-permission', function () {
             return OAuth.isAuthenticated();
@@ -40,6 +40,10 @@ angular.module('starters.run').run(['PermissionStore', 'OAuth', 'UserData', 'Rol
                     });
                     break;
                 case 'invalid_credentials':
+                    $ionicPopup.alert({
+                        title: 'Advertência',
+                        template: 'Login e/ou Senha inválidos.'
+                    });
                     break;
                 default:
                     $state.go('logout');
