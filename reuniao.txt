@@ -1,0 +1,24 @@
+Menu
+- foto alterar.
+
+Perfil
+- documento de identidade para documento de identificação
+- usuário do perfil maior de idade - ok
+- mascara e validacao de cpf
+- mascara cep
+- verificar Webservices dos correios busca CEP / endereço
+- mudar ordem do endereço da empresa com o cep e fazer busca
+- adicionar botão de salvar, ao final. com o mesmo icone e uma legenda - ok
+
+Checkin
+- mostrar placa somente quando for carro
+- Obrigar que o usuario principal sempre faça checkin  - ok
+
+- criar ambiente de teste
+- nome do hotel : Golden Tulip Porto Vitoria
+- http://goo.gl/maps/oR3Cc
+- gerar build no google drive
+
+
+tela principal...ir direto para login  - ok
+-comentar botao do face...   - ok

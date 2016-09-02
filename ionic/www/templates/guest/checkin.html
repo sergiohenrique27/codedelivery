@@ -29,14 +29,13 @@
 
         <div>
             <span class="input-label">Hospedes</span>
-            <ion-checkbox ng-if="guest" ng-model="checkin.guests[0]" ng-true-value="{{guest.id}}"
-                          ng-false-value="null">{{guest.fullname}}</ion-checkbox>
+
+            <input type="hidden" ng-model="checkin.guests[0]">{{guest.fullname}}</input>
 
             <ion-checkbox  ng-repeat="i in companions" ng-model="checkin.guests[$index + 1]"
                            ng-true-value="{{i.id}}" ng-false-value="null">{{i.fullname}}</ion-checkbox>
 
         </div>
-
 
         <label class="item item-input item-floating-label">
             <span class="input-label">Última Procedência</span>

@@ -56,7 +56,7 @@
                     <ion-radio ng-model="guest.sex" ng-value="'M'">Masculino</ion-radio>
                     <ion-radio ng-model="guest.sex" ng-value="'F'">Feminino</ion-radio>
 
-                    <div class="item item-divider">Documento de Identidade</div>
+                    <div class="item item-divider">Documento de Identificação</div>
 
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Órgão Expedidor</span>
@@ -152,7 +152,10 @@
                         <input type="text" name="companyZipcode" ng-model="guest.companyZipcode"
                                placeholder="CEP de sua empresa">
                     </label>
-                    <p> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique no botão de salvar,
+                    <button type="button" class="button button-positive button-full" ng-click="save()">
+                        <i class="ion ion-checkmark-round"></i> Salvar
+                    </button>
+                    <p class="padding"> Obrigado pelas informações. Agora os seus checkins serão mais rápidos. Clique no botão de salvar,
                         no topo, para concluir o cadastro do seu perfil.</p>
 
                 </div>

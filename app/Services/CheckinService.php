@@ -53,6 +53,7 @@ class CheckinService
         }
 
         $result = $this->checkinRepository->create($checkin);
+
         $result->guests()->sync($checkin['guests']);
         return $result;
 

@@ -7,7 +7,7 @@ angular.module('starters.controllers')
 
     $scope.Hotels = [];
     $scope.SelectedHotel = null;
-    $scope.guest = null;
+    //$scope.guest = null;
     $scope.companions = null;
     $scope.canUpdate = true;
 
@@ -15,14 +15,17 @@ angular.module('starters.controllers')
         template: 'Carregando ...'
     });
 
-    $scope.checkin = {
-        id: null
-    };
-
     var user = UserData.get();
     if (user.guest) {
         $scope.guest = user.guest.data;
     }
+
+    $scope.checkin = {
+        id: null,
+        guests: [
+             $scope.guest.id
+        ]
+    };
 
     Guest.getCompanions({include: 'companions'}).$promise
         .then(function (data) {
@@ -40,14 +43,18 @@ angular.module('starters.controllers')
             alert('Erro')
         });
 
+
+
     //pegar checkin
     if ($stateParams.id) {
 
         Checkin.getCheckin({id: $stateParams.id, include: 'hotel,guests'}, {}, function (data) {
             $scope.checkin = data.data;
+
+            //setando sempre o usuario do app para fazer checkin
+
             $scope.SelectedHotel = data.data.hotel.data;
 
-            console.log($scope.checkin.checkin);
 
             if ($scope.checkin.status != 'A')
                 $scope.canUpdate = false;
@@ -56,10 +63,12 @@ angular.module('starters.controllers')
 
             for (var i = 0; i < guestsSelecionados.length; i++) {
 
+
                 if ($scope.guest.id == guestsSelecionados[i].id) {
                     $scope.checkin.guests[0] = guestsSelecionados[i].id;
                     continue;
                 }
+
 
                 for (var j = 0; j < $scope.companions.length; j++) {
                     if ($scope.companions[j].id == guestsSelecionados[i].id) {
@@ -71,15 +80,18 @@ angular.module('starters.controllers')
                 delete $scope.checkin.guests[ 'data' ];
             };
 
-
             $ionicLoading.hide();
         }, function (dataError) {
             $ionicLoading.hide();
         });
-
     }
 
+
+
+
     $ionicLoading.hide();
+
+
 
     $scope.openDatePickerCheckin = function(){
         var dtAux = $scope.checkin.checkin;
@@ -148,6 +160,10 @@ angular.module('starters.controllers')
         $ionicLoading.show({
             template: 'Salvando ...'
         });
+
+
+
+        console.log($scope.checkin);
 
         Checkin.store({id: $scope.checkin.id}, {checkin: $scope.checkin}, function (data) {
             $scope.checkin.id = data.id;

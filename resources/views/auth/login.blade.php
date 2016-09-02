@@ -48,10 +48,14 @@
         </div>
     </form>
 
+        <!--
     <div class="social-auth-links text-center">
         <p>- OU -</p>
         <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Logar usando o Facebook</a>
-    </div><!-- /.social-auth-links -->
+    </div>
+    -->
+
+    <!-- /.social-auth-links -->
 
     <a href="{{ url('/password/email') }}">Eu esqueci minha Senha</a><br>
     <a href="{{ url('/auth/register') }}" class="text-center">Desejo me cadastrar</a>
