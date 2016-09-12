@@ -1,7 +1,9 @@
 angular.module('starters.controllers')
     .controller('GuestProfileController',
-        ['$scope', '$state', '$ionicLoading', 'UserData', '$filter', 'Guest', '$ionicPopup', 'ionicDatePicker', 'User',
-            function ($scope, $state, $ionicLoading, UserData, $filter, Guest, $ionicPopup, ionicDatePicker, User) {
+        ['$scope', '$state', '$ionicLoading', 'UserData', '$filter', 'Guest', '$ionicPopup', 'ionicDatePicker',
+            'User', 'Correios',
+            function ($scope, $state, $ionicLoading, UserData, $filter, Guest, $ionicPopup, ionicDatePicker,
+                      User, Correios) {
 
                 var user = UserData.get(),
                     guest = null;
@@ -77,4 +79,26 @@ angular.module('starters.controllers')
                     };
                     ionicDatePicker.openDatePicker(ipObj1);
                 };
+
+
+                $scope.getCEPCasa = function () {
+
+                    return Correios.get({
+                        CEP: $scope.guest.permanentZipcode
+                    }).then(
+                        //cpf ok
+                        function (data) {
+                            $scope.guest.permanentAdress = data.logradouro + ' ' + data.complemento + ' - ' + data.bairro;
+                            $scope.guest.state = data.localidade;
+                            $scope.guest.state = data.UF;
+                        },
+                        //cpf inválido
+                        function (dataError) {
+                            $scope.guest.CEP = "";
+                            Console.log(dataError);
+                        }
+                    )
+
+                }
+
             }]);

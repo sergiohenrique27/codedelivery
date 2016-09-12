@@ -69,7 +69,7 @@
             </select>
         </label>
 
-        <label class="item item-input item-floating-label">
+        <label ng-if="checkin.ArrivingBy=='Automóvel'" class="item item-input item-floating-label">
             <span class="input-label">Placa do veículo</span>
             <input type="text" name="carPlate" ng-model="checkin.carPlate"
                    placeholder="informe a placa do veículo">

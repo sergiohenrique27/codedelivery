@@ -59,16 +59,22 @@
 
                     <div class="item item-divider">Documento de Identificação</div>
 
+                    <label class="item item-input item-select">
+                        <div class="input-label">
+                            Tipo
+                        </div>
+                        <select name="travelDocType" ng-model="guest.travelDocType">
+                            <option>RG</option>
+                            <option>CNH</option>
+                            <option>Identidade Profissional</option>
+                            <option>Passaporte</option>
+                        </select>
+                    </label>
+
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Órgão Expedidor</span>
                         <input type="text" name="travelDocIssuingCountry" ng-model="guest.travelDocIssuingCountry"
                                placeholder="Órgão Expedidor">
-                    </label>
-
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">Tipo</span>
-                        <input type="text" name="travelDocType" ng-model="guest.travelDocType"
-                               placeholder="tipo">
                     </label>
 
                     <label class="item item-input item-floating-label">
@@ -83,10 +89,10 @@
             <ion-slide>
                 <div class="list card">
 
-                    <label class="item item-input item-floating-label">
+                    <label class="item item-input">
                         <span class="input-label">CPF</span>
                         <input type="text" name="CPF" ng-model="guest.CPF"
-                               placeholder="seu CPF">
+                               ui-mask="999.999.999-99">
                     </label>
 
                     <label class="item item-input item-floating-label">
@@ -101,10 +107,10 @@
                                placeholder="seu Celular">
                     </label>
 
-                    <label class="item item-input item-floating-label">
+                    <label class="item item-input">
                         <span class="input-label">CEP</span>
                         <input type="text" name="permanentZipcode" ng-model="guest.permanentZipcode"
-                               placeholder="seu CEP">
+                                ui-mask="99.999-999">
                     </label>
 
                 </div>
@@ -143,16 +149,17 @@
                         <input type="text" name="companyName" ng-model="guest.companyName"
                                placeholder="sua Empresa">
                     </label>
+                    <label class="item item-input">
+                        <span class="input-label">CEP - Empresa</span>
+                        <input type="text" name="companyZipcode" ng-model="guest.companyZipcode"
+                               ui-mask="99.999-999">
+                    </label>
                     <label class="item item-input item-floating-label">
                         <span class="input-label">Endereço - Empresa</span>
                         <input type="text" name="companyAdress" ng-model="guest.companyAdress"
                                placeholder="Endereço de sua empresa">
                     </label>
-                    <label class="item item-input item-floating-label">
-                        <span class="input-label">CEP - Empresa</span>
-                        <input type="text" name="companyZipcode" ng-model="guest.companyZipcode"
-                               placeholder="CEP de sua empresa">
-                    </label>
+
                     <button type="button" class="button button-positive button-full" ng-click="save()">
                         <i class="ion ion-checkmark-round"></i> Salvar
                     </button>

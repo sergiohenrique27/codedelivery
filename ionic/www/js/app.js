@@ -26,11 +26,12 @@ angular.module('starter',
         'http-auth-interceptor',
         'starters.directives',
         'angucomplete-alt',
-        'ionic-datepicker'
+        'ionic-datepicker',
+        'ui.mask'
     ])
     .constant('appConfig', {
-        //baseUrl: 'http://localhost:8100/',       //casa - mac
-        baseUrl: 'http://192.168.0.11:8000/',       //dcasa - app
+        baseUrl: 'http://localhost:8100/',       //casa - mac
+       // baseUrl: 'http://192.168.0.11:8000/',       //dcasa - app
         //baseUrl: 'https://nextinn.com.br/',       //digital ocean
         pusherKey: "71402c1e63208f41327c",
         redirectAfterLogin: {

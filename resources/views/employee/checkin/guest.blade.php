@@ -43,13 +43,20 @@
         {!! Form::radio('sex', 'F' ) !!} Feminino
     </div>
     <div class="form-group">
+        {!! Form::label('travelDocType', 'Tipo de Documento:' ) !!}
+        {!! Form::select('travelDocType',  array(
+                'RG' => 'RG',
+                'CNH' => 'CNH',
+                'Identidade Profissional' => 'Identidade Profissional',
+                'Passaporte' => 'Passaporte'
+             ))
+         !!}
+    </div>
+    <div class="form-group">
         {!! Form::label('travelDocIssuingCountry', 'Emissor do Documento:' ) !!}
         {!! Form::text('travelDocIssuingCountry', null, ['class'=>'form-control' ] ) !!}
     </div>
-    <div class="form-group">
-        {!! Form::label('travelDocType', 'Tipo de Documento:' ) !!}
-        {!! Form::text('travelDocType', null, ['class'=>'form-control' ] ) !!}
-    </div>
+
     <div class="form-group">
         {!! Form::label('travelDocNumber', 'Número do Documento:' ) !!}
         {!! Form::text('travelDocNumber', null, ['class'=>'form-control' ] ) !!}

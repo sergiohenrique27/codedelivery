@@ -2,7 +2,17 @@
     <ion-nav-title> QR CODE</ion-nav-title>
 
     <ion-content class="padding has-header">
+
+        <p> <b>Hóspedes </b>
+            <span  ng-repeat="i in checkin.guests.data"> <br/> {{i.fullname}} </span> </p>
+        <p> <b>Hotel </b>
+            <br/>{{checkin.hotel.data.name}}</p>
+        <p> <b>Data </b>
+            <br/>{{checkin.checkin}}</p>
+
+        <div id="qrcode" align="center"></div>
+
+        <br/>
         <p> Mostre este QRCODE na recepção do hotel. Obrigado!</p>
-        <div id="qrcode"></div>
     </ion-content>
 </ion-view>

@@ -2,23 +2,55 @@ Menu
 - foto alterar.
 
 Perfil
-- documento de identidade para documento de identificação
+- documento de identidade para documento de identificação - ok
 - usuário do perfil maior de idade - ok
 - mascara e validacao de cpf
-- mascara cep
+- mascara cep - ok
 - verificar Webservices dos correios busca CEP / endereço
-- mudar ordem do endereço da empresa com o cep e fazer busca
+- mudar ordem do endereço da empresa com o cep e fazer busca - ok
 - adicionar botão de salvar, ao final. com o mesmo icone e uma legenda - ok
 
 Checkin
-- mostrar placa somente quando for carro
+- mostrar placa somente quando for carro - ok
 - Obrigar que o usuario principal sempre faça checkin  - ok
 
-- criar ambiente de teste
-- nome do hotel : Golden Tulip Porto Vitoria
+- criar ambiente de teste - ok
+- nome do hotel : Golden Tulip Porto Vitoria - ok
 - http://goo.gl/maps/oR3Cc
-- gerar build no google drive
+- gerar build no google drive   - ok
 
 
 tela principal...ir direto para login  - ok
 -comentar botao do face...   - ok
+
+
+--------- feedback cliente ----------
+Orgão expedidor -> sempre - ok
+tipos de documento -> drop com tipos (CNH, RG, Identidade Profissional, Passaporte)
+Registros na ficha trocar para observação. - ok
+
+forma de depois de um tempo do checkout ir para ele um questionário avaliando o app e o serviço do hotel
+
+relatorios
+--------------------------------------------------
+exportar excel:
+* quantidade de checkins
+* Top 10 usuários
+
+----------------------------------------------------------------------
+integraçao
+
+quarto.. ocupado... vago nao limpo ... vago limpo
+
+-------------------------------------------------------------------------------
+
+qrcode..adicionar mais info...  -ok
+
+------------------------------------------------------------------------------
+logar pelo face na app
+
+-------------------------------------------------------------------------------
+ver lance do email...
+
+-----
+email de boas vindas

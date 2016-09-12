@@ -70,7 +70,7 @@
         <div class="box">
             <p><span class="tituloCampo">Tipo de Documento</span> {{$guest->travelDocType}}
                 <span class="tituloCampo">Número:</span> {{$guest->travelDocNumber}}
-                <span class="tituloCampo">País Emissor:</span> {{$guest->travelDocIssuingCountry}}
+                <span class="tituloCampo">Orgão Expedidor:</span> {{$guest->travelDocIssuingCountry}}
                 <span class="tituloCampo">CPF:</span> {{$guest->CPF}}
                 <span class="tituloCampo">Fone:</span> {{$guest->phone}}
                 <span class="tituloCampo">Celular:</span> {{$guest->celphone}}</p>
@@ -100,7 +100,7 @@
             <span class="tituloCampo"> Data do Checkout:</span> {{$checkin->checkout}}</p>
         </div>
         <div class="box">
-            <p><span class="tituloCampo">Registro:</span> {{$checkin->record}}</p>
+            <p><span class="tituloCampo">Observações:</span> {{$checkin->record}}</p>
         </div>
         <div class="box">
             <p>PARA SUA MAIOR SEGURANÇA E COMODIDADE, POSSUIMOS UM COFRE DENTRO DE CADA APARTAMENTO. SOLICITAMOS QUE

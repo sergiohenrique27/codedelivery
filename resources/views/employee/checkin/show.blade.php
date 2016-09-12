@@ -28,7 +28,7 @@
             <h4>Meio de Transporte <span class="label label-default">{{$checkin->ArrivingBy}}</span></h4>
             <h4>Placa do Veículo <span class="label label-default">{{$checkin->carPlate}}</span></h4>
             <h4>Data do Checkin <span class="label label-default">{{$checkin->checkin}}</span></h4>
-            <h4>Registro <span class="label label-default">{{$checkin->record}}</span></h4>
+            <h4>Observações <span class="label label-default">{{$checkin->record}}</span></h4>
 
             <a href="{{ route('employee.checkin.update', [$checkin->id]) }}" class="btn btn-success">Alterar Checkin</a>
 
@@ -77,7 +77,7 @@
                                 </h4>
                                 <h4>Número do Documento <span
                                             class="label label-default">{{$guest->travelDocNumber}}</span></h4>
-                                <h4>Emissor do Documento<span
+                                <h4>Órgão Expedidor<span
                                             class="label label-default">{{$guest->travelDocIssuingCountry}}</span></h4>
                                 <h4>CPF <span class="label label-default">{{$guest->CPF}}</span></h4>
                                 <h4>Telefone <span class="label label-default">{{$guest->phone}}</span></h4>
