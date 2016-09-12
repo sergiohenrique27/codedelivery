@@ -20,6 +20,17 @@ angular.module('starters.controllers')
                 });
             }
 
+            $scope.validaCPF = function () {
+                if (!CPF.validate($scope.guest.CPF)) {
+                    $ionicPopup.alert({
+                        title: 'Aviso',
+                        template: 'CPF Inválido.'
+                    });
+                    $scope.guest.CPF = "";
+                }
+
+            }
+
             $scope.save = function () {
                 $ionicLoading.show({
                     template: 'Salvando ...'

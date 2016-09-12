@@ -26,7 +26,7 @@ tela principal...ir direto para login  - ok
 
 --------- feedback cliente ----------
 Orgão expedidor -> sempre - ok
-tipos de documento -> drop com tipos (CNH, RG, Identidade Profissional, Passaporte)
+tipos de documento -> drop com tipos (CNH, RG, Identidade Profissional, Passaporte) -- ok
 Registros na ficha trocar para observação. - ok
 
 forma de depois de um tempo do checkout ir para ele um questionário avaliando o app e o serviço do hotel
