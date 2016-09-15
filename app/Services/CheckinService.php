@@ -100,4 +100,25 @@ class CheckinService
 
     }
 
+    public function quantidade($hotel_id, $inicio, $fim)
+    {
+
+        $sql = "    
+            select 
+                count(*) as qtd
+            from 
+                checkins
+            where 
+                hotel_id = $hotel_id
+                and status in ('R', 'V')
+                and checkin >= '$inicio'
+                and checkin <= '$fim'
+         ";
+
+
+        $result = DB::select( DB::raw($sql) );
+        return $result;
+
+    }
+
 }

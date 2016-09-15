@@ -184,4 +184,22 @@ class CheckinController extends Controller
         return view('employee.checkin.top10', compact('results', 'i'));
     }
 
+    public function findQuantidade ()
+    {
+        return view('employee.checkin.findQuantidade');
+    }
+
+    public function getQuantidade (Request $request)
+    {
+
+        $datas = $request->all();
+
+        $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+        $results = $this->service->quantidade($hotel_id, $datas['inicio'], $datas['fim']);
+
+        $inicio = $datas['inicio'];
+        $fim = $datas['fim'];
+        return view('employee.checkin.getQuantidade', compact('results', 'inicio', 'fim'));
+    }
+
 }

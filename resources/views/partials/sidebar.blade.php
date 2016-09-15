@@ -60,6 +60,8 @@
                         <span>Localizar Checkin</span></a></li>
                 <li><a href="{{ route('employee.checkin.top10') }}"><i class='fa fa-link'></i>
                         <span>TOP 10</span></a></li>
+                <li><a href="{{ route('employee.checkin.findQuantidade') }}"><i class='fa fa-link'></i>
+                        <span>Quantidade de Checkins</span></a></li>
         @endif
 
 

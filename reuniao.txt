@@ -34,7 +34,7 @@ forma de depois de um tempo do checkout ir para ele um questionário avaliando o
 relatorios
 --------------------------------------------------
 exportar excel:
-* quantidade de checkins
+* quantidade de checkins - ok
 * Top 10 usuários   -   ok
 
 ----------------------------------------------------------------------

@@ -89,6 +89,8 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.', 'middleware' => 'auth
         Route::put('storeGuest/{idCheckin}/{id}', ['uses' => 'CheckinController@storeGuest', 'as' => 'storeGuest']);
         Route::get('updateStatus/{id}/{status}', ['uses' => 'CheckinController@updateStatus', 'as' => 'updateStatus']);
         Route::get('top10', ['uses' => 'CheckinController@top10', 'as' => 'top10']);
+        Route::get('findQuantidade', ['uses' => 'CheckinController@findQuantidade', 'as' => 'findQuantidade']);
+        Route::post('getQuantidade', ['uses' => 'CheckinController@getQuantidade', 'as' => 'getQuantidade']);
     });
 });
 
