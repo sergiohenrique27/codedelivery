@@ -33,7 +33,25 @@ class GuestController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+
+    public function cep($cep)
+    {
+        $ch = curl_init();
+        // informar URL e outras funções ao CURL
+        curl_setopt($ch, CURLOPT_URL, "https://viacep.com.br/ws/$cep/json");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // Acessar a URL e retornar a saída
+        $output = curl_exec($ch);
+        // liberar
+        curl_close($ch);
+        // Substituir ‘Google’ por ‘PHP Curl’
+        //$output = str_replace(‘Google’, ‘PHP Curl’, $output);
+        // Imprimir a saída
+        return $output;
+    }
+
+    public
+    function index()
     {
         /*
          $id = Authorizer::getResourceOwnerId();
@@ -47,16 +65,18 @@ class GuestController extends Controller
         */
     }
 
-    public function show($id)
+    public
+    function show($id)
     {
         /*
         $deliveryman = Authorizer::getResourceOwnerId();
         $o = $this->repository->skipPresenter(false)->getOrderByIdAndDeliveryman($id, $deliveryman);
         return $o;
-*/
+    */
     }
-    
-    public function updateProfile(Request $request)
+
+    public
+    function updateProfile(Request $request)
     {
 
         $user_id = Authorizer::getResourceOwnerId();
@@ -66,7 +86,8 @@ class GuestController extends Controller
         return $this->service->updateProfile($user_id, $guest);
     }
 
-    public function listCompanions()
+    public
+    function listCompanions()
     {
         $user_id = Authorizer::getResourceOwnerId();
         $guest = $this->repository->skipPresenter(false)->findByField('user_id', $user_id);
@@ -78,7 +99,8 @@ class GuestController extends Controller
 
     }
 
-    public function destroyCompanion($id)
+    public
+    function destroyCompanion($id)
     {
         $user_id = Authorizer::getResourceOwnerId();
         $guest = $this->repository->findByField('user_id', $user_id)->first();
@@ -94,16 +116,18 @@ class GuestController extends Controller
     }
 
 
-    public function showCompanion($id)
+    public
+    function showCompanion($id)
     {
-            $user_id = Authorizer::getResourceOwnerId();
-            $guest = $this->repository->findByField('user_id', $user_id)->first();
+        $user_id = Authorizer::getResourceOwnerId();
+        $guest = $this->repository->findByField('user_id', $user_id)->first();
 
         return $this->repository->getByIdAndGuestId($id, $guest['id']);
 
-    } 
-    
-    public function storeCompanion(Request $request)
+    }
+
+    public
+    function storeCompanion(Request $request)
     {
         $user_id = Authorizer::getResourceOwnerId();
         $guest = $this->repository->findByField('user_id', $user_id)->first();
@@ -111,6 +135,6 @@ class GuestController extends Controller
         $companion = $request->get('guest');
 
         return $this->service->updateCompanion($guest['id'], $companion);
-            
+
     }
 }

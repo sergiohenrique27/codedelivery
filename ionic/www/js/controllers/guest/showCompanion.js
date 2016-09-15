@@ -1,7 +1,7 @@
 angular.module('starters.controllers')
     .controller('GuestShowCompanionController', ['$scope', '$state', '$stateParams', 'Guest', '$ionicLoading',
-        'ionicDatePicker', '$filter', '$ionicPopup',
-        function ($scope, $state, $stateParams, Guest, $ionicLoading, ionicDatePicker, $filter, $ionicPopup) {
+        'ionicDatePicker', '$filter', '$ionicPopup', 'Correios',
+        function ($scope, $state, $stateParams, Guest, $ionicLoading, ionicDatePicker, $filter, $ionicPopup, Correios) {
             $scope.guest = {
                 id: null
             };
@@ -28,6 +28,31 @@ angular.module('starters.controllers')
                     });
                     $scope.guest.CPF = "";
                 }
+
+            }
+
+            $scope.getCEPCasa = function () {
+
+                return Correios.get({
+                    cep: $scope.guest.permanentZipcode
+                }).$promise.then(
+                    //cpf ok
+                    function (data) {
+                        $scope.guest.permanentAdress = data.logradouro + ' ' + data.complemento + ' - ' + data.bairro;
+                        $scope.guest.permanentCity = data.localidade;
+                        $scope.guest.state = data.uf;
+                        $scope.guest.state = data.uf;
+                        $scope.guest.country = "Brasil";
+                    },
+                    //cpf inválido
+                    function (dataError) {
+                        $scope.guest.CEP = "";
+                        $ionicPopup.alert({
+                            title: 'Aviso',
+                            template: 'CEP Inválido.'
+                        });
+                    }
+                )
 
             }
 

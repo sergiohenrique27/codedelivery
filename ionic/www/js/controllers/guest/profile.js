@@ -44,7 +44,7 @@ angular.module('starters.controllers')
                         $ionicPopup.alert({
                             title: 'Aviso',
                             template: 'Perfil salvo. <br/> Você pode adicionar acompanhantes acessando o <b>menu / Acompanhantes</b> ou ' +
-                                'agendar Checkins acessando o  <b>menu / Checkins</b>'
+                            'agendar Checkins acessando o  <b>menu / Checkins</b>'
                         });
 
                     }, function (dataError) {
@@ -80,22 +80,37 @@ angular.module('starters.controllers')
                     ionicDatePicker.openDatePicker(ipObj1);
                 };
 
+                $scope.validaCPF = function () {
+                    if (!CPF.validate($scope.guest.CPF)) {
+                        $ionicPopup.alert({
+                            title: 'Aviso',
+                            template: 'CPF Inválido.'
+                        });
+                        $scope.guest.CPF = "";
+                    }
+
+                }
 
                 $scope.getCEPCasa = function () {
 
                     return Correios.get({
-                        CEP: $scope.guest.permanentZipcode
-                    }).then(
+                        cep: $scope.guest.permanentZipcode
+                    }).$promise.then(
                         //cpf ok
                         function (data) {
                             $scope.guest.permanentAdress = data.logradouro + ' ' + data.complemento + ' - ' + data.bairro;
-                            $scope.guest.state = data.localidade;
-                            $scope.guest.state = data.UF;
+                            $scope.guest.permanentCity = data.localidade;
+                            $scope.guest.state = data.uf;
+                            $scope.guest.state = data.uf;
+                            $scope.guest.country = "Brasil";
                         },
                         //cpf inválido
                         function (dataError) {
                             $scope.guest.CEP = "";
-                            Console.log(dataError);
+                            $ionicPopup.alert({
+                                title: 'Aviso',
+                                template: 'CEP Inválido.'
+                            });
                         }
                     )
 

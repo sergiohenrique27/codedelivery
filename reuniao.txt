@@ -4,9 +4,9 @@ Menu
 Perfil
 - documento de identidade para documento de identificação - ok
 - usuário do perfil maior de idade - ok
-- mascara e validacao de cpf
+- mascara e validacao de cpf - ok
 - mascara cep - ok
-- verificar Webservices dos correios busca CEP / endereço
+- verificar Webservices dos correios busca CEP / endereço - ok
 - mudar ordem do endereço da empresa com o cep e fazer busca - ok
 - adicionar botão de salvar, ao final. com o mesmo icone e uma legenda - ok
 
@@ -35,7 +35,7 @@ relatorios
 --------------------------------------------------
 exportar excel:
 * quantidade de checkins
-* Top 10 usuários
+* Top 10 usuários   -   ok
 
 ----------------------------------------------------------------------
 integraçao

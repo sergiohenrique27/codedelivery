@@ -76,4 +76,28 @@ class CheckinService
     }
 
 
+    public function top10($hotel_id)
+    {
+
+        $sql = "    
+            select
+                c.user_id, u.name, u.email, count(*) as qtd
+            from
+                checkins as c
+                left outer join users as u on c.user_id = u.id
+            where
+                hotel_id = $hotel_id
+                and status in ('R', 'V')
+            group by
+                c.user_id
+            order by
+                qtd desc
+            limit 10
+         ";
+
+        $results = DB::select( DB::raw($sql) );
+        return $results;
+
+    }
+
 }

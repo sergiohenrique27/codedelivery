@@ -110,7 +110,7 @@
                     <label class="item item-input">
                         <span class="input-label">CEP</span>
                         <input type="text" name="permanentZipcode" ng-model="guest.permanentZipcode"
-                                ui-mask="99.999-999">
+                                ui-mask="99.999-999" ng-blur="getCEPCasa()">
                     </label>
 
                 </div>

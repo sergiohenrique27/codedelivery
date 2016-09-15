@@ -175,4 +175,13 @@ class CheckinController extends Controller
 
     }
 
+    public function top10 ()
+    {
+        $hotel_id = $this->userRepository->find(Auth::user()->id)->employee->hotel_id;
+        $results = $this->service->top10($hotel_id);
+        $i = 1;
+
+        return view('employee.checkin.top10', compact('results', 'i'));
+    }
+
 }

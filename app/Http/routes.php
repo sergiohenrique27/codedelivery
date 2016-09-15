@@ -88,6 +88,7 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.', 'middleware' => 'auth
         Route::get('guest/{idCheckin}/{id}', ['uses' => 'CheckinController@guest', 'as' => 'guest']);
         Route::put('storeGuest/{idCheckin}/{id}', ['uses' => 'CheckinController@storeGuest', 'as' => 'storeGuest']);
         Route::get('updateStatus/{id}/{status}', ['uses' => 'CheckinController@updateStatus', 'as' => 'updateStatus']);
+        Route::get('top10', ['uses' => 'CheckinController@top10', 'as' => 'top10']);
     });
 });
 
@@ -142,6 +143,7 @@ Route::group(['middleware' => 'cors'], function () {
             Route::get('companions', ['uses' => 'api\guest\GuestController@listCompanions', 'as' => 'companions']);
             Route::delete('companions/{id}', ['uses' => 'api\guest\GuestController@destroyCompanion', 'as' => 'destroyCompanion']);
             Route::get('companions/{id}', ['uses' => 'api\guest\GuestController@showCompanion', 'as' => 'showCompanion']);
+            Route::get('cep/{cep}', ['uses' => 'api\guest\GuestController@cep', 'as' => 'getCEP']);
             Route::put('companion', ['uses' => 'api\guest\GuestController@storeCompanion', 'as' => 'storeCompanion']);
 
 
