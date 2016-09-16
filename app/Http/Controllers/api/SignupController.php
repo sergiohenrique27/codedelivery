@@ -7,6 +7,7 @@ use CodeDelivery\Http\Controllers\Controller;
 use CodeDelivery\Http\Requests\SignupRequest;
 use CodeDelivery\Repositories\GuestRepository;
 use CodeDelivery\Repositories\UserRepository;
+use Mail;
 
 class SignupController extends Controller
 {
@@ -24,6 +25,14 @@ class SignupController extends Controller
     {
         $data = $request->all();
         $data['password'] = bcrypt($data['password']);
-        $this->repository->create( $data );
+        //$this->repository->create( $data );
+
+        Mail::send('emails.signup', ['user' => $data], function ($m) use ($data) {
+            $m->from('contato@nextinn.com.br', 'NextInn');
+
+            $m->to($data['email'], $data['name'])->subject('NextInn - Seja Bem-Vindo!');
+        });
+
+
     }
 }

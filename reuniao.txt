@@ -52,5 +52,10 @@ logar pelo face na app
 -------------------------------------------------------------------------------
 ver lance do email...
 
+Access Key ID:
+AKIAIEMAVHETO2SK2NMA
+Secret Access Key:
+W6O/oYjQL07takdXCyUMtX7L3grRaBC3BzZebbM7
+
 -----
 email de boas vindas

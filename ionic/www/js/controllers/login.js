@@ -67,8 +67,6 @@ angular.module('starters.controllers')
                     title: 'Advertência',
                     template: msg
                 });
-
-                console.log(dataError.data);
             });
         };
     }])
