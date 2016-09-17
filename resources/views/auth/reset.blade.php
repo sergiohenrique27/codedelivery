@@ -9,7 +9,7 @@
     <body class="login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/home') }}"><b>Next</b>Inn</a>
         </div><!-- /.login-logo -->
 
         @if (session('status'))
@@ -20,7 +20,7 @@
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <strong>Opa!</strong>Existem alguns problemas com as suas informações<br><br>
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -30,7 +30,7 @@
         @endif
 
         <div class="login-box-body">
-            <p class="login-box-msg">Reset Password</p>
+            <p class="login-box-msg">Resetar Senha</p>
             <form action="{{ url('/password/reset') }}" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="token" value="{{ $token }}">
@@ -40,12 +40,12 @@
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password"/>
+                    <input type="password" class="form-control" placeholder="Senha" name="password"/>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password" name="password_confirmation"/>
+                    <input type="password" class="form-control" placeholder="Senha" name="password_confirmation"/>
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
 
@@ -53,7 +53,7 @@
                     <div class="col-xs-2">
                     </div><!-- /.col -->
                     <div class="col-xs-8">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Reset password</button>
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Resetar Senha</button>
                     </div><!-- /.col -->
                     <div class="col-xs-2">
                     </div><!-- /.col -->
@@ -61,7 +61,7 @@
             </form>
 
             <a href="{{ url('/auth/login') }}">Log in</a><br>
-            <a href="{{ url('/auth/register') }}" class="text-center">Register a new membership</a>
+            <a href="{{ url('/auth/register') }}" class="text-center">Desejo me registrar</a>
 
         </div><!-- /.login-box-body -->
 

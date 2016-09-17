@@ -16,6 +16,13 @@ Route::get('/', function () {
     //return view('welcome');
 });
 
+// Rotas para solicitar trocar de senha...
+Route::get('password/email', 'PasswordController@getEmail');
+Route::post('password/email', 'PasswordController@postEmail');
+
+// Rotas para trocar a senha...
+Route::get('password/reset/{token}', 'PasswordController@getReset');
+Route::post('password/reset', 'PasswordController@postReset');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth.checkrole:admin'], function () {
 
