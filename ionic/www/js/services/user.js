@@ -12,6 +12,10 @@ angular.module('starters.services')
             signup:{
                 method: 'POST',
                 url: appConfig.baseUrl + 'api/signup'
+            },
+            resetPassword:{
+                method: 'POST',
+                url: appConfig.baseUrl + 'api/password/email'
             }
         });
 

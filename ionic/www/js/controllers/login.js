@@ -31,9 +31,28 @@ angular.module('starters.controllers')
 
         }])
 
-    .controller('ForgotPasswordCtrl', function($scope, $state) {
-        $scope.recoverPassword = function(){
+    .controller('ForgotPasswordCtrl', function($scope, $state, User, $ionicPopup, $ionicLoading) {
 
+        $scope.recoverPassword = function(){
+            $ionicLoading.show({
+                template: 'Carregando ...'
+            });
+
+            User.resetPassword({email: $scope.user.email }).$promise
+                .then(
+                    function (data) {
+                        $ionicPopup.alert({
+                            title: 'Link enviado',
+                            template: 'E-mail enviado com o link para alteração da senha.'
+                        });
+                    },function(dataError){
+                        $ionicPopup.alert({
+                            title: 'Advertência',
+                            template: 'Houve um erro.'
+                        });
+                    }
+                );
+            $ionicLoading.hide();
         };
 
         $scope.user = {};

@@ -113,6 +113,7 @@ Route::group(['middleware' => 'cors'], function () {
         'as' => 'signup'
     ]);
 
+    Route::post('api/password/email', 'Auth\PasswordController@postEmail');
 
     Route::group(['prefix' => 'api', 'as' => 'api.', 'middleware' => 'oauth'], function () {
 
