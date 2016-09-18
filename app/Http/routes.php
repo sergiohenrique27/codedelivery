@@ -69,6 +69,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth.check
         Route::put('update/{id}', ['as' => 'update', 'uses' => 'CupomsController@update']);
         Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'CupomsController@destroy']);
     });
+
+    // - rotas app admin/
+    Route::group(['prefix' => 'employees', 'as' => 'employees.'], function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'EmployeeController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'EmployeeController@create']);
+        Route::post('store', ['as' => 'store', 'uses' => 'EmployeeController@store']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'EmployeeController@edit']);
+        Route::put('update/{id}', ['as' => 'update', 'uses' => 'EmployeeController@update']);
+        Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'EmployeeController@destroy']);
+    });
+
 });
 
 

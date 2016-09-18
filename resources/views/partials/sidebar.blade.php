@@ -39,19 +39,8 @@
 
 
             @if( Auth::user()->role == "admin")
-                <li><a href="{{ route('admin.categories.index') }}"><i class='fa fa-link'></i>
-                        <span>Categorias</span></a></li>
-                <li><a href="{{ route('admin.products.index') }}"><i class='fa fa-link'></i>
-                        <span>Produtos</span></a></li>
-                <li><a href="{{ route('admin.clients.index') }}"><i class='fa fa-link'></i>
-                        <span>Clientes</span></a></li>
-                <li><a href="{{ route('admin.orders.index') }}"><i class='fa fa-link'></i> <span>Pedidos</span></a>
-                </li>
-                <li><a href="{{ route('admin.cupoms.index') }}"><i class='fa fa-link'></i> <span>Cupoms</span></a>
-                </li>
-            @elseif(Auth::user()->role == "client")
-                <li><a href="{{ route('customer.order.index') }}"><i class='fa fa-link'></i>
-                        <span>Meus Pedidos</span></a></li>
+                <li><a href="{{ route('admin.employees.index') }}"><i class='fa fa-link'></i>
+                        <span>Funcionários</span></a></li>
             @elseif(Auth::user()->role == "employee")
                 <li><a href="{{ route('employee.checkin.index') }}"><i class='fa fa-link'></i>
                         <span>Realizar Checkin / Checkout</span></a>
@@ -63,7 +52,8 @@
                 <li><a href="{{ route('employee.checkin.findQuantidade') }}"><i class='fa fa-link'></i>
                         <span>Quantidade de Checkins</span></a></li>
         @endif
-
+            <li><a href="{{ route('auth.logout') }}"><i class='fa fa-link'></i>
+                    <span>Sair</span></a></li>
 
         <!--
             <li class="treeview">

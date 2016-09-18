@@ -11,6 +11,8 @@ use CodeDelivery\Repositories\ClientRepository;
 use CodeDelivery\Repositories\ClientRepositoryEloquent;
 use CodeDelivery\Repositories\CupomRepository;
 use CodeDelivery\Repositories\CupomRepositoryEloquent;
+use CodeDelivery\Repositories\EmployeeRepository;
+use CodeDelivery\Repositories\EmployeeRepositoryEloquent;
 use CodeDelivery\Repositories\GuestRepository;
 use CodeDelivery\Repositories\GuestRepositoryEloquent;
 use CodeDelivery\Repositories\HotelRepository;
@@ -84,6 +86,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(
             CheckinRepository::class,
             CheckinRepositoryEloquent::class
+        );
+        $this->app->bind(
+            EmployeeRepository::class,
+            EmployeeRepositoryEloquent::class
         );
 
     }
