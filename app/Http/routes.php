@@ -112,6 +112,19 @@ Route::group(['prefix' => 'employee', 'as' => 'employee.', 'middleware' => 'auth
     });
 });
 
+Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => 'auth.checkrole:superadmin'], function () {
+
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'AdminController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'AdminController@create']);
+        Route::post('store', ['as' => 'store', 'uses' => 'AdminController@store']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'AdminController@edit']);
+        Route::put('update/{id}', ['as' => 'update', 'uses' => 'AdminController@update']);
+        Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'AdminController@destroy']);
+    });
+
+
+});
 
 Route::group(['middleware' => 'cors'], function () {
 

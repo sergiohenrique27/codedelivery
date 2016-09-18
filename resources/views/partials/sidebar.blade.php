@@ -51,6 +51,12 @@
                         <span>TOP 10</span></a></li>
                 <li><a href="{{ route('employee.checkin.findQuantidade') }}"><i class='fa fa-link'></i>
                         <span>Quantidade de Checkins</span></a></li>
+            @elseif(Auth::user()->role == "superadmin")
+                <li><a href="{{ route('employee.checkin.top10') }}"><i class='fa fa-link'></i>
+                        <span>Hóteis</span></a></li>
+                <li><a href="{{ route('superadmin.admin.index') }}"><i class='fa fa-link'></i>
+                        <span>Administradores</span></a></li>
+
         @endif
             <li><a href="{{ route('auth.logout') }}"><i class='fa fa-link'></i>
                     <span>Sair</span></a></li>
