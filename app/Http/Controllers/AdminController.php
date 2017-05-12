@@ -92,12 +92,10 @@ class AdminController extends Controller
         $emplooye->hotel_id = $user['hotel_id'];
         $emplooye->save();
 
-
         Mail::send('emails.signup', ['user' => $user], function ($m) use ($user) {
             $m->from('contato@nextinn.com.br', 'NextInn');
             $m->to($user['email'], $user['name'])->subject('NextInn - Seja Bem-Vindo!');
         });
-
 
         return redirect()->route('superadmin.admin.index', ["msg=Administrador salvo com sucesso."]);
 

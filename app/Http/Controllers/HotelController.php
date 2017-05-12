@@ -3,6 +3,7 @@
 namespace CodeDelivery\Http\Controllers;
 
 use CodeDelivery\Http\Requests\AdminCreateRequest;
+use CodeDelivery\Http\Requests\HotelRequest;
 use CodeDelivery\Http\Requests\UserRequest;
 use CodeDelivery\Http\Requests\UserUpdateRequest;
 use CodeDelivery\Models\Employee;
@@ -20,9 +21,8 @@ use CodeDelivery\Services\EmployeeService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
-class AdminController extends Controller
+class HotelController extends Controller
 {
-
     private $repository;
     private $userRepository;
     private $hotelRepository;
@@ -41,25 +41,20 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $msg = (empty($request['msg']) ? '' : $request['msg']);
-        $admins = $this->service->getAdmins();
-        return view('superadmin.admin.index', compact('admins', 'msg'));
+
+        $hotels = $this->hotelRepository->orderBy('name')->paginate();
+        return view('superadmin.hotels.index', compact('hotels', 'msg'));
     }
 
     public function create()
     {
-
-        $hoteis = $this->hotelService->getHoteis();
-        return view('superadmin.admin.create', compact('hoteis' , 'hoteis'));
+        return view('superadmin.hotels.create');
     }
 
     public function edit($id)
     {
-        $user = $this->userRepository->find($id);
-        $hotel_id = $user->employee->hotel->id;
-
-        $user->hotel_id = $hotel_id;
-        $hoteis = $this->hotelService->getHoteis();
-        return view('superadmin.admin.edit', compact('user', 'hoteis'));
+        $hotel = $this->hotelRepository->find($id);
+        return view('superadmin.hotels.edit', compact( 'hotel'));
     }
 
     public function destroy($id)
@@ -67,37 +62,19 @@ class AdminController extends Controller
 
     }
 
-    public function update($id, UserUpdateRequest $request)
+    public function update($id, HotelRequest $request)
     {
-        $user = $request->all();
-        $updUser = $this->userRepository->update($user, $id);
-
-        $employee = Employee::find($updUser->employee->id);
-        $employee ->hotel_id =  $user['hotel_id'];
-        $employee->save();
-
-        return redirect()->route('superadmin.admin.index', ["msg=Administrador salvo com sucesso."]);
+        $hotel = $request->all();
+        $this->hotelRepository->update($hotel, $id);
+        return redirect()->route('superadmin.hotels.index', ["msg=Hotel salvo com sucesso."]);
     }
 
-    public function store(AdminCreateRequest $request)
+    public function store(HotelRequest $request)
     {
-        $user = $request->all();
-        $user['password'] = bcrypt('mudar123');
-        $user['role'] = 'admin';
+        $hotel = $request->all();
+        $this->hotelRepository->create($hotel);
 
-        $newuser = $this->userRepository->create($user);
-
-        $emplooye = new Employee();
-        $emplooye->user_id = $newuser->id;
-        $emplooye->hotel_id = $user['hotel_id'];
-        $emplooye->save();
-
-        Mail::send('emails.signup', ['user' => $user], function ($m) use ($user) {
-            $m->from('contato@nextinn.com.br', 'NextInn');
-            $m->to($user['email'], $user['name'])->subject('NextInn - Seja Bem-Vindo!');
-        });
-
-        return redirect()->route('superadmin.admin.index', ["msg=Administrador salvo com sucesso."]);
+        return redirect()->route('superadmin.hotels.index', ["msg=Hotel salvo com sucesso."]);
 
     }
 

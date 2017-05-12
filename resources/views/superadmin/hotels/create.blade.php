@@ -1,10 +1,10 @@
 @extends('app')
 
 @section('htmlheader_title')
-    NextInn - Administradores
+    NextInn - Hotéis
 @endsection
 @section('contentheader_title')
-     Novo Administrador
+     Novo Hotel
 @endsection
 
 
@@ -12,9 +12,9 @@
 
     @include('errors._check')
 
-    {!! Form::open(['route'=>'superadmin.admin.store']) !!}
+    {!! Form::open(['route'=>'superadmin.hotels.store']) !!}
 
-    @include('superadmin.admin._form')
+    @include('superadmin.hotels._form')
 
     <div class="form-group">
         {!! Form::submit('Adicionar Administrador', ['class'=>'btn btn-primary' ] ) !!}

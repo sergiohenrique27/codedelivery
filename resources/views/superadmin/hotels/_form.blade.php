@@ -3,10 +3,14 @@
     {!! Form::text('name', null, ['class'=>'form-control' ] ) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Email', 'Email:' ) !!}
-    {!! Form::email('email', null, ['class'=>'form-control' ] ) !!}
+    {!! Form::label('Latitude', 'Latitude:' ) !!}
+    {!! Form::text('latitude', null, ['class'=>'form-control' ] ) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('Hotel', 'Hotel:' ) !!}
-    {!! Form::select('hotel_id', $hoteis, null, ['class'=>'form-control' ] ) !!}
+    {!! Form::label('Longitude', 'Longitude:' ) !!}
+    {!! Form::text('longitude', null, ['class'=>'form-control' ] ) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('City_id', 'Município:' ) !!}
+    {!! Form::text('city_id', null, ['class'=>'form-control' ] ) !!}
 </div>

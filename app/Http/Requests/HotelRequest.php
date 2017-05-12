@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Requests;
 
 use CodeDelivery\Http\Requests\Request;
 
-class UserUpdateRequest extends Request
+class HotelRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,9 @@ class UserUpdateRequest extends Request
     {
         return [
             'name' => 'required',
-            'email' => 'required|email'
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'city_id' => 'required'
         ];
 
     }

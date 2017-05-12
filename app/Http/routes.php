@@ -124,6 +124,17 @@ Route::group(['prefix' => 'superadmin', 'as' => 'superadmin.', 'middleware' => '
     });
 
 
+    // Cadastro de hoteis - superadmin ss
+
+    Route::group(['prefix' => 'hotels', 'as' => 'hotels.'], function () {
+        Route::get('/', ['as' => 'index', 'uses' => 'HotelController@index']);
+        Route::get('create', ['as' => 'create', 'uses' => 'HotelController@create']);
+        Route::post('store', ['as' => 'store', 'uses' => 'HotelController@store']);
+        Route::get('edit/{id}', ['as' => 'edit', 'uses' => 'HotelController@edit']);
+        Route::put('update/{id}', ['as' => 'update', 'uses' => 'HotelController@update']);
+        Route::get('destroy/{id}', ['as' => 'destroy', 'uses' => 'HotelController@destroy']);
+    });
+
 });
 
 Route::group(['middleware' => 'cors'], function () {

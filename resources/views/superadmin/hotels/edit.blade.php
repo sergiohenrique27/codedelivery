@@ -12,12 +12,12 @@
 
     @include('errors._check')
 
-    {!! Form::model($user, ['route'=> ['superadmin.admin.update', $user->id], 'method' => 'put' ]) !!}
+    {!! Form::model($hotel, ['route'=> ['superadmin.hotels.update', $hotel->id], 'method' => 'put' ]) !!}
 
-    @include('superadmin.admin._form')
+    @include('superadmin.hotels._form')
 
     <div class="form-group">
-        {!! Form::submit('Salvar Administrador', ['class'=>'btn btn-primary' ] ) !!}
+        {!! Form::submit('Salvar Hotel', ['class'=>'btn btn-primary' ] ) !!}
     </div>
 
     {!! Form::close() !!}
